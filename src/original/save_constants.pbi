@@ -57,3 +57,6 @@ If *s\chloc <> initial\chloc : ProcedureReturn 0 : EndIf
 If *s\chloc2 <> initial\chloc2 : ProcedureReturn 0 : EndIf
 If *s\daltlc <> initial\daltlc : ProcedureReturn 0 : EndIf
 If *s\spices <> initial\spices : ProcedureReturn 0 : EndIf
+If *s\rod2 <> initial\rod2 : ProcedureReturn 0 : EndIf
+If *s\plant2 <> initial\plant2 : ProcedureReturn 0 : EndIf
+If *s\troll2 <> initial\troll2 : ProcedureReturn 0 : EndIf

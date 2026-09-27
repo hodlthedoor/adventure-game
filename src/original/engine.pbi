@@ -79,7 +79,8 @@ Procedure Submit(*db.Database, *s.State, input.s, *out.Output)
       Case "N", "NO" : *s\answer = 0
       Default
         *out\inputMode = #Question
-        Text(*out, "Please answer the question with YES or NO.") : ProcedureReturn
+        Text(*out, "Please answer the question with YES or NO.")
+        Emit(*db, *out, 6, *s\questionmessage) : ProcedureReturn
     EndSelect
     *s\answerReady = 1
     If *s\answer : Emit(*db, *out, 6, *s\yesMessage) : Else : Emit(*db, *out, 6, *s\noMessage) : EndIf

@@ -26,3 +26,35 @@ Procedure TestPersistence()
   Check(Bool(Not Original::Save(@s, "build/no-such-directory/save.json", @o)), "unwritable save fails")
   DeleteFile("build/bad-save.json")
 EndProcedure
+
+Procedure TestMalformedSaves()
+  Protected db.Original::Database, s.Original::State, o.Original::Output, before.s
+  Protected j.i, root.i, state.i, i.i, field.s, rejected.i
+  Original::LoadDatabase(@db,@o) : Original::NewGame(@db,@s,13,@o) : Original::Submit(@db,@s,"no",@o)
+  before=StateJSON(@s)
+  For i=1 To 12
+    Original::Save(@s,"build/tampered.json",@o)
+    j=LoadJSON(#PB_Any,"build/tampered.json") : root=JSONValue(j) : state=GetJSONMember(root,"state")
+    field=StringField("plant2|rod2|troll2|phase|rng|loc|holdng|sentinel|chain|digest|array|number",i,"|")
+    Select i
+      Case 1 To 7 : SetJSONInteger(GetJSONMember(state,field),1000000000)
+      Case 8
+        SetJSONInteger(GetJSONMember(state,"loc"),0)
+        SetJSONInteger(GetJSONElement(GetJSONMember(state,"atloc"),0),1000000000)
+      Case 9 : SetJSONInteger(GetJSONElement(GetJSONMember(state,"link"),1),1)
+      Case 10 : SetJSONString(GetJSONMember(root,"dataDigest"),"wrong")
+      Case 11 : RemoveJSONElement(GetJSONMember(state,"place"),0)
+      Case 12 : SetJSONString(GetJSONMember(state,"turns"),"twelve")
+    EndSelect
+    SaveJSON(j,"build/tampered.json") : FreeJSON(j)
+    rejected=Bool(Not Original::Load(@db,@s,"build/tampered.json",@o))
+    Check(Bool(rejected And StateJSON(@s)=before),"reject malformed save: "+field)
+  Next
+  ; Replacement follows the existing backup pattern and yields the newer session.
+  Original::Save(@s,"build/tampered.json",@o)
+  Original::Submit(@db,@s,"east",@o)
+  Check(Original::Save(@s,"build/tampered.json",@o),"replace existing save")
+  Original::Submit(@db,@s,"out",@o)
+  Check(Bool(Original::Load(@db,@s,"build/tampered.json",@o) And s\loc=3),"replacement contains new session")
+  DeleteFile("build/tampered.json")
+EndProcedure

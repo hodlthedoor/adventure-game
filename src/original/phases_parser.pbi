@@ -494,7 +494,7 @@ Case 361 ; FORTRAN 967
   EndIf
 Case 362 ; FORTRAN 968
   *s\phase = 363
-  *s\render = RTrim(*s\wd1 + *s\wd1x) + " " + ~"?"
+  *s\render = RTrim(*s\wd1 + *s\wd1x) + ~"?"
   *s\k = Len(*s\render)
 Case 363 ; FORTRAN 969
   *s\phase = 364

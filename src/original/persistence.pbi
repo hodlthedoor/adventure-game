@@ -28,6 +28,20 @@ EndProcedure
 Procedure.i ValidState(*db.Database, *s.State)
   Protected i.i, room.i, obj.i, count.i, q.i, y.i, n.i, initial.State, output.Output
   Dim seen.i(200)
+  If *s\atloc[0] Or *s\link[0] Or *s\place[0] Or *s\fixed[0] Or *s\prop[0] : ProcedureReturn 0 : EndIf
+  If Not *s\ended And *s\phase <> 499 And *s\phase <> 148 And *s\loc = 0 : ProcedureReturn 0 : EndIf
+  If *s\phase = 499 And *s\numdie >= 3 : ProcedureReturn 0 : EndIf
+  If *s\verb < 0 Or *s\verb > 31 : ProcedureReturn 0 : EndIf
+  If *s\prop[20] < -2 Or *s\prop[20] > 2 : ProcedureReturn 0 : EndIf
+  If *s\closed And Not *s\closng : ProcedureReturn 0 : EndIf
+  If *s\closed < 0 Or *s\closed > 1 : ProcedureReturn 0 : EndIf
+  If *s\closng < 0 Or *s\closng > 1 : ProcedureReturn 0 : EndIf
+  If *s\panic < 0 Or *s\panic > 1 : ProcedureReturn 0 : EndIf
+  If *s\lmwarn < 0 Or *s\lmwarn > 1 : ProcedureReturn 0 : EndIf
+  If *s\wzdark < 0 Or *s\wzdark > 1 : ProcedureReturn 0 : EndIf
+  If *s\gaveup < 0 Or *s\gaveup > 1 : ProcedureReturn 0 : EndIf
+  If *s\scorng < 0 Or *s\scorng > 1 : ProcedureReturn 0 : EndIf
+
   If *s\rng < 1 Or *s\rng > 1048575 Or (*s\rng & 1) = 0 : ProcedureReturn 0 : EndIf
   If *s\loc < 0 Or *s\loc > 140 Or *s\oldloc < 0 Or *s\oldloc > 140 Or *s\oldlc2 < 0 Or *s\oldlc2 > 140 Or *s\newloc < 0 Or *s\newloc > 140 : ProcedureReturn 0 : EndIf
   If *s\numdie < 0 Or *s\numdie > 3 Or *s\holdng < 0 Or *s\holdng > 7 Or *s\turns < 0 Or *s\abbnum < 1 : ProcedureReturn 0 : EndIf

@@ -13,7 +13,7 @@ The WOOD0350 directory in Arthur O'Dwyer's historical Adventure collection conta
 - Data: https://raw.githubusercontent.com/Quuxplusone/Advent/master/WOOD0350/advent.dat
 - Readme: https://raw.githubusercontent.com/Quuxplusone/Advent/master/WOOD0350/advent.readme
 
-Retrieved on 2026-09-27 into the ignored `.superpowers/original-reference/` research directory. No upstream source has been added to the shipped game.
+Retrieved on 2026-09-27. Verbatim reference source, database, and accompanying readme are tracked in `reference/wood0350/`. The database is embedded in the compiled game; gameplay runs as translated PureBasic.
 
 SHA-256:
 

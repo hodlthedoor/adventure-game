@@ -130,7 +130,8 @@ def statement(code,r):
         if name in ('POOF','MOTD','MAINT','CIAO','DATIME','HOURS'):return []
         if name=='GETIN':return ['*s\\awaiting = 1 : *out\\inputMode = #Command : ProcedureReturn']
         if name=='A5TOA1':
-            return ['*s\\render = RTrim('+expr(args[0])+' + '+expr(args[1])+') + " " + '+expr(args[2]), '*s\\k = Len(*s\\render)']
+            separator=' + " "' if ord(args[2][1])>=64 else ''
+            return ['*s\\render = RTrim('+expr(args[0])+' + '+expr(args[1])+')'+separator+' + '+expr(args[2]), '*s\\k = Len(*s\\render)']
         values=[expr(x) for x in args]
         if name=='SPEAK':return ['Speak(*db, *out, '+values[0]+')']
         if name=='RSPEAK':return ['Emit(*db, *out, 6, '+values[0]+')']

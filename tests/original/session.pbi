@@ -38,4 +38,8 @@ Procedure TestSession()
   Check(Bool(s\questionmessage = 175 And Not s\hinted[4]), "hint cost requires separate consent")
   Original::Submit(@db, @s, "yes", @o)
   Check(Bool(s\hinted[4] And s\turns = t And s\limit = 390), "accepted grate hint costs original points and extends lamp")
+  Original::NewGame(@db,@s,13,@o) : Send(@db,@s,"no|e|keys",@o)
+  Check(Bool(o\text = "What do you want to do with the KEYS?"), "original noun-question punctuation")
+  Original::Submit(@db,@s,"say hello",@o)
+  Check(Bool(o\text = "Okay, " + Chr(34) + "HELLO" + Chr(34) + "."), "original SAY punctuation")
 EndProcedure

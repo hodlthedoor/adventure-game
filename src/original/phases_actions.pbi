@@ -317,12 +317,12 @@ Case 599 ; FORTRAN 1315
   *s\phase = 565 : Continue
 Case 600 ; FORTRAN 1319 label 9030
   *s\phase = 601
-  *s\render = RTrim(*s\wd2 + *s\wd2x) + " " + ~"\"."
+  *s\render = RTrim(*s\wd2 + *s\wd2x) + ~"\"."
   *s\k = Len(*s\render)
 Case 601 ; FORTRAN 1320
   *s\phase = 602
   If Bool(*s\wd2 = "")
-    *s\render = RTrim(*s\wd1 + *s\wd1x) + " " + ~"\"."
+    *s\render = RTrim(*s\wd1 + *s\wd1x) + ~"\"."
     *s\k = Len(*s\render)
   EndIf
 Case 602 ; FORTRAN 1321
