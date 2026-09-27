@@ -26,7 +26,7 @@ Procedure Game_Apply(*w.WorldData, *s.GameState, *a.Action, *r.ActionResult)
     Case "help"
       *r\text = "GO NORTH (or N), SOUTH, EAST, WEST, UP, DOWN; LOOK; EXAMINE object; TAKE object; DROP object; USE object ON target; TALK TO person; INVENTORY; LIGHT LANTERN; EXTINGUISH LANTERN; WAIT; HINT. Save often using the Game menu. Reading and hints cost no turns."
     Case "hint"
-      *r\text = "No hint is available here yet."
+      Hints_Reveal(*w, *s, *r)
     Case "wait"
       *r\text = "A moment passes." : *r\spentTurn = 1
     Case "go"
@@ -34,7 +34,8 @@ Procedure Game_Apply(*w.WorldData, *s.GameState, *a.Action, *r.ActionResult)
       If destination = ""
         *r\text = "There is no exit that way." : ProcedureReturn
       EndIf
-      *s\room = destination : *s\visited(destination) = 1
+      *s\room = destination
+      If Not *s\visited(destination) : *s\visited(destination) = 1 : EndIf
       *r\text = World_Describe(*w, *s) : *r\spentTurn = 1
     Case "look"
       *r\text = World_Describe(*w, *s)

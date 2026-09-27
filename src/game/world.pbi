@@ -23,6 +23,7 @@ Procedure.s World_Describe(*w.WorldData, *s.GameState)
   If Not World_Lit(*w, *s)
     ProcedureReturn "It is dark. You can feel the retreat route " + *w\rooms(*s\room)\retreatDirection + ". Recover or light your lantern, or retreat to safety."
   EndIf
+  *s\visited(*s\room) = 2
   text = *w\rooms(*s\room)\title + #LF$ + *w\rooms(*s\room)\description
   ForEach *w\objects()
     id = MapKey(*w\objects())

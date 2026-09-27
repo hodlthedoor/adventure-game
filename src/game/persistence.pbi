@@ -44,7 +44,7 @@ Procedure Save_Validate(*w.WorldData, root.i)
             If Not Save_Number(value, 0, 1) : ProcedureReturn #False : EndIf
           Case 2
             If Not FindMapElement(*w\rooms(), key) : ProcedureReturn #False : EndIf
-            If Not Save_Number(value, 0, 1) : ProcedureReturn #False : EndIf
+            If Not Save_Number(value, 0, 2) : ProcedureReturn #False : EndIf
           Case 3
             If Not FindMapElement(*w\hints(), key) : ProcedureReturn #False : EndIf
             If Not Save_Number(value, 0, 3) : ProcedureReturn #False : EndIf

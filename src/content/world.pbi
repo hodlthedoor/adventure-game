@@ -1,3 +1,5 @@
+XIncludeFile "hints.pbi"
+
 Procedure Content_Room(*w.WorldData, id.s, title.s, description.s, dark.i = 0, retreat.s = "")
   *w\rooms(id)\title = title
   *w\rooms(id)\description = description
@@ -19,6 +21,7 @@ Procedure Content_Object(*w.WorldData, id.s, name.s, aliases.s, description.s, r
 EndProcedure
 Procedure Content_Load(*w.WorldData)
   ClearMap(*w\rooms()) : ClearMap(*w\objects())
+  Content_LoadHints(*w)
   Content_Room(*w, "village_square", "The Empty Bucket", "The village well has returned a paper crown, three damp invitations, and absolutely no water. Someone below is having a party. The well house lies north.")
   Content_Room(*w, "well_house", "The Well House", "A bucket rests beside a sturdy ladder descending into the well. A brass lantern hangs on a peg. A notice reads: RETURN WHAT YOU BORROW. Treasure left here will be safe.")
   Content_Room(*w, "well_shaft", "The Well Shaft", "The ladder passes a chute full of rejected bunting. Far below, a voice counts teaspoons. Daylight and glowing tiles mark the way up and down.")
