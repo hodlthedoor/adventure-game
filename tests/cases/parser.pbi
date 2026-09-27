@@ -1,0 +1,28 @@
+Procedure TestParser()
+  Protected w.WorldData, s.GameState, a.Action, r.ActionResult, c.ParseContext, result.i, cmd.s, i.i
+  Content_Load(@w) : World_NewGame(@w, @s)
+  For i = 1 To 3
+    cmd = StringField("N|north|  Go   NORTH  ", i, "|")
+    result = Parser_Parse(@w, @s, @c, cmd, @a, @r)
+    Check(Bool(result = #Ready And a\verb = "go" And a\direction = "north"), "direction alias " + cmd)
+  Next
+  Content_Object(@w, "key", "brass key", "key", "A key.", "village_square", 1)
+  Content_Object(@w, "iron_key", "iron key", "key", "Another key.", "village_square", 1)
+  Content_Object(@w, "door", "door", "door", "A door.", "village_square")
+  World_NewGame(@w, @s)
+  result = Parser_Parse(@w, @s, @c, "take key", @a, @r)
+  Check(Bool(result = #Clarify And s\turns = 0), "ambiguous key asks without a turn")
+  result = Parser_Parse(@w, @s, @c, "brass key", @a, @r)
+  Check(Bool(result = #Ready And a\noun = "key"), "clarification resolves original command")
+  Parser_Parse(@w, @s, @c, "take key", @a, @r)
+  result = Parser_Parse(@w, @s, @c, "look", @a, @r)
+  Check(Bool(result = #Ready And a\verb = "look" And c\field = ""), "fresh command cancels clarification")
+  result = Parser_Parse(@w, @s, @c, "use brass key on door", @a, @r)
+  Check(Bool(result = #Ready And a\noun = "key" And a\target = "door"), "two-object use")
+  Check(Bool(Parser_Parse(@w, @s, @c, "take unicorn", @a, @r) = #Rejected And r\text <> ""), "absent object explained")
+  Check(Bool(Parser_Parse(@w, @s, @c, "dance", @a, @r) = #Rejected And r\text <> ""), "unknown verb explained")
+  Check(Bool(Parser_Parse(@w, @s, @c, "", @a, @r) = #Rejected), "blank rejected")
+  Check(Bool(Parser_Parse(@w, @s, @c, Space(257), @a, @r) = #Rejected), "overlong rejected")
+  Check(Bool(Parser_Parse(@w, @s, @c, "n" + #LF$ + "n", @a, @r) = #Rejected), "pasted multiple commands rejected")
+  Check(Bool(s\turns = 0), "parsing never changes turns")
+EndProcedure

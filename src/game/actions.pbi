@@ -2,6 +2,12 @@ Procedure Game_Apply(*w.WorldData, *s.GameState, *a.Action, *r.ActionResult)
   Protected destination.s, text.s, id.s
   ClearStructure(*r, ActionResult)
   Select *a\verb
+    Case "help"
+      *r\text = "GO NORTH (or N), SOUTH, EAST, WEST, UP, DOWN; LOOK; EXAMINE object; TAKE object; DROP object; USE object ON target; TALK TO person; INVENTORY; LIGHT LANTERN; EXTINGUISH LANTERN; WAIT; HINT. Save often using the Game menu. Reading and hints cost no turns."
+    Case "hint"
+      *r\text = "No hint is available here yet."
+    Case "wait"
+      *r\text = "A moment passes." : *r\spentTurn = 1
     Case "go"
       destination = *w\rooms(*s\room)\exits(*a\direction)
       If destination = ""
@@ -44,4 +50,10 @@ Procedure Game_Apply(*w.WorldData, *s.GameState, *a.Action, *r.ActionResult)
     Default
       *r\text = "That action is not available yet."
   EndSelect
+EndProcedure
+Procedure Game_Submit(*w.WorldData, *s.GameState, *c.ParseContext, input.s, *r.ActionResult)
+  Protected a.Action
+  If Parser_Parse(*w, *s, *c, input, @a, *r) <> #Ready : ProcedureReturn : EndIf
+  Game_Apply(*w, *s, @a, *r)
+  If *r\spentTurn And *s\status = #Playing : *s\turns + 1 : EndIf
 EndProcedure
