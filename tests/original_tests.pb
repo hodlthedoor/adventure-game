@@ -6,11 +6,15 @@ Procedure Check(condition.i, label.s)
 EndProcedure
 XIncludeFile "original/database.pbi"
 XIncludeFile "original/session.pbi"
+XIncludeFile "original/persistence.pbi"
+XIncludeFile "original/playthroughs.pbi"
 OpenConsole()
 Define group.s = ProgramParameter()
 If group = "" : group = "all" : EndIf
 If group = "all" Or group = "database" : TestDatabase() : EndIf
 If group = "all" Or group = "session" : TestSession() : EndIf
+If group = "all" Or group = "persistence" : TestPersistence() : EndIf
+If group = "all" Or group = "playthroughs" : TestPlaythroughs() : EndIf
 If checks = 0 : PrintN("Unknown test group") : End 1 : EndIf
 If failures : PrintN(Str(failures) + " failed / " + Str(checks)) : End 1 : EndIf
 PrintN("PASS " + group + " (" + Str(checks) + " checks)")

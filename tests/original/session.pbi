@@ -24,4 +24,18 @@ Procedure TestSession()
   Check(Bool(s\place[1] = -1), "noun-first continuation")
   Original::NewGame(@db, @s, 1, @o) : Send(@db, @s, "no|enter|take keys|take lamp|on|out|depression|open grate|down", @o)
   Check(Bool(s\loc = 9 And s\prop[3] = 1), "open grate and descend")
+  Original::NewGame(@db, @s, 1, @o)
+  s\wd1 = "PRESERVED"
+  Original::Submit(@db, @s, "no", @o)
+  Check(Bool(s\wd1 = "PRESERVED"), "yes/no has separate input buffer")
+  Original::NewGame(@db, @s, 1, @o) : Send(@db, @s, "no|depression", @o)
+  t = s\turns : Original::Submit(@db, @s, "hint", @o)
+  Check(Bool(s\turns = t And o\inputMode = Original::#Command), "HINT without eligibility is free and gives no clue")
+  s\hintlc[4] = db\hints[4*5+1]
+  Original::Submit(@db, @s, "hint", @o)
+  Check(Bool(o\inputMode = Original::#Question And s\questionmessage = 62), "eligible HINT uses original offer")
+  Original::Submit(@db, @s, "yes", @o)
+  Check(Bool(s\questionmessage = 175 And Not s\hinted[4]), "hint cost requires separate consent")
+  Original::Submit(@db, @s, "yes", @o)
+  Check(Bool(s\hinted[4] And s\turns = t And s\limit = 390), "accepted grate hint costs original points and extends lamp")
 EndProcedure

@@ -192,3 +192,9 @@ Structure State
   dseen.i[7]
   tk.i[21]
 EndStructure
+Structure SaveEnvelope
+  game.s
+  formatVersion.i
+  dataDigest.s
+  state.State
+EndStructure

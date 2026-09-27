@@ -13,7 +13,13 @@ EndEnumeration
 Procedure UI_Append(text.s)
   If text <> ""
     AddGadgetItem(#Transcript, -1, text + #LF$)
-    SetGadgetState(#Transcript, CountGadgetItems(#Transcript) - 1)
+    ; EditorGadget has no SetGadgetState scrolling contract. Use native scrolling.
+    CompilerSelect #PB_Compiler_OS
+      CompilerCase #PB_OS_MacOS
+        CocoaMessage(0, GadgetID(#Transcript), "scrollToEndOfDocument:", 0)
+      CompilerCase #PB_OS_Windows
+        SendMessage_(GadgetID(#Transcript), #WM_VSCROLL, #SB_BOTTOM, 0)
+    CompilerEndSelect
   EndIf
 EndProcedure
 Procedure UI_Run(*w.Original::Database, *s.Original::State, *out.Original::Output)
@@ -24,7 +30,6 @@ Procedure UI_Run(*w.Original::Database, *s.Original::State, *out.Original::Outpu
   WindowBounds(#Window, 640, 480, #PB_Ignore, #PB_Ignore)
   CreateMenu(#Menu, WindowID(#Window))
   MenuTitle("Game") : MenuItem(#New, "New Game") : MenuItem(#Save, "Save...") : MenuItem(#Load, "Load...") : MenuBar() : MenuItem(#Help, "Help")
-  DisableMenuItem(#Menu, #Save, 1) : DisableMenuItem(#Menu, #Load, 1)
   EditorGadget(#Transcript, 16, 16, WindowWidth(#Window) - 32, WindowHeight(#Window) - 86, #PB_Editor_ReadOnly | #PB_Editor_WordWrap)
   StringGadget(#Input, 16, WindowHeight(#Window) - 56, WindowWidth(#Window) - 32, 32, "")
   If LoadFont(#ReadingFont, "Arial", 18)
@@ -47,15 +52,37 @@ Procedure UI_Run(*w.Original::Database, *s.Original::State, *out.Original::Outpu
               command = GetGadgetText(#Input)
               If Trim(command) <> ""
                 UI_Append("> " + command)
-                Original::Submit(*w, *s, command, @r) : UI_Append(r\text)
+                If UCase(Trim(command)) = "SAVE" And *s\awaiting = 1 And *s\phase = 310
+                  PostEvent(#PB_Event_Menu, #Window, #Save)
+                ElseIf UCase(Trim(command)) = "LOAD" And *s\awaiting = 1 And *s\phase = 310
+                  PostEvent(#PB_Event_Menu, #Window, #Load)
+                Else
+                  Original::Submit(*w, *s, command, @r) : UI_Append(r\text)
+                  If r\request = 1 : PostEvent(#PB_Event_Menu, #Window, #Save) : EndIf
+                EndIf
               EndIf
               SetGadgetText(#Input, "") : SetActiveGadget(#Input)
             EndIf
           Case #Help
-            UI_Append("Original commands include NORTH or N, ENTER, TAKE LAMP, ON, OPEN GRATE, INVENTORY, LOOK, SCORE, and QUIT. The original parser uses two words and the first five letters of each. Ordinary commands consume turns, including failed commands. Answer questions with YES or NO. Menu Help does not spend a turn.")
+            UI_Append("Original commands include NORTH or N, ENTER, TAKE LAMP, ON, OPEN GRATE, INVENTORY, LOOK, SCORE, and QUIT. The original parser uses two words and the first five letters of each. Ordinary commands consume turns, including failed commands. Answer questions with YES or NO. HINT requests an eligible original hint, with its original point cost. Use the Game menu or SAVE and LOAD for local saves. Menu Help and save/load do not spend a turn.")
             SetActiveGadget(#Input)
-          Case #Save, #Load
-            UI_Append("Save and load are being ported; they are not available in this development build.")
+          Case #Save
+            path = SaveFileRequester("Save adventure", "adventure.json", "Adventure saves (*.json)|*.json", 0)
+            If path <> ""
+              If FileSize(path) < 0 Or MessageRequester("Replace save", "Replace the existing save?", #PB_MessageRequester_YesNo) = #PB_MessageRequester_Yes
+                Original::Save(*s, path, @r) : UI_Append(r\text)
+              EndIf
+            EndIf
+            SetActiveGadget(#Input)
+          Case #Load
+            path = OpenFileRequester("Load adventure", "", "Adventure saves (*.json)|*.json", 0)
+            If path <> ""
+              If MessageRequester("Load game", "Replace this game with the selected save?", #PB_MessageRequester_YesNo) = #PB_MessageRequester_Yes
+                If Original::Load(*w, *s, path, @r) : SetGadgetText(#Transcript, "") : EndIf
+                UI_Append(r\text)
+              EndIf
+            EndIf
+            SetActiveGadget(#Input)
           Case #New
             If MessageRequester("New game", "Discard this game and start again?", #PB_MessageRequester_YesNo) = #PB_MessageRequester_Yes
               Original::NewGame(*w, *s, Date(), @r)

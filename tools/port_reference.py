@@ -205,7 +205,7 @@ fields+=['  '+n.lower()+'.s' for n in sorted(strings)]
 fields+=['  '+n.lower()+'.i' for n in sorted(scalars) if n!='RNG']
 fields+=['  '+n.lower()+'.i['+str(size)+']' for n,size in state_arrays.items()]
 fields+=['EndStructure']
-p=ROOT/'src/original/types.pbi';s=p.read_text();s=s[:s.index('Structure State')]+ '\n'.join(fields)+'\n';p.write_text(s)
+p=ROOT/'src/original/types.pbi';s=p.read_text();tail=s[s.index('EndStructure',s.index('Structure State'))+len('EndStructure'):];s=s[:s.index('Structure State')]+ '\n'.join(fields)+tail;p.write_text(s)
 # Preserve source regions as readable include fragments within the compiled phase switch.
 regions=[('initialise',0,620),('encounters',620,790),('parser',790,1000),('travel',1000,1155),('death',1155,1210),('actions',1210,1815),('hints',1815,1855),('closing',1855,1989),('scoring',1989,9999)]
 chunks={name:[] for name,_,_ in regions}
