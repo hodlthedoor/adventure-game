@@ -2,7 +2,7 @@
 
 Build an original, whimsical text adventure inspired by Colossal Cave Adventure, using PureBasic for Windows and macOS. Exploration, connected puzzles, optional treasure hunting, and fair but dangerous situations should reward careful observation. Players interact through typed commands in a desktop window.
 
-Status: agreed concept collected for written review. Detailed hint and turn rules below are proposed defaults for that review. The project currently has no implementation.
+Status: approved by the user on 2026-09-27, including the hint and turn defaults below. The project currently has no implementation.
 
 ## Story and scope
 
