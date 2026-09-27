@@ -1,6 +1,6 @@
 # Colossal Cave recreation design
 
-Recreate the original Adventure in PureBasic for Windows and macOS, preserving its actual map and behaviour while presenting it in the larger desktop text window already requested. This replaces the festival design. Proposed baseline is the classic 350-point Crowther/Woods version; version confirmation is pending.
+Recreate the original Adventure in PureBasic for Windows and macOS, preserving its actual map and behaviour while presenting it in the larger desktop text window already requested. This replaces the festival design. The classic 350-point Crowther/Woods baseline and this design were approved by the user on 2026-09-27.
 
 ## Fidelity
 
@@ -41,4 +41,4 @@ Local compiler: full PureBasic 6.41 macOS x64. Windows and native macOS arm64 ve
 
 ## Next review
 
-Confirm the reference version and the fidelity/adaptation boundary above before writing the replacement rules. The detailed implementation plan will use the selected source's actual interfaces and label mappings. Native execution and a final independent review remain the user's chosen method.
+The reference version and fidelity/adaptation boundary are approved. Review the detailed implementation plan before writing the replacement rules. Native execution and a final independent review remain the user's chosen method.

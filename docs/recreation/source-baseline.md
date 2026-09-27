@@ -2,7 +2,7 @@
 
 New branch: `feat/colossal-cave-original`, based on the preserved festival checkpoint `6c3e912`.
 
-Candidate target: classic Crowther/Woods 350-point Adventure. The user has requested the original game; the choice between this version and Crowther's earlier version is awaiting confirmation.
+Approved target: classic Crowther/Woods 350-point Adventure, confirmed by the user on 2026-09-27.
 
 ## Reference
 
