@@ -22,10 +22,15 @@ Structure Output
   List events.MessageEvent()
 EndStructure
 Structure Database
+  ltext.i[151]
+  stext.i[151]
+  ptext.i[101]
   longText.s[151]
   shortText.s[151]
-  rtext.s[206]
-  mtext.s[36]
+  randomText.s[206]
+  rtext.i[206]
+  magicText.s[36]
+  mtext.i[36]
   inventory.s[101]
   Map objectText.s()
   travel.i[1001]
@@ -34,7 +39,8 @@ Structure Database
   plac.i[101]
   fixd.i[101]
   actspk.i[36]
-  ctext.s[13]
+  classText.s[13]
+  ctext.i[13]
   cval.i[13]
   hints.i[101]
   hntmax.i
@@ -45,4 +51,144 @@ Structure Database
 EndStructure
 Structure State
   rng.q
+  render.s
+  lastPrompt.s
+  wd1.s
+  wd1x.s
+  wd2.s
+  wd2x.s
+  abbnum.i
+  answer.i
+  answerready.i
+  attack.i
+  awaiting.i
+  axe.i
+  back.i
+  batter.i
+  bear.i
+  bird.i
+  blklin.i
+  bonus.i
+  bottle.i
+  cage.i
+  cave.i
+  chain.i
+  chasm.i
+  chest.i
+  chloc.i
+  chloc2.i
+  clam.i
+  clock1.i
+  clock2.i
+  closed.i
+  closng.i
+  coins.i
+  daltlc.i
+  demo.i
+  detail.i
+  dflag.i
+  dkill.i
+  door.i
+  dprssn.i
+  dragon.i
+  dtotal.i
+  dwarf.i
+  eggs.i
+  emrald.i
+  ended.i
+  entrnc.i
+  find.i
+  fissur.i
+  foo.i
+  foobar.i
+  food.i
+  gaveup.i
+  grate.i
+  hint.i
+  holdng.i
+  i.i
+  idondx.i
+  invent.i
+  iwest.i
+  j.i
+  k.i
+  k2.i
+  keys.i
+  kk.i
+  knfloc.i
+  knife.i
+  kq.i
+  lamp.i
+  limit.i
+  ll.i
+  lmwarn.i
+  loc.i
+  lock.i
+  look.i
+  magzin.i
+  maxdie.i
+  messag.i
+  mirror.i
+  mxscor.i
+  newloc.i
+  nomessage.i
+  nugget.i
+  null.i
+  numdie.i
+  obj.i
+  oil.i
+  oldlc2.i
+  oldloc.i
+  oyster.i
+  panic.i
+  pearl.i
+  phase.i
+  pillow.i
+  plant.i
+  plant2.i
+  pyram.i
+  questionmessage.i
+  request.i
+  rod.i
+  rod2.i
+  rug.i
+  saved.i
+  say.i
+  score.i
+  scorng.i
+  setup.i
+  short.i
+  snake.i
+  spices.i
+  spk.i
+  steps.i
+  stick.i
+  tablet.i
+  tabndx.i
+  tally.i
+  tally2.i
+  throw.i
+  tridnt.i
+  troll.i
+  troll2.i
+  turns.i
+  vase.i
+  vend.i
+  verb.i
+  water.i
+  wzdark.i
+  yea.i
+  yesmessage.i
+  place.i[101]
+  fixed.i[101]
+  prop.i[101]
+  atloc.i[151]
+  link.i[201]
+  abb.i[151]
+  hintlc.i[21]
+  hinted.i[21]
+  dloc.i[7]
+  odloc.i[7]
+  dseen.i[7]
+  tk.i[21]
 EndStructure

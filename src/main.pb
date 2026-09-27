@@ -1,14 +1,9 @@
-XIncludeFile "game/types.pbi"
-XIncludeFile "content/world.pbi"
-XIncludeFile "game/world.pbi"
-XIncludeFile "game/parser.pbi"
-XIncludeFile "content/puzzles.pbi"
-XIncludeFile "game/turns.pbi"
-XIncludeFile "game/hints.pbi"
-XIncludeFile "game/actions.pbi"
-XIncludeFile "game/persistence.pbi"
+XIncludeFile "original/original.pbi"
 XIncludeFile "ui/window.pbi"
-Define world.WorldData, state.GameState
-Content_Load(@world)
-World_NewGame(@world, @state)
-UI_Run(@world, @state)
+Define world.Original::Database, state.Original::State, output.Original::Output
+If Not Original::LoadDatabase(@world, @output)
+  MessageRequester("Colossal Cave Adventure", "The embedded adventure database could not be loaded.")
+  End 1
+EndIf
+Original::NewGame(@world, @state, Date(), @output)
+UI_Run(@world, @state, @output)

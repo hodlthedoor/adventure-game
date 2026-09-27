@@ -16,14 +16,15 @@ Procedure UI_Append(text.s)
     SetGadgetState(#Transcript, CountGadgetItems(#Transcript) - 1)
   EndIf
 EndProcedure
-Procedure UI_Run(*w.WorldData, *s.GameState)
-  Protected event.i, command.s, r.ActionResult, c.ParseContext, a.Action, path.s
-  If Not OpenWindow(#Window, 0, 0, 1100, 780, "Festival of the First Rain", #PB_Window_SystemMenu | #PB_Window_MinimizeGadget | #PB_Window_MaximizeGadget | #PB_Window_SizeGadget | #PB_Window_ScreenCentered)
+Procedure UI_Run(*w.Original::Database, *s.Original::State, *out.Original::Output)
+  Protected event.i, command.s, r.Original::Output, path.s
+  If Not OpenWindow(#Window, 0, 0, 1100, 780, "Colossal Cave Adventure", #PB_Window_SystemMenu | #PB_Window_MinimizeGadget | #PB_Window_MaximizeGadget | #PB_Window_SizeGadget | #PB_Window_ScreenCentered)
     ProcedureReturn
   EndIf
   WindowBounds(#Window, 640, 480, #PB_Ignore, #PB_Ignore)
   CreateMenu(#Menu, WindowID(#Window))
   MenuTitle("Game") : MenuItem(#New, "New Game") : MenuItem(#Save, "Save...") : MenuItem(#Load, "Load...") : MenuBar() : MenuItem(#Help, "Help")
+  DisableMenuItem(#Menu, #Save, 1) : DisableMenuItem(#Menu, #Load, 1)
   EditorGadget(#Transcript, 16, 16, WindowWidth(#Window) - 32, WindowHeight(#Window) - 86, #PB_Editor_ReadOnly | #PB_Editor_WordWrap)
   StringGadget(#Input, 16, WindowHeight(#Window) - 56, WindowWidth(#Window) - 32, 32, "")
   If LoadFont(#ReadingFont, "Arial", 18)
@@ -31,8 +32,7 @@ Procedure UI_Run(*w.WorldData, *s.GameState)
     SetGadgetFont(#Input, FontID(#ReadingFont))
   EndIf
   AddKeyboardShortcut(#Window, #PB_Shortcut_Return, #Submit)
-  UI_Append("FESTIVAL OF THE FIRST RAIN" + #LF$ + "An underground adventure. Type HELP for commands. Save often; heed the warnings.")
-  UI_Append(World_Describe(*w, *s))
+  UI_Append(*out\text)
   SetActiveGadget(#Input)
   Repeat
     event = WaitWindowEvent()
@@ -47,35 +47,19 @@ Procedure UI_Run(*w.WorldData, *s.GameState)
               command = GetGadgetText(#Input)
               If Trim(command) <> ""
                 UI_Append("> " + command)
-                Game_Submit(*w, *s, @c, command, @r) : UI_Append(r\text)
+                Original::Submit(*w, *s, command, @r) : UI_Append(r\text)
               EndIf
               SetGadgetText(#Input, "") : SetActiveGadget(#Input)
             EndIf
           Case #Help
-            a\verb = "help" : Game_Apply(*w, *s, @a, @r) : UI_Append(r\text) : SetActiveGadget(#Input)
-          Case #Save
-            path = SaveFileRequester("Save adventure", GetUserDirectory(#PB_Directory_Documents) + "festival.adventure-save", "Adventure save|*.adventure-save", 0)
-            If path <> ""
-              If FileSize(path) < 0 Or MessageRequester("Replace save", "Replace this existing save?", #PB_MessageRequester_YesNo) = #PB_MessageRequester_Yes
-                Save_Write(*w, *s, path, @r) : UI_Append(r\text)
-              EndIf
-            EndIf
+            UI_Append("Original commands include NORTH or N, ENTER, TAKE LAMP, ON, OPEN GRATE, INVENTORY, LOOK, SCORE, and QUIT. The original parser uses two words and the first five letters of each. Ordinary commands consume turns, including failed commands. Answer questions with YES or NO. Menu Help does not spend a turn.")
             SetActiveGadget(#Input)
-          Case #Load
-            path = OpenFileRequester("Load adventure", GetUserDirectory(#PB_Directory_Documents), "Adventure save|*.adventure-save|All files|*.*", 0)
-            If path <> ""
-              If MessageRequester("Load game", "Discard current progress and load this save?", #PB_MessageRequester_YesNo) = #PB_MessageRequester_Yes
-                If Save_Read(*w, *s, path, @r)
-                  ResetStructure(@c, ParseContext) : SetGadgetText(#Transcript, "")
-                EndIf
-                UI_Append(r\text)
-              EndIf
-            EndIf
-            SetActiveGadget(#Input)
+          Case #Save, #Load
+            UI_Append("Save and load are being ported; they are not available in this development build.")
           Case #New
             If MessageRequester("New game", "Discard this game and start again?", #PB_MessageRequester_YesNo) = #PB_MessageRequester_Yes
-              World_NewGame(*w, *s) : ResetStructure(@c, ParseContext)
-              SetGadgetText(#Transcript, "") : UI_Append(World_Describe(*w, *s)) : SetActiveGadget(#Input)
+              Original::NewGame(*w, *s, Date(), @r)
+              SetGadgetText(#Transcript, "") : UI_Append(r\text) : SetActiveGadget(#Input)
             EndIf
         EndSelect
     EndSelect

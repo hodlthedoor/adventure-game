@@ -50,7 +50,7 @@ Procedure.i LoadDatabase(*db.Database, *out.Output)
         Next
       Case 4
         AddElement(candidate\vocab())
-        candidate\vocab()\value = number : candidate\vocab()\word = Left(Trim(text), 5)
+        candidate\vocab()\value = number : candidate\vocab()\word = Left(StringField(ReplaceString(Trim(text), #TAB$, " "), 1, " "), 5)
       Case 5
         If number > 0 And number < 100
           object = number : property = -1
@@ -68,8 +68,8 @@ Procedure.i LoadDatabase(*db.Database, *out.Output)
         EndIf
       Case 6
         If number < 1 Or number > 205 : ProcedureReturn 0 : EndIf
-        If candidate\rtext[number] <> "" : candidate\rtext[number] + #LF$ : EndIf
-        candidate\rtext[number] + text
+        If candidate\randomText[number] <> "" : candidate\randomText[number] + #LF$ : EndIf
+        candidate\randomText[number] + text
       Case 7
         If number < 1 Or number > 100 : ProcedureReturn 0 : EndIf
         candidate\plac[number] = Val(StringField(fields, 2, " "))
@@ -90,23 +90,37 @@ Procedure.i LoadDatabase(*db.Database, *out.Output)
           If i > 12 : ProcedureReturn 0 : EndIf
           candidate\cval[i] = number
         Else
-          candidate\ctext[i] + #LF$
+          candidate\classText[i] + #LF$
         EndIf
-        candidate\ctext[i] + text
+        candidate\classText[i] + text
       Case 11
         If number < 1 Or number > 19 : ProcedureReturn 0 : EndIf
         If number > candidate\hntmax : candidate\hntmax = number : EndIf
         For j = 1 To 4 : candidate\hints[number*5+j] = Val(StringField(fields, j+1, " ")) : Next
       Case 12
         If number < 1 Or number > 35 : ProcedureReturn 0 : EndIf
-        If candidate\mtext[number] <> "" : candidate\mtext[number] + #LF$ : EndIf
-        candidate\mtext[number] + text
+        If candidate\magicText[number] <> "" : candidate\magicText[number] + #LF$ : EndIf
+        candidate\magicText[number] + text
     EndSelect
   Next
   For i = 1 To 150
     If candidate\key[i] And Int(Abs(candidate\travel[candidate\key[i]])) % 1000 = 1 : candidate\cond[i] = 2 : EndIf
   Next
   If candidate\travelRecords <> 493 Or ListSize(candidate\vocab()) <> 295 : ProcedureReturn 0 : EndIf
+  For i = 1 To 150
+    If candidate\longText[i] <> "" : candidate\ltext[i] = 1000+i : EndIf
+    If candidate\shortText[i] <> "" : candidate\stext[i] = 2000+i : EndIf
+  Next
+  For i = 1 To 100
+    If candidate\inventory[i] <> "" : candidate\ptext[i] = 5000+i : EndIf
+  Next
+  For i = 1 To 205
+    If candidate\randomText[i] <> "" : candidate\rtext[i] = 6000+i : EndIf
+  Next
+  For i = 1 To 35
+    If candidate\magicText[i] <> "" : candidate\mtext[i] = 12000+i : EndIf
+  Next
+  For i = 1 To candidate\classes : candidate\ctext[i] = 10000+i : Next
   CopyStructure(@candidate, *db, Database)
   ProcedureReturn 1
 EndProcedure

@@ -1,0 +1,6512 @@
+[
+  {
+    "line": 372,
+    "label": "1100",
+    "code": "IF(SETUP.EQ.2)GOTO 1",
+    "pc": 1
+  },
+  {
+    "line": 373,
+    "label": "",
+    "code": "IF(SETUP.EQ.-1)GOTO 8305",
+    "pc": 2
+  },
+  {
+    "line": 383,
+    "label": "",
+    "code": "DO 1101 I=1,100",
+    "pc": 3
+  },
+  {
+    "line": 384,
+    "label": "",
+    "code": "PLACE(I)=0",
+    "pc": 4
+  },
+  {
+    "line": 385,
+    "label": "",
+    "code": "PROP(I)=0",
+    "pc": 5
+  },
+  {
+    "line": 386,
+    "label": "",
+    "code": "LINK(I)=0",
+    "pc": 6
+  },
+  {
+    "line": 387,
+    "label": "1101",
+    "code": "LINK(I+100)=0",
+    "pc": 7
+  },
+  {
+    "line": 389,
+    "label": "",
+    "code": "DO 1102 I=1,LOCSIZ",
+    "pc": 8
+  },
+  {
+    "line": 390,
+    "label": "",
+    "code": "ABB(I)=0",
+    "pc": 9
+  },
+  {
+    "line": 391,
+    "label": "",
+    "code": "IF(LTEXT(I).EQ.0.OR.KEY(I).EQ.0)GOTO 1102",
+    "pc": 10
+  },
+  {
+    "line": 392,
+    "label": "",
+    "code": "K=KEY(I)",
+    "pc": 11
+  },
+  {
+    "line": 393,
+    "label": "",
+    "code": "IF(MOD(IABS(TRAVEL(K)),1000).EQ.1)COND(I)=2",
+    "pc": 12
+  },
+  {
+    "line": 394,
+    "label": "1102",
+    "code": "ATLOC(I)=0",
+    "pc": 13
+  },
+  {
+    "line": 403,
+    "label": "",
+    "code": "DO 1106 I=1,100",
+    "pc": 14
+  },
+  {
+    "line": 404,
+    "label": "",
+    "code": "K=101-I",
+    "pc": 15
+  },
+  {
+    "line": 405,
+    "label": "",
+    "code": "IF(FIXD(K).LE.0)GOTO 1106",
+    "pc": 16
+  },
+  {
+    "line": 406,
+    "label": "",
+    "code": "CALL DROP(K+100,FIXD(K))",
+    "pc": 17
+  },
+  {
+    "line": 407,
+    "label": "",
+    "code": "CALL DROP(K,PLAC(K))",
+    "pc": 18
+  },
+  {
+    "line": 408,
+    "label": "1106",
+    "code": "CONTINUE",
+    "pc": 19
+  },
+  {
+    "line": 410,
+    "label": "",
+    "code": "DO 1107 I=1,100",
+    "pc": 20
+  },
+  {
+    "line": 411,
+    "label": "",
+    "code": "K=101-I",
+    "pc": 21
+  },
+  {
+    "line": 412,
+    "label": "",
+    "code": "FIXED(K)=FIXD(K)",
+    "pc": 22
+  },
+  {
+    "line": 413,
+    "label": "1107",
+    "code": "IF(PLAC(K).NE.0.AND.FIXD(K).LE.0)CALL DROP(K,PLAC(K))",
+    "pc": 23
+  },
+  {
+    "line": 421,
+    "label": "",
+    "code": "MAXTRS=79",
+    "pc": 24
+  },
+  {
+    "line": 422,
+    "label": "",
+    "code": "TALLY=0",
+    "pc": 25
+  },
+  {
+    "line": 423,
+    "label": "",
+    "code": "TALLY2=0",
+    "pc": 26
+  },
+  {
+    "line": 424,
+    "label": "",
+    "code": "DO 1200 I=50,MAXTRS",
+    "pc": 27
+  },
+  {
+    "line": 425,
+    "label": "",
+    "code": "IF(PTEXT(I).NE.0)PROP(I)=-1",
+    "pc": 28
+  },
+  {
+    "line": 426,
+    "label": "1200",
+    "code": "TALLY=TALLY-PROP(I)",
+    "pc": 29
+  },
+  {
+    "line": 431,
+    "label": "",
+    "code": "DO 1300 I=1,HNTMAX",
+    "pc": 30
+  },
+  {
+    "line": 432,
+    "label": "",
+    "code": "HINTED(I)=.FALSE.",
+    "pc": 31
+  },
+  {
+    "line": 433,
+    "label": "1300",
+    "code": "HINTLC(I)=0",
+    "pc": 32
+  },
+  {
+    "line": 437,
+    "label": "",
+    "code": "KEYS=VOCAB(0+'KEYS',1)",
+    "pc": 33
+  },
+  {
+    "line": 438,
+    "label": "",
+    "code": "LAMP=VOCAB(0+'LAMP',1)",
+    "pc": 34
+  },
+  {
+    "line": 439,
+    "label": "",
+    "code": "GRATE=VOCAB(0+'GRATE',1)",
+    "pc": 35
+  },
+  {
+    "line": 440,
+    "label": "",
+    "code": "CAGE=VOCAB(0+'CAGE',1)",
+    "pc": 36
+  },
+  {
+    "line": 441,
+    "label": "",
+    "code": "ROD=VOCAB(0+'ROD',1)",
+    "pc": 37
+  },
+  {
+    "line": 442,
+    "label": "",
+    "code": "ROD2=ROD+1",
+    "pc": 38
+  },
+  {
+    "line": 443,
+    "label": "",
+    "code": "STEPS=VOCAB(0+'STEPS',1)",
+    "pc": 39
+  },
+  {
+    "line": 444,
+    "label": "",
+    "code": "BIRD=VOCAB(0+'BIRD',1)",
+    "pc": 40
+  },
+  {
+    "line": 445,
+    "label": "",
+    "code": "DOOR=VOCAB(0+'DOOR',1)",
+    "pc": 41
+  },
+  {
+    "line": 446,
+    "label": "",
+    "code": "PILLOW=VOCAB(0+'PILLO',1)",
+    "pc": 42
+  },
+  {
+    "line": 447,
+    "label": "",
+    "code": "SNAKE=VOCAB(0+'SNAKE',1)",
+    "pc": 43
+  },
+  {
+    "line": 448,
+    "label": "",
+    "code": "FISSUR=VOCAB(0+'FISSU',1)",
+    "pc": 44
+  },
+  {
+    "line": 449,
+    "label": "",
+    "code": "TABLET=VOCAB(0+'TABLE',1)",
+    "pc": 45
+  },
+  {
+    "line": 450,
+    "label": "",
+    "code": "CLAM=VOCAB(0+'CLAM',1)",
+    "pc": 46
+  },
+  {
+    "line": 451,
+    "label": "",
+    "code": "OYSTER=VOCAB(0+'OYSTE',1)",
+    "pc": 47
+  },
+  {
+    "line": 452,
+    "label": "",
+    "code": "MAGZIN=VOCAB(0+'MAGAZ',1)",
+    "pc": 48
+  },
+  {
+    "line": 453,
+    "label": "",
+    "code": "DWARF=VOCAB(0+'DWARF',1)",
+    "pc": 49
+  },
+  {
+    "line": 454,
+    "label": "",
+    "code": "KNIFE=VOCAB(0+'KNIFE',1)",
+    "pc": 50
+  },
+  {
+    "line": 455,
+    "label": "",
+    "code": "FOOD=VOCAB(0+'FOOD',1)",
+    "pc": 51
+  },
+  {
+    "line": 456,
+    "label": "",
+    "code": "BOTTLE=VOCAB(0+'BOTTL',1)",
+    "pc": 52
+  },
+  {
+    "line": 457,
+    "label": "",
+    "code": "WATER=VOCAB(0+'WATER',1)",
+    "pc": 53
+  },
+  {
+    "line": 458,
+    "label": "",
+    "code": "OIL=VOCAB(0+'OIL',1)",
+    "pc": 54
+  },
+  {
+    "line": 459,
+    "label": "",
+    "code": "PLANT=VOCAB(0+'PLANT',1)",
+    "pc": 55
+  },
+  {
+    "line": 460,
+    "label": "",
+    "code": "PLANT2=PLANT+1",
+    "pc": 56
+  },
+  {
+    "line": 461,
+    "label": "",
+    "code": "AXE=VOCAB(0+'AXE',1)",
+    "pc": 57
+  },
+  {
+    "line": 462,
+    "label": "",
+    "code": "MIRROR=VOCAB(0+'MIRRO',1)",
+    "pc": 58
+  },
+  {
+    "line": 463,
+    "label": "",
+    "code": "DRAGON=VOCAB(0+'DRAGO',1)",
+    "pc": 59
+  },
+  {
+    "line": 464,
+    "label": "",
+    "code": "CHASM=VOCAB(0+'CHASM',1)",
+    "pc": 60
+  },
+  {
+    "line": 465,
+    "label": "",
+    "code": "TROLL=VOCAB(0+'TROLL',1)",
+    "pc": 61
+  },
+  {
+    "line": 466,
+    "label": "",
+    "code": "TROLL2=TROLL+1",
+    "pc": 62
+  },
+  {
+    "line": 467,
+    "label": "",
+    "code": "BEAR=VOCAB(0+'BEAR',1)",
+    "pc": 63
+  },
+  {
+    "line": 468,
+    "label": "",
+    "code": "MESSAG=VOCAB(0+'MESSA',1)",
+    "pc": 64
+  },
+  {
+    "line": 469,
+    "label": "",
+    "code": "VEND=VOCAB(0+'VENDI',1)",
+    "pc": 65
+  },
+  {
+    "line": 470,
+    "label": "",
+    "code": "BATTER=VOCAB(0+'BATTE',1)",
+    "pc": 66
+  },
+  {
+    "line": 474,
+    "label": "",
+    "code": "NUGGET=VOCAB(0+'GOLD',1)",
+    "pc": 67
+  },
+  {
+    "line": 475,
+    "label": "",
+    "code": "COINS=VOCAB(0+'COINS',1)",
+    "pc": 68
+  },
+  {
+    "line": 476,
+    "label": "",
+    "code": "CHEST=VOCAB(0+'CHEST',1)",
+    "pc": 69
+  },
+  {
+    "line": 477,
+    "label": "",
+    "code": "EGGS=VOCAB(0+'EGGS',1)",
+    "pc": 70
+  },
+  {
+    "line": 478,
+    "label": "",
+    "code": "TRIDNT=VOCAB(0+'TRIDE',1)",
+    "pc": 71
+  },
+  {
+    "line": 479,
+    "label": "",
+    "code": "VASE=VOCAB(0+'VASE',1)",
+    "pc": 72
+  },
+  {
+    "line": 480,
+    "label": "",
+    "code": "EMRALD=VOCAB(0+'EMERA',1)",
+    "pc": 73
+  },
+  {
+    "line": 481,
+    "label": "",
+    "code": "PYRAM=VOCAB(0+'PYRAM',1)",
+    "pc": 74
+  },
+  {
+    "line": 482,
+    "label": "",
+    "code": "PEARL=VOCAB(0+'PEARL',1)",
+    "pc": 75
+  },
+  {
+    "line": 483,
+    "label": "",
+    "code": "RUG=VOCAB(0+'RUG',1)",
+    "pc": 76
+  },
+  {
+    "line": 484,
+    "label": "",
+    "code": "CHAIN=VOCAB(0+'CHAIN',1)",
+    "pc": 77
+  },
+  {
+    "line": 488,
+    "label": "",
+    "code": "BACK=VOCAB(0+'BACK',0)",
+    "pc": 78
+  },
+  {
+    "line": 489,
+    "label": "",
+    "code": "LOOK=VOCAB(0+'LOOK',0)",
+    "pc": 79
+  },
+  {
+    "line": 490,
+    "label": "",
+    "code": "CAVE=VOCAB(0+'CAVE',0)",
+    "pc": 80
+  },
+  {
+    "line": 491,
+    "label": "",
+    "code": "NULL=VOCAB(0+'NULL',0)",
+    "pc": 81
+  },
+  {
+    "line": 492,
+    "label": "",
+    "code": "ENTRNC=VOCAB(0+'ENTRA',0)",
+    "pc": 82
+  },
+  {
+    "line": 493,
+    "label": "",
+    "code": "DPRSSN=VOCAB(0+'DEPRE',0)",
+    "pc": 83
+  },
+  {
+    "line": 497,
+    "label": "",
+    "code": "SAY=VOCAB(0+'SAY',2)",
+    "pc": 84
+  },
+  {
+    "line": 498,
+    "label": "",
+    "code": "LOCK=VOCAB(0+'LOCK',2)",
+    "pc": 85
+  },
+  {
+    "line": 499,
+    "label": "",
+    "code": "THROW=VOCAB(0+'THROW',2)",
+    "pc": 86
+  },
+  {
+    "line": 500,
+    "label": "",
+    "code": "FIND=VOCAB(0+'FIND',2)",
+    "pc": 87
+  },
+  {
+    "line": 501,
+    "label": "",
+    "code": "INVENT=VOCAB(0+'INVEN',2)",
+    "pc": 88
+  },
+  {
+    "line": 517,
+    "label": "",
+    "code": "CHLOC=114",
+    "pc": 89
+  },
+  {
+    "line": 518,
+    "label": "",
+    "code": "CHLOC2=140",
+    "pc": 90
+  },
+  {
+    "line": 519,
+    "label": "",
+    "code": "DO 1700 I=1,6",
+    "pc": 91
+  },
+  {
+    "line": 520,
+    "label": "1700",
+    "code": "DSEEN(I)=.FALSE.",
+    "pc": 92
+  },
+  {
+    "line": 521,
+    "label": "",
+    "code": "DFLAG=0",
+    "pc": 93
+  },
+  {
+    "line": 522,
+    "label": "",
+    "code": "DLOC(1)=19",
+    "pc": 94
+  },
+  {
+    "line": 523,
+    "label": "",
+    "code": "DLOC(2)=27",
+    "pc": 95
+  },
+  {
+    "line": 524,
+    "label": "",
+    "code": "DLOC(3)=33",
+    "pc": 96
+  },
+  {
+    "line": 525,
+    "label": "",
+    "code": "DLOC(4)=44",
+    "pc": 97
+  },
+  {
+    "line": 526,
+    "label": "",
+    "code": "DLOC(5)=64",
+    "pc": 98
+  },
+  {
+    "line": 527,
+    "label": "",
+    "code": "DLOC(6)=CHLOC",
+    "pc": 99
+  },
+  {
+    "line": 528,
+    "label": "",
+    "code": "DALTLC=18",
+    "pc": 100
+  },
+  {
+    "line": 547,
+    "label": "",
+    "code": "TURNS=0",
+    "pc": 101
+  },
+  {
+    "line": 548,
+    "label": "",
+    "code": "LMWARN=.FALSE.",
+    "pc": 102
+  },
+  {
+    "line": 549,
+    "label": "",
+    "code": "IWEST=0",
+    "pc": 103
+  },
+  {
+    "line": 550,
+    "label": "",
+    "code": "KNFLOC=0",
+    "pc": 104
+  },
+  {
+    "line": 551,
+    "label": "",
+    "code": "DETAIL=0",
+    "pc": 105
+  },
+  {
+    "line": 552,
+    "label": "",
+    "code": "ABBNUM=5",
+    "pc": 106
+  },
+  {
+    "line": 553,
+    "label": "",
+    "code": "DO 1800 I=0,4",
+    "pc": 107
+  },
+  {
+    "line": 554,
+    "label": "1800",
+    "code": "IF(RTEXT(2*I+81).NE.0)MAXDIE=I+1",
+    "pc": 108
+  },
+  {
+    "line": 555,
+    "label": "",
+    "code": "NUMDIE=0",
+    "pc": 109
+  },
+  {
+    "line": 556,
+    "label": "",
+    "code": "HOLDNG=0",
+    "pc": 110
+  },
+  {
+    "line": 557,
+    "label": "",
+    "code": "DKILL=0",
+    "pc": 111
+  },
+  {
+    "line": 558,
+    "label": "",
+    "code": "FOOBAR=0",
+    "pc": 112
+  },
+  {
+    "line": 559,
+    "label": "",
+    "code": "BONUS=0",
+    "pc": 113
+  },
+  {
+    "line": 560,
+    "label": "",
+    "code": "CLOCK1=30",
+    "pc": 114
+  },
+  {
+    "line": 561,
+    "label": "",
+    "code": "CLOCK2=50",
+    "pc": 115
+  },
+  {
+    "line": 562,
+    "label": "",
+    "code": "SAVED=0",
+    "pc": 116
+  },
+  {
+    "line": 563,
+    "label": "",
+    "code": "CLOSNG=.FALSE.",
+    "pc": 117
+  },
+  {
+    "line": 564,
+    "label": "",
+    "code": "PANIC=.FALSE.",
+    "pc": 118
+  },
+  {
+    "line": 565,
+    "label": "",
+    "code": "CLOSED=.FALSE.",
+    "pc": 119
+  },
+  {
+    "line": 566,
+    "label": "",
+    "code": "GAVEUP=.FALSE.",
+    "pc": 120
+  },
+  {
+    "line": 567,
+    "label": "",
+    "code": "SCORNG=.FALSE.",
+    "pc": 121
+  },
+  {
+    "line": 571,
+    "label": "",
+    "code": "IF(SETUP.NE.1)GOTO 1",
+    "pc": 122
+  },
+  {
+    "line": 572,
+    "label": "",
+    "code": "SETUP=2",
+    "pc": 123
+  },
+  {
+    "line": 574,
+    "label": "",
+    "code": "DO 1998 K=1,LOCSIZ",
+    "pc": 124
+  },
+  {
+    "line": 575,
+    "label": "",
+    "code": "KK=LOCSIZ+1-K",
+    "pc": 125
+  },
+  {
+    "line": 576,
+    "label": "",
+    "code": "IF(LTEXT(KK).NE.0)GOTO 1997",
+    "pc": 126
+  },
+  {
+    "line": 577,
+    "label": "1998",
+    "code": "CONTINUE",
+    "pc": 127
+  },
+  {
+    "line": 579,
+    "label": "",
+    "code": "OBJ=0",
+    "pc": 128
+  },
+  {
+    "line": 580,
+    "label": "1997",
+    "code": "DO 1996 K=1,100",
+    "pc": 129
+  },
+  {
+    "line": 581,
+    "label": "1996",
+    "code": "IF(PTEXT(K).NE.0)OBJ=OBJ+1",
+    "pc": 130
+  },
+  {
+    "line": 583,
+    "label": "",
+    "code": "DO 1995 K=1,TABNDX",
+    "pc": 131
+  },
+  {
+    "line": 584,
+    "label": "1995",
+    "code": "IF(KTAB(K)/1000.EQ.2)VERB=KTAB(K)-2000",
+    "pc": 132
+  },
+  {
+    "line": 586,
+    "label": "",
+    "code": "DO 1994 K=1,RTXSIZ",
+    "pc": 133
+  },
+  {
+    "line": 587,
+    "label": "",
+    "code": "J=RTXSIZ+1-K",
+    "pc": 134
+  },
+  {
+    "line": 588,
+    "label": "",
+    "code": "IF(RTEXT(J).NE.0)GOTO 1993",
+    "pc": 135
+  },
+  {
+    "line": 589,
+    "label": "1994",
+    "code": "CONTINUE",
+    "pc": 136
+  },
+  {
+    "line": 591,
+    "label": "1993",
+    "code": "DO 1992 K=1,MAGSIZ",
+    "pc": 137
+  },
+  {
+    "line": 592,
+    "label": "",
+    "code": "I=MAGSIZ+1-K",
+    "pc": 138
+  },
+  {
+    "line": 593,
+    "label": "",
+    "code": "IF(MTEXT(I).NE.0)GOTO 1991",
+    "pc": 139
+  },
+  {
+    "line": 594,
+    "label": "1992",
+    "code": "CONTINUE",
+    "pc": 140
+  },
+  {
+    "line": 596,
+    "label": "1991",
+    "code": "K=100",
+    "pc": 141
+  },
+  {
+    "line": 597,
+    "label": "",
+    "code": "TYPE 1999,LINUSE,LINSIZ,TRVS,TRVSIZ,TABNDX,TABSIZ,KK,LOCSIZ,OBJ,K,VERB,VRBSIZ,J,RTXSIZ,CLSSES,CLSMAX,HNTMAX,HNTSIZ,I,MAGSIZ",
+    "pc": 142
+  },
+  {
+    "line": 615,
+    "label": "",
+    "code": "CALL POOF",
+    "pc": 143
+  },
+  {
+    "line": 616,
+    "label": "",
+    "code": "PAUSE 'INIT Done'",
+    "pc": 144
+  },
+  {
+    "line": 619,
+    "label": "1",
+    "code": "DEMO=START(0)",
+    "pc": 145
+  },
+  {
+    "line": 620,
+    "label": "",
+    "code": "CALL MOTD(.FALSE.)",
+    "pc": 146
+  },
+  {
+    "line": 621,
+    "label": "",
+    "code": "I=RAN(1)",
+    "pc": 147
+  },
+  {
+    "line": 622,
+    "label": "",
+    "code": "HINTED(3)=YES(65,1,0)",
+    "pc": 148
+  },
+  {
+    "line": 623,
+    "label": "",
+    "code": "NEWLOC=1",
+    "pc": 149
+  },
+  {
+    "line": 624,
+    "label": "",
+    "code": "SETUP=3",
+    "pc": 150
+  },
+  {
+    "line": 625,
+    "label": "",
+    "code": "LIMIT=330",
+    "pc": 151
+  },
+  {
+    "line": 626,
+    "label": "",
+    "code": "IF(HINTED(3))LIMIT=1000",
+    "pc": 152
+  },
+  {
+    "line": 630,
+    "label": "2",
+    "code": "IF(NEWLOC.GE.9.OR.NEWLOC.EQ.0.OR..NOT.CLOSNG)GOTO 71",
+    "pc": 153
+  },
+  {
+    "line": 631,
+    "label": "",
+    "code": "CALL RSPEAK(130)",
+    "pc": 154
+  },
+  {
+    "line": 632,
+    "label": "",
+    "code": "NEWLOC=LOC",
+    "pc": 155
+  },
+  {
+    "line": 633,
+    "label": "",
+    "code": "IF(.NOT.PANIC)CLOCK2=15",
+    "pc": 156
+  },
+  {
+    "line": 634,
+    "label": "",
+    "code": "PANIC=.TRUE.",
+    "pc": 157
+  },
+  {
+    "line": 640,
+    "label": "71",
+    "code": "IF(NEWLOC.EQ.LOC.OR.FORCED(LOC).OR.BITSET(LOC,3))GOTO 74",
+    "pc": 158
+  },
+  {
+    "line": 641,
+    "label": "",
+    "code": "DO 73 I=1,5",
+    "pc": 159
+  },
+  {
+    "line": 642,
+    "label": "",
+    "code": "IF(ODLOC(I).NE.NEWLOC.OR..NOT.DSEEN(I))GOTO 73",
+    "pc": 160
+  },
+  {
+    "line": 643,
+    "label": "",
+    "code": "NEWLOC=LOC",
+    "pc": 161
+  },
+  {
+    "line": 644,
+    "label": "",
+    "code": "CALL RSPEAK(2)",
+    "pc": 162
+  },
+  {
+    "line": 645,
+    "label": "",
+    "code": "GOTO 74",
+    "pc": 163
+  },
+  {
+    "line": 646,
+    "label": "73",
+    "code": "CONTINUE",
+    "pc": 164
+  },
+  {
+    "line": 647,
+    "label": "74",
+    "code": "LOC=NEWLOC",
+    "pc": 165
+  },
+  {
+    "line": 659,
+    "label": "",
+    "code": "IF(LOC.EQ.0.OR.FORCED(LOC).OR.BITSET(NEWLOC,3))GOTO 2000",
+    "pc": 166
+  },
+  {
+    "line": 660,
+    "label": "",
+    "code": "IF(DFLAG.NE.0)GOTO 6000",
+    "pc": 167
+  },
+  {
+    "line": 661,
+    "label": "",
+    "code": "IF(LOC.GE.15)DFLAG=1",
+    "pc": 168
+  },
+  {
+    "line": 662,
+    "label": "",
+    "code": "GOTO 2000",
+    "pc": 169
+  },
+  {
+    "line": 667,
+    "label": "6000",
+    "code": "IF(DFLAG.NE.1)GOTO 6010",
+    "pc": 170
+  },
+  {
+    "line": 668,
+    "label": "",
+    "code": "IF(LOC.LT.15.OR.PCT(95))GOTO 2000",
+    "pc": 171
+  },
+  {
+    "line": 669,
+    "label": "",
+    "code": "DFLAG=2",
+    "pc": 172
+  },
+  {
+    "line": 670,
+    "label": "",
+    "code": "DO 6001 I=1,2",
+    "pc": 173
+  },
+  {
+    "line": 671,
+    "label": "",
+    "code": "J=1+RAN(5)",
+    "pc": 174
+  },
+  {
+    "line": 673,
+    "label": "6001",
+    "code": "IF(PCT(50).AND.SAVED.EQ.-1)DLOC(J)=0",
+    "pc": 175
+  },
+  {
+    "line": 674,
+    "label": "",
+    "code": "DO 6002 I=1,5",
+    "pc": 176
+  },
+  {
+    "line": 675,
+    "label": "",
+    "code": "IF(DLOC(I).EQ.LOC)DLOC(I)=DALTLC",
+    "pc": 177
+  },
+  {
+    "line": 676,
+    "label": "6002",
+    "code": "ODLOC(I)=DLOC(I)",
+    "pc": 178
+  },
+  {
+    "line": 677,
+    "label": "",
+    "code": "CALL RSPEAK(3)",
+    "pc": 179
+  },
+  {
+    "line": 678,
+    "label": "",
+    "code": "CALL DROP(AXE,LOC)",
+    "pc": 180
+  },
+  {
+    "line": 679,
+    "label": "",
+    "code": "GOTO 2000",
+    "pc": 181
+  },
+  {
+    "line": 686,
+    "label": "6010",
+    "code": "DTOTAL=0",
+    "pc": 182
+  },
+  {
+    "line": 687,
+    "label": "",
+    "code": "ATTACK=0",
+    "pc": 183
+  },
+  {
+    "line": 688,
+    "label": "",
+    "code": "STICK=0",
+    "pc": 184
+  },
+  {
+    "line": 689,
+    "label": "",
+    "code": "DO 6030 I=1,6",
+    "pc": 185
+  },
+  {
+    "line": 690,
+    "label": "",
+    "code": "IF(DLOC(I).EQ.0)GOTO 6030",
+    "pc": 186
+  },
+  {
+    "line": 691,
+    "label": "",
+    "code": "J=1",
+    "pc": 187
+  },
+  {
+    "line": 692,
+    "label": "",
+    "code": "KK=DLOC(I)",
+    "pc": 188
+  },
+  {
+    "line": 693,
+    "label": "",
+    "code": "KK=KEY(KK)",
+    "pc": 189
+  },
+  {
+    "line": 694,
+    "label": "",
+    "code": "IF(KK.EQ.0)GOTO 6016",
+    "pc": 190
+  },
+  {
+    "line": 695,
+    "label": "6012",
+    "code": "NEWLOC=MOD(IABS(TRAVEL(KK))/1000,1000)",
+    "pc": 191
+  },
+  {
+    "line": 696,
+    "label": "",
+    "code": "IF(NEWLOC.GT.300.OR.NEWLOC.LT.15.OR.NEWLOC.EQ.ODLOC(I).OR.(J.GT.1.AND.NEWLOC.EQ.TK(J-1)).OR.J.GE.20.OR.NEWLOC.EQ.DLOC(I).OR.FORCED(NEWLOC).OR.(I.EQ.6.AND.BITSET(NEWLOC,3)).OR.IABS(TRAVEL(KK))/1000000.EQ.100)GOTO 6014",
+    "pc": 192
+  },
+  {
+    "line": 701,
+    "label": "",
+    "code": "TK(J)=NEWLOC",
+    "pc": 193
+  },
+  {
+    "line": 702,
+    "label": "",
+    "code": "J=J+1",
+    "pc": 194
+  },
+  {
+    "line": 703,
+    "label": "6014",
+    "code": "KK=KK+1",
+    "pc": 195
+  },
+  {
+    "line": 704,
+    "label": "",
+    "code": "IF(TRAVEL(KK-1).GE.0)GOTO 6012",
+    "pc": 196
+  },
+  {
+    "line": 705,
+    "label": "6016",
+    "code": "TK(J)=ODLOC(I)",
+    "pc": 197
+  },
+  {
+    "line": 706,
+    "label": "",
+    "code": "IF(J.GE.2)J=J-1",
+    "pc": 198
+  },
+  {
+    "line": 707,
+    "label": "",
+    "code": "J=1+RAN(J)",
+    "pc": 199
+  },
+  {
+    "line": 708,
+    "label": "",
+    "code": "ODLOC(I)=DLOC(I)",
+    "pc": 200
+  },
+  {
+    "line": 709,
+    "label": "",
+    "code": "DLOC(I)=TK(J)",
+    "pc": 201
+  },
+  {
+    "line": 710,
+    "label": "",
+    "code": "DSEEN(I)=(DSEEN(I).AND.LOC.GE.15).OR.(DLOC(I).EQ.LOC.OR.ODLOC(I).EQ.LOC)",
+    "pc": 202
+  },
+  {
+    "line": 712,
+    "label": "",
+    "code": "IF(.NOT.DSEEN(I))GOTO 6030",
+    "pc": 203
+  },
+  {
+    "line": 713,
+    "label": "",
+    "code": "DLOC(I)=LOC",
+    "pc": 204
+  },
+  {
+    "line": 714,
+    "label": "",
+    "code": "IF(I.NE.6)GOTO 6027",
+    "pc": 205
+  },
+  {
+    "line": 720,
+    "label": "",
+    "code": "IF(LOC.EQ.CHLOC.OR.PROP(CHEST).GE.0)GOTO 6030",
+    "pc": 206
+  },
+  {
+    "line": 721,
+    "label": "",
+    "code": "K=0",
+    "pc": 207
+  },
+  {
+    "line": 722,
+    "label": "",
+    "code": "DO 6020 J=50,MAXTRS",
+    "pc": 208
+  },
+  {
+    "line": 724,
+    "label": "",
+    "code": "IF(J.EQ.PYRAM.AND.(LOC.EQ.PLAC(PYRAM).OR.LOC.EQ.PLAC(EMRALD)))GOTO 6020",
+    "pc": 209
+  },
+  {
+    "line": 726,
+    "label": "",
+    "code": "IDONDX=J",
+    "pc": 210
+  },
+  {
+    "line": 727,
+    "label": "",
+    "code": "IF(TOTING(IDONDX))GOTO 6022",
+    "pc": 211
+  },
+  {
+    "line": 728,
+    "label": "6020",
+    "code": "IF(HERE(IDONDX))K=1",
+    "pc": 212
+  },
+  {
+    "line": 729,
+    "label": "",
+    "code": "IF(TALLY.EQ.TALLY2+1.AND.K.EQ.0.AND.PLACE(CHEST).EQ.0.AND.HERE(LAMP).AND.PROP(LAMP).EQ.1)GOTO 6025",
+    "pc": 213
+  },
+  {
+    "line": 731,
+    "label": "",
+    "code": "IF(ODLOC(6).NE.DLOC(6).AND.PCT(20))CALL RSPEAK(127)",
+    "pc": 214
+  },
+  {
+    "line": 732,
+    "label": "",
+    "code": "GOTO 6030",
+    "pc": 215
+  },
+  {
+    "line": 734,
+    "label": "6022",
+    "code": "CALL RSPEAK(128)",
+    "pc": 216
+  },
+  {
+    "line": 736,
+    "label": "",
+    "code": "IF(PLACE(MESSAG).EQ.0)CALL MOVE(CHEST,CHLOC)",
+    "pc": 217
+  },
+  {
+    "line": 737,
+    "label": "",
+    "code": "CALL MOVE(MESSAG,CHLOC2)",
+    "pc": 218
+  },
+  {
+    "line": 738,
+    "label": "",
+    "code": "DO 6023 J=50,MAXTRS",
+    "pc": 219
+  },
+  {
+    "line": 739,
+    "label": "",
+    "code": "IF(J.EQ.PYRAM.AND.(LOC.EQ.PLAC(PYRAM).OR.LOC.EQ.PLAC(EMRALD)))GOTO 6023",
+    "pc": 220
+  },
+  {
+    "line": 741,
+    "label": "",
+    "code": "IDONDX=J",
+    "pc": 221
+  },
+  {
+    "line": 742,
+    "label": "",
+    "code": "IF(AT(IDONDX).AND.FIXED(IDONDX).EQ.0)CALL CARRY(IDONDX,LOC)",
+    "pc": 222
+  },
+  {
+    "line": 744,
+    "label": "",
+    "code": "IF(TOTING(IDONDX))CALL DROP(IDONDX,CHLOC)",
+    "pc": 223
+  },
+  {
+    "line": 745,
+    "label": "6023",
+    "code": "CONTINUE",
+    "pc": 224
+  },
+  {
+    "line": 746,
+    "label": "6024",
+    "code": "DLOC(6)=CHLOC",
+    "pc": 225
+  },
+  {
+    "line": 747,
+    "label": "",
+    "code": "ODLOC(6)=CHLOC",
+    "pc": 226
+  },
+  {
+    "line": 748,
+    "label": "",
+    "code": "DSEEN(6)=.FALSE.",
+    "pc": 227
+  },
+  {
+    "line": 749,
+    "label": "",
+    "code": "GOTO 6030",
+    "pc": 228
+  },
+  {
+    "line": 751,
+    "label": "6025",
+    "code": "CALL RSPEAK(186)",
+    "pc": 229
+  },
+  {
+    "line": 752,
+    "label": "",
+    "code": "CALL MOVE(CHEST,CHLOC)",
+    "pc": 230
+  },
+  {
+    "line": 753,
+    "label": "",
+    "code": "CALL MOVE(MESSAG,CHLOC2)",
+    "pc": 231
+  },
+  {
+    "line": 754,
+    "label": "",
+    "code": "GOTO 6024",
+    "pc": 232
+  },
+  {
+    "line": 758,
+    "label": "6027",
+    "code": "DTOTAL=DTOTAL+1",
+    "pc": 233
+  },
+  {
+    "line": 759,
+    "label": "",
+    "code": "IF(ODLOC(I).NE.DLOC(I))GOTO 6030",
+    "pc": 234
+  },
+  {
+    "line": 760,
+    "label": "",
+    "code": "ATTACK=ATTACK+1",
+    "pc": 235
+  },
+  {
+    "line": 761,
+    "label": "",
+    "code": "IF(KNFLOC.GE.0)KNFLOC=LOC",
+    "pc": 236
+  },
+  {
+    "line": 762,
+    "label": "",
+    "code": "IF(RAN(1000).LT.95*(DFLAG-2))STICK=STICK+1",
+    "pc": 237
+  },
+  {
+    "line": 763,
+    "label": "6030",
+    "code": "CONTINUE",
+    "pc": 238
+  },
+  {
+    "line": 767,
+    "label": "",
+    "code": "IF(DTOTAL.EQ.0)GOTO 2000",
+    "pc": 239
+  },
+  {
+    "line": 768,
+    "label": "",
+    "code": "IF(DTOTAL.EQ.1)GOTO 75",
+    "pc": 240
+  },
+  {
+    "line": 769,
+    "label": "",
+    "code": "TYPE 67,DTOTAL",
+    "pc": 241
+  },
+  {
+    "line": 772,
+    "label": "",
+    "code": "GOTO 77",
+    "pc": 242
+  },
+  {
+    "line": 773,
+    "label": "75",
+    "code": "CALL RSPEAK(4)",
+    "pc": 243
+  },
+  {
+    "line": 774,
+    "label": "77",
+    "code": "IF(ATTACK.EQ.0)GOTO 2000",
+    "pc": 244
+  },
+  {
+    "line": 775,
+    "label": "",
+    "code": "IF(DFLAG.EQ.2)DFLAG=3",
+    "pc": 245
+  },
+  {
+    "line": 777,
+    "label": "",
+    "code": "IF(SAVED.NE.-1)DFLAG=20",
+    "pc": 246
+  },
+  {
+    "line": 778,
+    "label": "",
+    "code": "IF(ATTACK.EQ.1)GOTO 79",
+    "pc": 247
+  },
+  {
+    "line": 779,
+    "label": "",
+    "code": "TYPE 78,ATTACK",
+    "pc": 248
+  },
+  {
+    "line": 781,
+    "label": "",
+    "code": "K=6",
+    "pc": 249
+  },
+  {
+    "line": 782,
+    "label": "82",
+    "code": "IF(STICK.GT.1)GOTO 83",
+    "pc": 250
+  },
+  {
+    "line": 783,
+    "label": "",
+    "code": "CALL RSPEAK(K+STICK)",
+    "pc": 251
+  },
+  {
+    "line": 784,
+    "label": "",
+    "code": "IF(STICK.EQ.0)GOTO 2000",
+    "pc": 252
+  },
+  {
+    "line": 785,
+    "label": "",
+    "code": "GOTO 84",
+    "pc": 253
+  },
+  {
+    "line": 786,
+    "label": "83",
+    "code": "TYPE 68,STICK",
+    "pc": 254
+  },
+  {
+    "line": 788,
+    "label": "84",
+    "code": "OLDLC2=LOC",
+    "pc": 255
+  },
+  {
+    "line": 789,
+    "label": "",
+    "code": "GOTO 99",
+    "pc": 256
+  },
+  {
+    "line": 791,
+    "label": "79",
+    "code": "CALL RSPEAK(5)",
+    "pc": 257
+  },
+  {
+    "line": 792,
+    "label": "",
+    "code": "K=52",
+    "pc": 258
+  },
+  {
+    "line": 793,
+    "label": "",
+    "code": "GOTO 82",
+    "pc": 259
+  },
+  {
+    "line": 798,
+    "label": "2000",
+    "code": "IF(LOC.EQ.0)GOTO 99",
+    "pc": 260
+  },
+  {
+    "line": 799,
+    "label": "",
+    "code": "KK=STEXT(LOC)",
+    "pc": 261
+  },
+  {
+    "line": 800,
+    "label": "",
+    "code": "IF(MOD(ABB(LOC),ABBNUM).EQ.0.OR.KK.EQ.0)KK=LTEXT(LOC)",
+    "pc": 262
+  },
+  {
+    "line": 801,
+    "label": "",
+    "code": "IF(FORCED(LOC).OR..NOT.DARK(0))GOTO 2001",
+    "pc": 263
+  },
+  {
+    "line": 802,
+    "label": "",
+    "code": "IF(WZDARK.AND.PCT(35))GOTO 90",
+    "pc": 264
+  },
+  {
+    "line": 803,
+    "label": "",
+    "code": "KK=RTEXT(16)",
+    "pc": 265
+  },
+  {
+    "line": 804,
+    "label": "2001",
+    "code": "IF(TOTING(BEAR))CALL RSPEAK(141)",
+    "pc": 266
+  },
+  {
+    "line": 805,
+    "label": "",
+    "code": "CALL SPEAK(KK)",
+    "pc": 267
+  },
+  {
+    "line": 806,
+    "label": "",
+    "code": "K=1",
+    "pc": 268
+  },
+  {
+    "line": 807,
+    "label": "",
+    "code": "IF(FORCED(LOC))GOTO 8",
+    "pc": 269
+  },
+  {
+    "line": 808,
+    "label": "",
+    "code": "IF(LOC.EQ.33.AND.PCT(25).AND..NOT.CLOSNG)CALL RSPEAK(8)",
+    "pc": 270
+  },
+  {
+    "line": 816,
+    "label": "",
+    "code": "IF(DARK(0))GOTO 2012",
+    "pc": 271
+  },
+  {
+    "line": 817,
+    "label": "",
+    "code": "ABB(LOC)=ABB(LOC)+1",
+    "pc": 272
+  },
+  {
+    "line": 818,
+    "label": "",
+    "code": "I=ATLOC(LOC)",
+    "pc": 273
+  },
+  {
+    "line": 819,
+    "label": "2004",
+    "code": "IF(I.EQ.0)GOTO 2012",
+    "pc": 274
+  },
+  {
+    "line": 820,
+    "label": "",
+    "code": "OBJ=I",
+    "pc": 275
+  },
+  {
+    "line": 821,
+    "label": "",
+    "code": "IF(OBJ.GT.100)OBJ=OBJ-100",
+    "pc": 276
+  },
+  {
+    "line": 822,
+    "label": "",
+    "code": "IF(OBJ.EQ.STEPS.AND.TOTING(NUGGET))GOTO 2008",
+    "pc": 277
+  },
+  {
+    "line": 823,
+    "label": "",
+    "code": "IF(PROP(OBJ).GE.0)GOTO 2006",
+    "pc": 278
+  },
+  {
+    "line": 824,
+    "label": "",
+    "code": "IF(CLOSED)GOTO 2008",
+    "pc": 279
+  },
+  {
+    "line": 825,
+    "label": "",
+    "code": "PROP(OBJ)=0",
+    "pc": 280
+  },
+  {
+    "line": 826,
+    "label": "",
+    "code": "IF(OBJ.EQ.RUG.OR.OBJ.EQ.CHAIN)PROP(OBJ)=1",
+    "pc": 281
+  },
+  {
+    "line": 827,
+    "label": "",
+    "code": "TALLY=TALLY-1",
+    "pc": 282
+  },
+  {
+    "line": 829,
+    "label": "",
+    "code": "IF(TALLY.EQ.TALLY2.AND.TALLY.NE.0)LIMIT=MIN0(35,LIMIT)",
+    "pc": 283
+  },
+  {
+    "line": 830,
+    "label": "2006",
+    "code": "KK=PROP(OBJ)",
+    "pc": 284
+  },
+  {
+    "line": 831,
+    "label": "",
+    "code": "IF(OBJ.EQ.STEPS.AND.LOC.EQ.FIXED(STEPS))KK=1",
+    "pc": 285
+  },
+  {
+    "line": 832,
+    "label": "",
+    "code": "CALL PSPEAK(OBJ,KK)",
+    "pc": 286
+  },
+  {
+    "line": 833,
+    "label": "2008",
+    "code": "I=LINK(I)",
+    "pc": 287
+  },
+  {
+    "line": 834,
+    "label": "",
+    "code": "GOTO 2004",
+    "pc": 288
+  },
+  {
+    "line": 836,
+    "label": "2009",
+    "code": "K=54",
+    "pc": 289
+  },
+  {
+    "line": 837,
+    "label": "2010",
+    "code": "SPK=K",
+    "pc": 290
+  },
+  {
+    "line": 838,
+    "label": "2011",
+    "code": "CALL RSPEAK(SPK)",
+    "pc": 291
+  },
+  {
+    "line": 840,
+    "label": "2012",
+    "code": "VERB=0",
+    "pc": 292
+  },
+  {
+    "line": 841,
+    "label": "",
+    "code": "OBJ=0",
+    "pc": 293
+  },
+  {
+    "line": 847,
+    "label": "2600",
+    "code": "DO 2602 HINT=4,HNTMAX",
+    "pc": 294
+  },
+  {
+    "line": 848,
+    "label": "",
+    "code": "IF(HINTED(HINT))GOTO 2602",
+    "pc": 295
+  },
+  {
+    "line": 849,
+    "label": "",
+    "code": "IDONDX=HINT",
+    "pc": 296
+  },
+  {
+    "line": 850,
+    "label": "",
+    "code": "IF(.NOT.BITSET(LOC,IDONDX))HINTLC(HINT)=-1",
+    "pc": 297
+  },
+  {
+    "line": 851,
+    "label": "",
+    "code": "HINTLC(HINT)=HINTLC(HINT)+1",
+    "pc": 298
+  },
+  {
+    "line": 852,
+    "label": "",
+    "code": "IF(HINTLC(HINT).GE.HINTS(HINT,1))GOTO 40000",
+    "pc": 299
+  },
+  {
+    "line": 853,
+    "label": "2602",
+    "code": "CONTINUE",
+    "pc": 300
+  },
+  {
+    "line": 861,
+    "label": "",
+    "code": "IF(.NOT.CLOSED)GOTO 2605",
+    "pc": 301
+  },
+  {
+    "line": 862,
+    "label": "",
+    "code": "IF(PROP(OYSTER).LT.0.AND.TOTING(OYSTER))CALL PSPEAK(OYSTER,1)",
+    "pc": 302
+  },
+  {
+    "line": 864,
+    "label": "",
+    "code": "DO 2604 I=1,100",
+    "pc": 303
+  },
+  {
+    "line": 865,
+    "label": "",
+    "code": "IDONDX=I",
+    "pc": 304
+  },
+  {
+    "line": 866,
+    "label": "2604",
+    "code": "IF(TOTING(IDONDX).AND.PROP(IDONDX).LT.0)PROP(IDONDX)=-1-PROP(IDONDX)",
+    "pc": 305
+  },
+  {
+    "line": 868,
+    "label": "2605",
+    "code": "WZDARK=DARK(0)",
+    "pc": 306
+  },
+  {
+    "line": 869,
+    "label": "",
+    "code": "IF(KNFLOC.GT.0.AND.KNFLOC.NE.LOC)KNFLOC=0",
+    "pc": 307
+  },
+  {
+    "line": 870,
+    "label": "",
+    "code": "I=RAN(1)",
+    "pc": 308
+  },
+  {
+    "line": 871,
+    "label": "",
+    "code": "CALL GETIN(WD1,WD1X,WD2,WD2X)",
+    "pc": 309
+  },
+  {
+    "line": 876,
+    "label": "2608",
+    "code": "FOOBAR=MIN0(0,-FOOBAR)",
+    "pc": 310
+  },
+  {
+    "line": 877,
+    "label": "",
+    "code": "IF(TURNS.EQ.0.AND.WD1.EQ.'MAGIC'.AND.WD2.EQ.'MODE')CALL MAINT",
+    "pc": 311
+  },
+  {
+    "line": 878,
+    "label": "",
+    "code": "TURNS=TURNS+1",
+    "pc": 312
+  },
+  {
+    "line": 879,
+    "label": "",
+    "code": "IF(DEMO.AND.TURNS.GE.SHORT)GOTO 13000",
+    "pc": 313
+  },
+  {
+    "line": 880,
+    "label": "",
+    "code": "IF(VERB.EQ.SAY.AND.WD2.NE.0)VERB=0",
+    "pc": 314
+  },
+  {
+    "line": 881,
+    "label": "",
+    "code": "IF(VERB.EQ.SAY)GOTO 4090",
+    "pc": 315
+  },
+  {
+    "line": 882,
+    "label": "",
+    "code": "IF(TALLY.EQ.0.AND.LOC.GE.15.AND.LOC.NE.33)CLOCK1=CLOCK1-1",
+    "pc": 316
+  },
+  {
+    "line": 883,
+    "label": "",
+    "code": "IF(CLOCK1.EQ.0)GOTO 10000",
+    "pc": 317
+  },
+  {
+    "line": 884,
+    "label": "",
+    "code": "IF(CLOCK1.LT.0)CLOCK2=CLOCK2-1",
+    "pc": 318
+  },
+  {
+    "line": 885,
+    "label": "",
+    "code": "IF(CLOCK2.EQ.0)GOTO 11000",
+    "pc": 319
+  },
+  {
+    "line": 886,
+    "label": "",
+    "code": "IF(PROP(LAMP).EQ.1)LIMIT=LIMIT-1",
+    "pc": 320
+  },
+  {
+    "line": 887,
+    "label": "",
+    "code": "IF(LIMIT.LE.30.AND.HERE(BATTER).AND.PROP(BATTER).EQ.0.AND.HERE(LAMP))GOTO 12000",
+    "pc": 321
+  },
+  {
+    "line": 889,
+    "label": "",
+    "code": "IF(LIMIT.EQ.0)GOTO 12400",
+    "pc": 322
+  },
+  {
+    "line": 890,
+    "label": "",
+    "code": "IF(LIMIT.LT.0.AND.LOC.LE.8)GOTO 12600",
+    "pc": 323
+  },
+  {
+    "line": 891,
+    "label": "",
+    "code": "IF(LIMIT.LE.30)GOTO 12200",
+    "pc": 324
+  },
+  {
+    "line": 892,
+    "label": "19999",
+    "code": "K=43",
+    "pc": 325
+  },
+  {
+    "line": 893,
+    "label": "",
+    "code": "IF(LIQLOC(LOC).EQ.WATER)K=70",
+    "pc": 326
+  },
+  {
+    "line": 894,
+    "label": "",
+    "code": "IF(WD1.EQ.'ENTER'.AND.(WD2.EQ.'STREA'.OR.WD2.EQ.'WATER'))GOTO 2010",
+    "pc": 327
+  },
+  {
+    "line": 896,
+    "label": "",
+    "code": "IF(WD1.EQ.'ENTER'.AND.WD2.NE.0)GOTO 2800",
+    "pc": 328
+  },
+  {
+    "line": 897,
+    "label": "",
+    "code": "IF((WD1.NE.'WATER'.AND.WD1.NE.'OIL').OR.(WD2.NE.'PLANT'.AND.WD2.NE.'DOOR'))GOTO 2610",
+    "pc": 329
+  },
+  {
+    "line": 899,
+    "label": "",
+    "code": "IF(AT(VOCAB(WD2,1)))WD2='POUR'",
+    "pc": 330
+  },
+  {
+    "line": 900,
+    "label": "2610",
+    "code": "IF(WD1.NE.'WEST')GOTO 2630",
+    "pc": 331
+  },
+  {
+    "line": 901,
+    "label": "",
+    "code": "IWEST=IWEST+1",
+    "pc": 332
+  },
+  {
+    "line": 902,
+    "label": "",
+    "code": "IF(IWEST.EQ.10)CALL RSPEAK(17)",
+    "pc": 333
+  },
+  {
+    "line": 903,
+    "label": "2630",
+    "code": "I=VOCAB(WD1,-1)",
+    "pc": 334
+  },
+  {
+    "line": 904,
+    "label": "",
+    "code": "IF(I.EQ.-1)GOTO 3000",
+    "pc": 335
+  },
+  {
+    "line": 905,
+    "label": "",
+    "code": "K=MOD(I,1000)",
+    "pc": 336
+  },
+  {
+    "line": 906,
+    "label": "",
+    "code": "KQ=I/1000+1",
+    "pc": 337
+  },
+  {
+    "line": 907,
+    "label": "",
+    "code": "GOTO (8,5000,4000,2010)KQ",
+    "pc": 338
+  },
+  {
+    "line": 908,
+    "label": "",
+    "code": "CALL BUG(22)",
+    "pc": 339
+  },
+  {
+    "line": 912,
+    "label": "2800",
+    "code": "WD1=WD2",
+    "pc": 340
+  },
+  {
+    "line": 913,
+    "label": "",
+    "code": "WD1X=WD2X",
+    "pc": 341
+  },
+  {
+    "line": 914,
+    "label": "",
+    "code": "WD2=0",
+    "pc": 342
+  },
+  {
+    "line": 915,
+    "label": "",
+    "code": "GOTO 2610",
+    "pc": 343
+  },
+  {
+    "line": 919,
+    "label": "3000",
+    "code": "SPK=60",
+    "pc": 344
+  },
+  {
+    "line": 920,
+    "label": "",
+    "code": "IF(PCT(20))SPK=61",
+    "pc": 345
+  },
+  {
+    "line": 921,
+    "label": "",
+    "code": "IF(PCT(20))SPK=13",
+    "pc": 346
+  },
+  {
+    "line": 922,
+    "label": "",
+    "code": "CALL RSPEAK(SPK)",
+    "pc": 347
+  },
+  {
+    "line": 923,
+    "label": "",
+    "code": "GOTO 2600",
+    "pc": 348
+  },
+  {
+    "line": 928,
+    "label": "4000",
+    "code": "VERB=K",
+    "pc": 349
+  },
+  {
+    "line": 929,
+    "label": "",
+    "code": "SPK=ACTSPK(VERB)",
+    "pc": 350
+  },
+  {
+    "line": 930,
+    "label": "",
+    "code": "IF(WD2.NE.0.AND.VERB.NE.SAY)GOTO 2800",
+    "pc": 351
+  },
+  {
+    "line": 931,
+    "label": "",
+    "code": "IF(VERB.EQ.SAY)OBJ=WD2",
+    "pc": 352
+  },
+  {
+    "line": 932,
+    "label": "",
+    "code": "IF(OBJ.NE.0)GOTO 4090",
+    "pc": 353
+  },
+  {
+    "line": 936,
+    "label": "4080",
+    "code": "GOTO(8010,8000,8000,8040,2009,8040,9070,9080,8000,8000,2011,9120,9130,8140,9150,8000,8000,8180,8000,8200,8000,9220,9230,8240,8250,8260,8270,8000,8000,8300,8310)VERB",
+    "pc": 354
+  },
+  {
+    "line": 944,
+    "label": "",
+    "code": "CALL BUG(23)",
+    "pc": 355
+  },
+  {
+    "line": 948,
+    "label": "4090",
+    "code": "GOTO(9010,9020,9030,9040,2009,9040,9070,9080,9090,2011,2011,9120,9130,9140,9150,9160,9170,2011,9190,9190,9210,9220,9230,2011,2011,2011,9270,9280,9290,2011,2011)VERB",
+    "pc": 356
+  },
+  {
+    "line": 956,
+    "label": "",
+    "code": "CALL BUG(24)",
+    "pc": 357
+  },
+  {
+    "line": 964,
+    "label": "5000",
+    "code": "OBJ=K",
+    "pc": 358
+  },
+  {
+    "line": 965,
+    "label": "",
+    "code": "IF(FIXED(K).NE.LOC.AND..NOT.HERE(K))GOTO 5100",
+    "pc": 359
+  },
+  {
+    "line": 966,
+    "label": "5010",
+    "code": "IF(WD2.NE.0)GOTO 2800",
+    "pc": 360
+  },
+  {
+    "line": 967,
+    "label": "",
+    "code": "IF(VERB.NE.0)GOTO 4090",
+    "pc": 361
+  },
+  {
+    "line": 968,
+    "label": "",
+    "code": "CALL A5TOA1(WD1,WD1X,'?',TK,K)",
+    "pc": 362
+  },
+  {
+    "line": 969,
+    "label": "",
+    "code": "TYPE 5015,(TK(I),I=1,K)",
+    "pc": 363
+  },
+  {
+    "line": 971,
+    "label": "",
+    "code": "GOTO 2600",
+    "pc": 364
+  },
+  {
+    "line": 973,
+    "label": "5100",
+    "code": "IF(K.NE.GRATE)GOTO 5110",
+    "pc": 365
+  },
+  {
+    "line": 974,
+    "label": "",
+    "code": "IF(LOC.EQ.1.OR.LOC.EQ.4.OR.LOC.EQ.7)K=DPRSSN",
+    "pc": 366
+  },
+  {
+    "line": 975,
+    "label": "",
+    "code": "IF(LOC.GT.9.AND.LOC.LT.15)K=ENTRNC",
+    "pc": 367
+  },
+  {
+    "line": 976,
+    "label": "",
+    "code": "IF(K.NE.GRATE)GOTO 8",
+    "pc": 368
+  },
+  {
+    "line": 977,
+    "label": "5110",
+    "code": "IF(K.NE.DWARF)GOTO 5120",
+    "pc": 369
+  },
+  {
+    "line": 978,
+    "label": "",
+    "code": "DO 5112 I=1,5",
+    "pc": 370
+  },
+  {
+    "line": 979,
+    "label": "",
+    "code": "IF(DLOC(I).EQ.LOC.AND.DFLAG.GE.2)GOTO 5010",
+    "pc": 371
+  },
+  {
+    "line": 980,
+    "label": "5112",
+    "code": "CONTINUE",
+    "pc": 372
+  },
+  {
+    "line": 981,
+    "label": "5120",
+    "code": "IF((LIQ(0).EQ.K.AND.HERE(BOTTLE)).OR.K.EQ.LIQLOC(LOC))GOTO 5010",
+    "pc": 373
+  },
+  {
+    "line": 982,
+    "label": "",
+    "code": "IF(OBJ.NE.PLANT.OR..NOT.AT(PLANT2).OR.PROP(PLANT2).EQ.0)GOTO 5130",
+    "pc": 374
+  },
+  {
+    "line": 983,
+    "label": "",
+    "code": "OBJ=PLANT2",
+    "pc": 375
+  },
+  {
+    "line": 984,
+    "label": "",
+    "code": "GOTO 5010",
+    "pc": 376
+  },
+  {
+    "line": 985,
+    "label": "5130",
+    "code": "IF(OBJ.NE.KNIFE.OR.KNFLOC.NE.LOC)GOTO 5140",
+    "pc": 377
+  },
+  {
+    "line": 986,
+    "label": "",
+    "code": "KNFLOC=-1",
+    "pc": 378
+  },
+  {
+    "line": 987,
+    "label": "",
+    "code": "SPK=116",
+    "pc": 379
+  },
+  {
+    "line": 988,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 380
+  },
+  {
+    "line": 989,
+    "label": "5140",
+    "code": "IF(OBJ.NE.ROD.OR..NOT.HERE(ROD2))GOTO 5190",
+    "pc": 381
+  },
+  {
+    "line": 990,
+    "label": "",
+    "code": "OBJ=ROD2",
+    "pc": 382
+  },
+  {
+    "line": 991,
+    "label": "",
+    "code": "GOTO 5010",
+    "pc": 383
+  },
+  {
+    "line": 992,
+    "label": "5190",
+    "code": "IF((VERB.EQ.FIND.OR.VERB.EQ.INVENT).AND.WD2.EQ.0)GOTO 5010",
+    "pc": 384
+  },
+  {
+    "line": 993,
+    "label": "",
+    "code": "CALL A5TOA1(WD1,WD1X,'here.',TK,K)",
+    "pc": 385
+  },
+  {
+    "line": 994,
+    "label": "",
+    "code": "TYPE 5199,(TK(I),I=1,K)",
+    "pc": 386
+  },
+  {
+    "line": 996,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 387
+  },
+  {
+    "line": 1005,
+    "label": "8",
+    "code": "KK=KEY(LOC)",
+    "pc": 388
+  },
+  {
+    "line": 1006,
+    "label": "",
+    "code": "NEWLOC=LOC",
+    "pc": 389
+  },
+  {
+    "line": 1007,
+    "label": "",
+    "code": "IF(KK.EQ.0)CALL BUG(26)",
+    "pc": 390
+  },
+  {
+    "line": 1008,
+    "label": "",
+    "code": "IF(K.EQ.NULL)GOTO 2",
+    "pc": 391
+  },
+  {
+    "line": 1009,
+    "label": "",
+    "code": "IF(K.EQ.BACK)GOTO 20",
+    "pc": 392
+  },
+  {
+    "line": 1010,
+    "label": "",
+    "code": "IF(K.EQ.LOOK)GOTO 30",
+    "pc": 393
+  },
+  {
+    "line": 1011,
+    "label": "",
+    "code": "IF(K.EQ.CAVE)GOTO 40",
+    "pc": 394
+  },
+  {
+    "line": 1012,
+    "label": "",
+    "code": "OLDLC2=OLDLOC",
+    "pc": 395
+  },
+  {
+    "line": 1013,
+    "label": "",
+    "code": "OLDLOC=LOC",
+    "pc": 396
+  },
+  {
+    "line": 1015,
+    "label": "9",
+    "code": "LL=IABS(TRAVEL(KK))",
+    "pc": 397
+  },
+  {
+    "line": 1016,
+    "label": "",
+    "code": "IF(MOD(LL,1000).EQ.1.OR.MOD(LL,1000).EQ.K)GOTO 10",
+    "pc": 398
+  },
+  {
+    "line": 1017,
+    "label": "",
+    "code": "IF(TRAVEL(KK).LT.0)GOTO 50",
+    "pc": 399
+  },
+  {
+    "line": 1018,
+    "label": "",
+    "code": "KK=KK+1",
+    "pc": 400
+  },
+  {
+    "line": 1019,
+    "label": "",
+    "code": "GOTO 9",
+    "pc": 401
+  },
+  {
+    "line": 1021,
+    "label": "10",
+    "code": "LL=LL/1000",
+    "pc": 402
+  },
+  {
+    "line": 1022,
+    "label": "11",
+    "code": "NEWLOC=LL/1000",
+    "pc": 403
+  },
+  {
+    "line": 1023,
+    "label": "",
+    "code": "K=MOD(NEWLOC,100)",
+    "pc": 404
+  },
+  {
+    "line": 1024,
+    "label": "",
+    "code": "IF(NEWLOC.LE.300)GOTO 13",
+    "pc": 405
+  },
+  {
+    "line": 1025,
+    "label": "",
+    "code": "IF(PROP(K).NE.NEWLOC/100-3)GOTO 16",
+    "pc": 406
+  },
+  {
+    "line": 1026,
+    "label": "12",
+    "code": "IF(TRAVEL(KK).LT.0)CALL BUG(25)",
+    "pc": 407
+  },
+  {
+    "line": 1027,
+    "label": "",
+    "code": "KK=KK+1",
+    "pc": 408
+  },
+  {
+    "line": 1028,
+    "label": "",
+    "code": "NEWLOC=IABS(TRAVEL(KK))/1000",
+    "pc": 409
+  },
+  {
+    "line": 1029,
+    "label": "",
+    "code": "IF(NEWLOC.EQ.LL)GOTO 12",
+    "pc": 410
+  },
+  {
+    "line": 1030,
+    "label": "",
+    "code": "LL=NEWLOC",
+    "pc": 411
+  },
+  {
+    "line": 1031,
+    "label": "",
+    "code": "GOTO 11",
+    "pc": 412
+  },
+  {
+    "line": 1033,
+    "label": "13",
+    "code": "IF(NEWLOC.LE.100)GOTO 14",
+    "pc": 413
+  },
+  {
+    "line": 1034,
+    "label": "",
+    "code": "IF(TOTING(K).OR.(NEWLOC.GT.200.AND.AT(K)))GOTO 16",
+    "pc": 414
+  },
+  {
+    "line": 1035,
+    "label": "",
+    "code": "GOTO 12",
+    "pc": 415
+  },
+  {
+    "line": 1037,
+    "label": "14",
+    "code": "IF(NEWLOC.NE.0.AND..NOT.PCT(NEWLOC))GOTO 12",
+    "pc": 416
+  },
+  {
+    "line": 1038,
+    "label": "16",
+    "code": "NEWLOC=MOD(LL,1000)",
+    "pc": 417
+  },
+  {
+    "line": 1039,
+    "label": "",
+    "code": "IF(NEWLOC.LE.300)GOTO 2",
+    "pc": 418
+  },
+  {
+    "line": 1040,
+    "label": "",
+    "code": "IF(NEWLOC.LE.500)GOTO 30000",
+    "pc": 419
+  },
+  {
+    "line": 1041,
+    "label": "",
+    "code": "CALL RSPEAK(NEWLOC-500)",
+    "pc": 420
+  },
+  {
+    "line": 1042,
+    "label": "",
+    "code": "NEWLOC=LOC",
+    "pc": 421
+  },
+  {
+    "line": 1043,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 422
+  },
+  {
+    "line": 1048,
+    "label": "30000",
+    "code": "NEWLOC=NEWLOC-300",
+    "pc": 423
+  },
+  {
+    "line": 1049,
+    "label": "",
+    "code": "GOTO (30100,30200,30300)NEWLOC",
+    "pc": 424
+  },
+  {
+    "line": 1050,
+    "label": "",
+    "code": "CALL BUG(20)",
+    "pc": 425
+  },
+  {
+    "line": 1056,
+    "label": "30100",
+    "code": "NEWLOC=99+100-LOC",
+    "pc": 426
+  },
+  {
+    "line": 1057,
+    "label": "",
+    "code": "IF(HOLDNG.EQ.0.OR.(HOLDNG.EQ.1.AND.TOTING(EMRALD)))GOTO 2",
+    "pc": 427
+  },
+  {
+    "line": 1058,
+    "label": "",
+    "code": "NEWLOC=LOC",
+    "pc": 428
+  },
+  {
+    "line": 1059,
+    "label": "",
+    "code": "CALL RSPEAK(117)",
+    "pc": 429
+  },
+  {
+    "line": 1060,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 430
+  },
+  {
+    "line": 1066,
+    "label": "30200",
+    "code": "CALL DROP(EMRALD,LOC)",
+    "pc": 431
+  },
+  {
+    "line": 1067,
+    "label": "",
+    "code": "GOTO 12",
+    "pc": 432
+  },
+  {
+    "line": 1075,
+    "label": "30300",
+    "code": "IF(PROP(TROLL).NE.1)GOTO 30310",
+    "pc": 433
+  },
+  {
+    "line": 1076,
+    "label": "",
+    "code": "CALL PSPEAK(TROLL,1)",
+    "pc": 434
+  },
+  {
+    "line": 1077,
+    "label": "",
+    "code": "PROP(TROLL)=0",
+    "pc": 435
+  },
+  {
+    "line": 1078,
+    "label": "",
+    "code": "CALL MOVE(TROLL2,0)",
+    "pc": 436
+  },
+  {
+    "line": 1079,
+    "label": "",
+    "code": "CALL MOVE(TROLL2+100,0)",
+    "pc": 437
+  },
+  {
+    "line": 1080,
+    "label": "",
+    "code": "CALL MOVE(TROLL,PLAC(TROLL))",
+    "pc": 438
+  },
+  {
+    "line": 1081,
+    "label": "",
+    "code": "CALL MOVE(TROLL+100,FIXD(TROLL))",
+    "pc": 439
+  },
+  {
+    "line": 1082,
+    "label": "",
+    "code": "CALL JUGGLE(CHASM)",
+    "pc": 440
+  },
+  {
+    "line": 1083,
+    "label": "",
+    "code": "NEWLOC=LOC",
+    "pc": 441
+  },
+  {
+    "line": 1084,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 442
+  },
+  {
+    "line": 1086,
+    "label": "30310",
+    "code": "NEWLOC=PLAC(TROLL)+FIXD(TROLL)-LOC",
+    "pc": 443
+  },
+  {
+    "line": 1087,
+    "label": "",
+    "code": "IF(PROP(TROLL).EQ.0)PROP(TROLL)=1",
+    "pc": 444
+  },
+  {
+    "line": 1088,
+    "label": "",
+    "code": "IF(.NOT.TOTING(BEAR))GOTO 2",
+    "pc": 445
+  },
+  {
+    "line": 1089,
+    "label": "",
+    "code": "CALL RSPEAK(162)",
+    "pc": 446
+  },
+  {
+    "line": 1090,
+    "label": "",
+    "code": "PROP(CHASM)=1",
+    "pc": 447
+  },
+  {
+    "line": 1091,
+    "label": "",
+    "code": "PROP(TROLL)=2",
+    "pc": 448
+  },
+  {
+    "line": 1092,
+    "label": "",
+    "code": "CALL DROP(BEAR,NEWLOC)",
+    "pc": 449
+  },
+  {
+    "line": 1093,
+    "label": "",
+    "code": "FIXED(BEAR)=-1",
+    "pc": 450
+  },
+  {
+    "line": 1094,
+    "label": "",
+    "code": "PROP(BEAR)=3",
+    "pc": 451
+  },
+  {
+    "line": 1095,
+    "label": "",
+    "code": "IF(PROP(SPICES).LT.0)TALLY2=TALLY2+1",
+    "pc": 452
+  },
+  {
+    "line": 1096,
+    "label": "",
+    "code": "OLDLC2=NEWLOC",
+    "pc": 453
+  },
+  {
+    "line": 1097,
+    "label": "",
+    "code": "GOTO 99",
+    "pc": 454
+  },
+  {
+    "line": 1104,
+    "label": "20",
+    "code": "K=OLDLOC",
+    "pc": 455
+  },
+  {
+    "line": 1105,
+    "label": "",
+    "code": "IF(FORCED(K))K=OLDLC2",
+    "pc": 456
+  },
+  {
+    "line": 1106,
+    "label": "",
+    "code": "OLDLC2=OLDLOC",
+    "pc": 457
+  },
+  {
+    "line": 1107,
+    "label": "",
+    "code": "OLDLOC=LOC",
+    "pc": 458
+  },
+  {
+    "line": 1108,
+    "label": "",
+    "code": "K2=0",
+    "pc": 459
+  },
+  {
+    "line": 1109,
+    "label": "",
+    "code": "IF(K.NE.LOC)GOTO 21",
+    "pc": 460
+  },
+  {
+    "line": 1110,
+    "label": "",
+    "code": "CALL RSPEAK(91)",
+    "pc": 461
+  },
+  {
+    "line": 1111,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 462
+  },
+  {
+    "line": 1113,
+    "label": "21",
+    "code": "LL=MOD((IABS(TRAVEL(KK))/1000),1000)",
+    "pc": 463
+  },
+  {
+    "line": 1114,
+    "label": "",
+    "code": "IF(LL.EQ.K)GOTO 25",
+    "pc": 464
+  },
+  {
+    "line": 1115,
+    "label": "",
+    "code": "IF(LL.GT.300)GOTO 22",
+    "pc": 465
+  },
+  {
+    "line": 1116,
+    "label": "",
+    "code": "J=KEY(LL)",
+    "pc": 466
+  },
+  {
+    "line": 1117,
+    "label": "",
+    "code": "IF(FORCED(LL).AND.MOD((IABS(TRAVEL(J))/1000),1000).EQ.K)K2=KK",
+    "pc": 467
+  },
+  {
+    "line": 1118,
+    "label": "22",
+    "code": "IF(TRAVEL(KK).LT.0)GOTO 23",
+    "pc": 468
+  },
+  {
+    "line": 1119,
+    "label": "",
+    "code": "KK=KK+1",
+    "pc": 469
+  },
+  {
+    "line": 1120,
+    "label": "",
+    "code": "GOTO 21",
+    "pc": 470
+  },
+  {
+    "line": 1122,
+    "label": "23",
+    "code": "KK=K2",
+    "pc": 471
+  },
+  {
+    "line": 1123,
+    "label": "",
+    "code": "IF(KK.NE.0)GOTO 25",
+    "pc": 472
+  },
+  {
+    "line": 1124,
+    "label": "",
+    "code": "CALL RSPEAK(140)",
+    "pc": 473
+  },
+  {
+    "line": 1125,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 474
+  },
+  {
+    "line": 1127,
+    "label": "25",
+    "code": "K=MOD(IABS(TRAVEL(KK)),1000)",
+    "pc": 475
+  },
+  {
+    "line": 1128,
+    "label": "",
+    "code": "KK=KEY(LOC)",
+    "pc": 476
+  },
+  {
+    "line": 1129,
+    "label": "",
+    "code": "GOTO 9",
+    "pc": 477
+  },
+  {
+    "line": 1134,
+    "label": "30",
+    "code": "IF(DETAIL.LT.3)CALL RSPEAK(15)",
+    "pc": 478
+  },
+  {
+    "line": 1135,
+    "label": "",
+    "code": "DETAIL=DETAIL+1",
+    "pc": 479
+  },
+  {
+    "line": 1136,
+    "label": "",
+    "code": "WZDARK=.FALSE.",
+    "pc": 480
+  },
+  {
+    "line": 1137,
+    "label": "",
+    "code": "ABB(LOC)=0",
+    "pc": 481
+  },
+  {
+    "line": 1138,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 482
+  },
+  {
+    "line": 1142,
+    "label": "40",
+    "code": "IF(LOC.LT.8)CALL RSPEAK(57)",
+    "pc": 483
+  },
+  {
+    "line": 1143,
+    "label": "",
+    "code": "IF(LOC.GE.8)CALL RSPEAK(58)",
+    "pc": 484
+  },
+  {
+    "line": 1144,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 485
+  },
+  {
+    "line": 1148,
+    "label": "50",
+    "code": "SPK=12",
+    "pc": 486
+  },
+  {
+    "line": 1149,
+    "label": "",
+    "code": "IF(K.GE.43.AND.K.LE.50)SPK=9",
+    "pc": 487
+  },
+  {
+    "line": 1150,
+    "label": "",
+    "code": "IF(K.EQ.29.OR.K.EQ.30)SPK=9",
+    "pc": 488
+  },
+  {
+    "line": 1151,
+    "label": "",
+    "code": "IF(K.EQ.7.OR.K.EQ.36.OR.K.EQ.37)SPK=10",
+    "pc": 489
+  },
+  {
+    "line": 1152,
+    "label": "",
+    "code": "IF(K.EQ.11.OR.K.EQ.19)SPK=11",
+    "pc": 490
+  },
+  {
+    "line": 1153,
+    "label": "",
+    "code": "IF(VERB.EQ.FIND.OR.VERB.EQ.INVENT)SPK=59",
+    "pc": 491
+  },
+  {
+    "line": 1154,
+    "label": "",
+    "code": "IF(K.EQ.62.OR.K.EQ.65)SPK=42",
+    "pc": 492
+  },
+  {
+    "line": 1155,
+    "label": "",
+    "code": "IF(K.EQ.17)SPK=80",
+    "pc": 493
+  },
+  {
+    "line": 1156,
+    "label": "",
+    "code": "CALL RSPEAK(SPK)",
+    "pc": 494
+  },
+  {
+    "line": 1157,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 495
+  },
+  {
+    "line": 1177,
+    "label": "90",
+    "code": "CALL RSPEAK(23)",
+    "pc": 496
+  },
+  {
+    "line": 1178,
+    "label": "",
+    "code": "OLDLC2=LOC",
+    "pc": 497
+  },
+  {
+    "line": 1182,
+    "label": "99",
+    "code": "IF(CLOSNG)GOTO 95",
+    "pc": 498
+  },
+  {
+    "line": 1183,
+    "label": "",
+    "code": "YEA=YES(81+NUMDIE*2,82+NUMDIE*2,54)",
+    "pc": 499
+  },
+  {
+    "line": 1184,
+    "label": "",
+    "code": "NUMDIE=NUMDIE+1",
+    "pc": 500
+  },
+  {
+    "line": 1185,
+    "label": "",
+    "code": "IF(NUMDIE.EQ.MAXDIE.OR..NOT.YEA)GOTO 20000",
+    "pc": 501
+  },
+  {
+    "line": 1186,
+    "label": "",
+    "code": "PLACE(WATER)=0",
+    "pc": 502
+  },
+  {
+    "line": 1187,
+    "label": "",
+    "code": "PLACE(OIL)=0",
+    "pc": 503
+  },
+  {
+    "line": 1188,
+    "label": "",
+    "code": "IF(TOTING(LAMP))PROP(LAMP)=0",
+    "pc": 504
+  },
+  {
+    "line": 1189,
+    "label": "",
+    "code": "DO 98 J=1,100",
+    "pc": 505
+  },
+  {
+    "line": 1190,
+    "label": "",
+    "code": "I=101-J",
+    "pc": 506
+  },
+  {
+    "line": 1191,
+    "label": "",
+    "code": "IF(.NOT.TOTING(I))GOTO 98",
+    "pc": 507
+  },
+  {
+    "line": 1192,
+    "label": "",
+    "code": "K=OLDLC2",
+    "pc": 508
+  },
+  {
+    "line": 1193,
+    "label": "",
+    "code": "IF(I.EQ.LAMP)K=1",
+    "pc": 509
+  },
+  {
+    "line": 1194,
+    "label": "",
+    "code": "CALL DROP(I,K)",
+    "pc": 510
+  },
+  {
+    "line": 1195,
+    "label": "98",
+    "code": "CONTINUE",
+    "pc": 511
+  },
+  {
+    "line": 1196,
+    "label": "",
+    "code": "LOC=3",
+    "pc": 512
+  },
+  {
+    "line": 1197,
+    "label": "",
+    "code": "OLDLOC=LOC",
+    "pc": 513
+  },
+  {
+    "line": 1198,
+    "label": "",
+    "code": "GOTO 2000",
+    "pc": 514
+  },
+  {
+    "line": 1202,
+    "label": "95",
+    "code": "CALL RSPEAK(131)",
+    "pc": 515
+  },
+  {
+    "line": 1203,
+    "label": "",
+    "code": "NUMDIE=NUMDIE+1",
+    "pc": 516
+  },
+  {
+    "line": 1204,
+    "label": "",
+    "code": "GOTO 20000",
+    "pc": 517
+  },
+  {
+    "line": 1213,
+    "label": "8000",
+    "code": "CALL A5TOA1(WD1,WD1X,'What?',TK,K)",
+    "pc": 518
+  },
+  {
+    "line": 1214,
+    "label": "",
+    "code": "TYPE 8002,(TK(I),I=1,K)",
+    "pc": 519
+  },
+  {
+    "line": 1216,
+    "label": "",
+    "code": "OBJ=0",
+    "pc": 520
+  },
+  {
+    "line": 1217,
+    "label": "",
+    "code": "GOTO 2600",
+    "pc": 521
+  },
+  {
+    "line": 1221,
+    "label": "8010",
+    "code": "IF(ATLOC(LOC).EQ.0.OR.LINK(ATLOC(LOC)).NE.0)GOTO 8000",
+    "pc": 522
+  },
+  {
+    "line": 1222,
+    "label": "",
+    "code": "DO 8012 I=1,5",
+    "pc": 523
+  },
+  {
+    "line": 1223,
+    "label": "",
+    "code": "IF(DLOC(I).EQ.LOC.AND.DFLAG.GE.2)GOTO 8000",
+    "pc": 524
+  },
+  {
+    "line": 1224,
+    "label": "8012",
+    "code": "CONTINUE",
+    "pc": 525
+  },
+  {
+    "line": 1225,
+    "label": "",
+    "code": "OBJ=ATLOC(LOC)",
+    "pc": 526
+  },
+  {
+    "line": 1231,
+    "label": "9010",
+    "code": "IF(TOTING(OBJ))GOTO 2011",
+    "pc": 527
+  },
+  {
+    "line": 1232,
+    "label": "",
+    "code": "SPK=25",
+    "pc": 528
+  },
+  {
+    "line": 1233,
+    "label": "",
+    "code": "IF(OBJ.EQ.PLANT.AND.PROP(PLANT).LE.0)SPK=115",
+    "pc": 529
+  },
+  {
+    "line": 1234,
+    "label": "",
+    "code": "IF(OBJ.EQ.BEAR.AND.PROP(BEAR).EQ.1)SPK=169",
+    "pc": 530
+  },
+  {
+    "line": 1235,
+    "label": "",
+    "code": "IF(OBJ.EQ.CHAIN.AND.PROP(BEAR).NE.0)SPK=170",
+    "pc": 531
+  },
+  {
+    "line": 1236,
+    "label": "",
+    "code": "IF(FIXED(OBJ).NE.0)GOTO 2011",
+    "pc": 532
+  },
+  {
+    "line": 1237,
+    "label": "",
+    "code": "IF(OBJ.NE.WATER.AND.OBJ.NE.OIL)GOTO 9017",
+    "pc": 533
+  },
+  {
+    "line": 1238,
+    "label": "",
+    "code": "IF(HERE(BOTTLE).AND.LIQ(0).EQ.OBJ)GOTO 9018",
+    "pc": 534
+  },
+  {
+    "line": 1239,
+    "label": "",
+    "code": "OBJ=BOTTLE",
+    "pc": 535
+  },
+  {
+    "line": 1240,
+    "label": "",
+    "code": "IF(TOTING(BOTTLE).AND.PROP(BOTTLE).EQ.1)GOTO 9220",
+    "pc": 536
+  },
+  {
+    "line": 1241,
+    "label": "",
+    "code": "IF(PROP(BOTTLE).NE.1)SPK=105",
+    "pc": 537
+  },
+  {
+    "line": 1242,
+    "label": "",
+    "code": "IF(.NOT.TOTING(BOTTLE))SPK=104",
+    "pc": 538
+  },
+  {
+    "line": 1243,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 539
+  },
+  {
+    "line": 1244,
+    "label": "9018",
+    "code": "OBJ=BOTTLE",
+    "pc": 540
+  },
+  {
+    "line": 1245,
+    "label": "9017",
+    "code": "IF(HOLDNG.LT.7)GOTO 9016",
+    "pc": 541
+  },
+  {
+    "line": 1246,
+    "label": "",
+    "code": "CALL RSPEAK(92)",
+    "pc": 542
+  },
+  {
+    "line": 1247,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 543
+  },
+  {
+    "line": 1248,
+    "label": "9016",
+    "code": "IF(OBJ.NE.BIRD)GOTO 9014",
+    "pc": 544
+  },
+  {
+    "line": 1249,
+    "label": "",
+    "code": "IF(PROP(BIRD).NE.0)GOTO 9014",
+    "pc": 545
+  },
+  {
+    "line": 1250,
+    "label": "",
+    "code": "IF(.NOT.TOTING(ROD))GOTO 9013",
+    "pc": 546
+  },
+  {
+    "line": 1251,
+    "label": "",
+    "code": "CALL RSPEAK(26)",
+    "pc": 547
+  },
+  {
+    "line": 1252,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 548
+  },
+  {
+    "line": 1253,
+    "label": "9013",
+    "code": "IF(TOTING(CAGE))GOTO 9015",
+    "pc": 549
+  },
+  {
+    "line": 1254,
+    "label": "",
+    "code": "CALL RSPEAK(27)",
+    "pc": 550
+  },
+  {
+    "line": 1255,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 551
+  },
+  {
+    "line": 1256,
+    "label": "9015",
+    "code": "PROP(BIRD)=1",
+    "pc": 552
+  },
+  {
+    "line": 1257,
+    "label": "9014",
+    "code": "IF((OBJ.EQ.BIRD.OR.OBJ.EQ.CAGE).AND.PROP(BIRD).NE.0)CALL CARRY(BIRD+CAGE-OBJ,LOC)",
+    "pc": 553
+  },
+  {
+    "line": 1259,
+    "label": "",
+    "code": "CALL CARRY(OBJ,LOC)",
+    "pc": 554
+  },
+  {
+    "line": 1260,
+    "label": "",
+    "code": "K=LIQ(0)",
+    "pc": 555
+  },
+  {
+    "line": 1261,
+    "label": "",
+    "code": "IF(OBJ.EQ.BOTTLE.AND.K.NE.0)PLACE(K)=-1",
+    "pc": 556
+  },
+  {
+    "line": 1262,
+    "label": "",
+    "code": "GOTO 2009",
+    "pc": 557
+  },
+  {
+    "line": 1268,
+    "label": "9020",
+    "code": "IF(TOTING(ROD2).AND.OBJ.EQ.ROD.AND..NOT.TOTING(ROD))OBJ=ROD2",
+    "pc": 558
+  },
+  {
+    "line": 1269,
+    "label": "",
+    "code": "IF(.NOT.TOTING(OBJ))GOTO 2011",
+    "pc": 559
+  },
+  {
+    "line": 1270,
+    "label": "",
+    "code": "IF(OBJ.NE.BIRD.OR..NOT.HERE(SNAKE))GOTO 9024",
+    "pc": 560
+  },
+  {
+    "line": 1271,
+    "label": "",
+    "code": "CALL RSPEAK(30)",
+    "pc": 561
+  },
+  {
+    "line": 1272,
+    "label": "",
+    "code": "IF(CLOSED)GOTO 19000",
+    "pc": 562
+  },
+  {
+    "line": 1273,
+    "label": "",
+    "code": "CALL DSTROY(SNAKE)",
+    "pc": 563
+  },
+  {
+    "line": 1275,
+    "label": "",
+    "code": "PROP(SNAKE)=1",
+    "pc": 564
+  },
+  {
+    "line": 1276,
+    "label": "9021",
+    "code": "K=LIQ(0)",
+    "pc": 565
+  },
+  {
+    "line": 1277,
+    "label": "",
+    "code": "IF(K.EQ.OBJ)OBJ=BOTTLE",
+    "pc": 566
+  },
+  {
+    "line": 1278,
+    "label": "",
+    "code": "IF(OBJ.EQ.BOTTLE.AND.K.NE.0)PLACE(K)=0",
+    "pc": 567
+  },
+  {
+    "line": 1279,
+    "label": "",
+    "code": "IF(OBJ.EQ.CAGE.AND.PROP(BIRD).NE.0)CALL DROP(BIRD,LOC)",
+    "pc": 568
+  },
+  {
+    "line": 1280,
+    "label": "",
+    "code": "IF(OBJ.EQ.BIRD)PROP(BIRD)=0",
+    "pc": 569
+  },
+  {
+    "line": 1281,
+    "label": "",
+    "code": "CALL DROP(OBJ,LOC)",
+    "pc": 570
+  },
+  {
+    "line": 1282,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 571
+  },
+  {
+    "line": 1284,
+    "label": "9024",
+    "code": "IF(OBJ.NE.COINS.OR..NOT.HERE(VEND))GOTO 9025",
+    "pc": 572
+  },
+  {
+    "line": 1285,
+    "label": "",
+    "code": "CALL DSTROY(COINS)",
+    "pc": 573
+  },
+  {
+    "line": 1286,
+    "label": "",
+    "code": "CALL DROP(BATTER,LOC)",
+    "pc": 574
+  },
+  {
+    "line": 1287,
+    "label": "",
+    "code": "CALL PSPEAK(BATTER,0)",
+    "pc": 575
+  },
+  {
+    "line": 1288,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 576
+  },
+  {
+    "line": 1290,
+    "label": "9025",
+    "code": "IF(OBJ.NE.BIRD.OR..NOT.AT(DRAGON).OR.PROP(DRAGON).NE.0)GOTO 9026",
+    "pc": 577
+  },
+  {
+    "line": 1291,
+    "label": "",
+    "code": "CALL RSPEAK(154)",
+    "pc": 578
+  },
+  {
+    "line": 1292,
+    "label": "",
+    "code": "CALL DSTROY(BIRD)",
+    "pc": 579
+  },
+  {
+    "line": 1293,
+    "label": "",
+    "code": "PROP(BIRD)=0",
+    "pc": 580
+  },
+  {
+    "line": 1294,
+    "label": "",
+    "code": "IF(PLACE(SNAKE).EQ.PLAC(SNAKE))TALLY2=TALLY2+1",
+    "pc": 581
+  },
+  {
+    "line": 1295,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 582
+  },
+  {
+    "line": 1297,
+    "label": "9026",
+    "code": "IF(OBJ.NE.BEAR.OR..NOT.AT(TROLL))GOTO 9027",
+    "pc": 583
+  },
+  {
+    "line": 1298,
+    "label": "",
+    "code": "CALL RSPEAK(163)",
+    "pc": 584
+  },
+  {
+    "line": 1299,
+    "label": "",
+    "code": "CALL MOVE(TROLL,0)",
+    "pc": 585
+  },
+  {
+    "line": 1300,
+    "label": "",
+    "code": "CALL MOVE(TROLL+100,0)",
+    "pc": 586
+  },
+  {
+    "line": 1301,
+    "label": "",
+    "code": "CALL MOVE(TROLL2,PLAC(TROLL))",
+    "pc": 587
+  },
+  {
+    "line": 1302,
+    "label": "",
+    "code": "CALL MOVE(TROLL2+100,FIXD(TROLL))",
+    "pc": 588
+  },
+  {
+    "line": 1303,
+    "label": "",
+    "code": "CALL JUGGLE(CHASM)",
+    "pc": 589
+  },
+  {
+    "line": 1304,
+    "label": "",
+    "code": "PROP(TROLL)=2",
+    "pc": 590
+  },
+  {
+    "line": 1305,
+    "label": "",
+    "code": "GOTO 9021",
+    "pc": 591
+  },
+  {
+    "line": 1307,
+    "label": "9027",
+    "code": "IF(OBJ.EQ.VASE.AND.LOC.NE.PLAC(PILLOW))GOTO 9028",
+    "pc": 592
+  },
+  {
+    "line": 1308,
+    "label": "",
+    "code": "CALL RSPEAK(54)",
+    "pc": 593
+  },
+  {
+    "line": 1309,
+    "label": "",
+    "code": "GOTO 9021",
+    "pc": 594
+  },
+  {
+    "line": 1311,
+    "label": "9028",
+    "code": "PROP(VASE)=2",
+    "pc": 595
+  },
+  {
+    "line": 1312,
+    "label": "",
+    "code": "IF(AT(PILLOW))PROP(VASE)=0",
+    "pc": 596
+  },
+  {
+    "line": 1313,
+    "label": "",
+    "code": "CALL PSPEAK(VASE,PROP(VASE)+1)",
+    "pc": 597
+  },
+  {
+    "line": 1314,
+    "label": "",
+    "code": "IF(PROP(VASE).NE.0)FIXED(VASE)=-1",
+    "pc": 598
+  },
+  {
+    "line": 1315,
+    "label": "",
+    "code": "GOTO 9021",
+    "pc": 599
+  },
+  {
+    "line": 1319,
+    "label": "9030",
+    "code": "CALL A5TOA1(WD2,WD2X,'\".',TK,K)",
+    "pc": 600
+  },
+  {
+    "line": 1320,
+    "label": "",
+    "code": "IF(WD2.EQ.0)CALL A5TOA1(WD1,WD1X,'\".',TK,K)",
+    "pc": 601
+  },
+  {
+    "line": 1321,
+    "label": "",
+    "code": "IF(WD2.NE.0)WD1=WD2",
+    "pc": 602
+  },
+  {
+    "line": 1322,
+    "label": "",
+    "code": "I=VOCAB(WD1,-1)",
+    "pc": 603
+  },
+  {
+    "line": 1323,
+    "label": "",
+    "code": "IF(I.EQ.62.OR.I.EQ.65.OR.I.EQ.71.OR.I.EQ.2025)GOTO 9035",
+    "pc": 604
+  },
+  {
+    "line": 1324,
+    "label": "",
+    "code": "TYPE 9032,(TK(I),I=1,K)",
+    "pc": 605
+  },
+  {
+    "line": 1326,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 606
+  },
+  {
+    "line": 1328,
+    "label": "9035",
+    "code": "WD2=0",
+    "pc": 607
+  },
+  {
+    "line": 1329,
+    "label": "",
+    "code": "OBJ=0",
+    "pc": 608
+  },
+  {
+    "line": 1330,
+    "label": "",
+    "code": "GOTO 2630",
+    "pc": 609
+  },
+  {
+    "line": 1334,
+    "label": "8040",
+    "code": "SPK=28",
+    "pc": 610
+  },
+  {
+    "line": 1335,
+    "label": "",
+    "code": "IF(HERE(CLAM))OBJ=CLAM",
+    "pc": 611
+  },
+  {
+    "line": 1336,
+    "label": "",
+    "code": "IF(HERE(OYSTER))OBJ=OYSTER",
+    "pc": 612
+  },
+  {
+    "line": 1337,
+    "label": "",
+    "code": "IF(AT(DOOR))OBJ=DOOR",
+    "pc": 613
+  },
+  {
+    "line": 1338,
+    "label": "",
+    "code": "IF(AT(GRATE))OBJ=GRATE",
+    "pc": 614
+  },
+  {
+    "line": 1339,
+    "label": "",
+    "code": "IF(OBJ.NE.0.AND.HERE(CHAIN))GOTO 8000",
+    "pc": 615
+  },
+  {
+    "line": 1340,
+    "label": "",
+    "code": "IF(HERE(CHAIN))OBJ=CHAIN",
+    "pc": 616
+  },
+  {
+    "line": 1341,
+    "label": "",
+    "code": "IF(OBJ.EQ.0)GOTO 2011",
+    "pc": 617
+  },
+  {
+    "line": 1345,
+    "label": "9040",
+    "code": "IF(OBJ.EQ.CLAM.OR.OBJ.EQ.OYSTER)GOTO 9046",
+    "pc": 618
+  },
+  {
+    "line": 1346,
+    "label": "",
+    "code": "IF(OBJ.EQ.DOOR)SPK=111",
+    "pc": 619
+  },
+  {
+    "line": 1347,
+    "label": "",
+    "code": "IF(OBJ.EQ.DOOR.AND.PROP(DOOR).EQ.1)SPK=54",
+    "pc": 620
+  },
+  {
+    "line": 1348,
+    "label": "",
+    "code": "IF(OBJ.EQ.CAGE)SPK=32",
+    "pc": 621
+  },
+  {
+    "line": 1349,
+    "label": "",
+    "code": "IF(OBJ.EQ.KEYS)SPK=55",
+    "pc": 622
+  },
+  {
+    "line": 1350,
+    "label": "",
+    "code": "IF(OBJ.EQ.GRATE.OR.OBJ.EQ.CHAIN)SPK=31",
+    "pc": 623
+  },
+  {
+    "line": 1351,
+    "label": "",
+    "code": "IF(SPK.NE.31.OR..NOT.HERE(KEYS))GOTO 2011",
+    "pc": 624
+  },
+  {
+    "line": 1352,
+    "label": "",
+    "code": "IF(OBJ.EQ.CHAIN)GOTO 9048",
+    "pc": 625
+  },
+  {
+    "line": 1353,
+    "label": "",
+    "code": "IF(.NOT.CLOSNG)GOTO 9043",
+    "pc": 626
+  },
+  {
+    "line": 1354,
+    "label": "",
+    "code": "K=130",
+    "pc": 627
+  },
+  {
+    "line": 1355,
+    "label": "",
+    "code": "IF(.NOT.PANIC)CLOCK2=15",
+    "pc": 628
+  },
+  {
+    "line": 1356,
+    "label": "",
+    "code": "PANIC=.TRUE.",
+    "pc": 629
+  },
+  {
+    "line": 1357,
+    "label": "",
+    "code": "GOTO 2010",
+    "pc": 630
+  },
+  {
+    "line": 1359,
+    "label": "9043",
+    "code": "K=34+PROP(GRATE)",
+    "pc": 631
+  },
+  {
+    "line": 1360,
+    "label": "",
+    "code": "PROP(GRATE)=1",
+    "pc": 632
+  },
+  {
+    "line": 1361,
+    "label": "",
+    "code": "IF(VERB.EQ.LOCK)PROP(GRATE)=0",
+    "pc": 633
+  },
+  {
+    "line": 1362,
+    "label": "",
+    "code": "K=K+2*PROP(GRATE)",
+    "pc": 634
+  },
+  {
+    "line": 1363,
+    "label": "",
+    "code": "GOTO 2010",
+    "pc": 635
+  },
+  {
+    "line": 1366,
+    "label": "9046",
+    "code": "K=0",
+    "pc": 636
+  },
+  {
+    "line": 1367,
+    "label": "",
+    "code": "IF(OBJ.EQ.OYSTER)K=1",
+    "pc": 637
+  },
+  {
+    "line": 1368,
+    "label": "",
+    "code": "SPK=124+K",
+    "pc": 638
+  },
+  {
+    "line": 1369,
+    "label": "",
+    "code": "IF(TOTING(OBJ))SPK=120+K",
+    "pc": 639
+  },
+  {
+    "line": 1370,
+    "label": "",
+    "code": "IF(.NOT.TOTING(TRIDNT))SPK=122+K",
+    "pc": 640
+  },
+  {
+    "line": 1371,
+    "label": "",
+    "code": "IF(VERB.EQ.LOCK)SPK=61",
+    "pc": 641
+  },
+  {
+    "line": 1372,
+    "label": "",
+    "code": "IF(SPK.NE.124)GOTO 2011",
+    "pc": 642
+  },
+  {
+    "line": 1373,
+    "label": "",
+    "code": "CALL DSTROY(CLAM)",
+    "pc": 643
+  },
+  {
+    "line": 1374,
+    "label": "",
+    "code": "CALL DROP(OYSTER,LOC)",
+    "pc": 644
+  },
+  {
+    "line": 1375,
+    "label": "",
+    "code": "CALL DROP(PEARL,105)",
+    "pc": 645
+  },
+  {
+    "line": 1376,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 646
+  },
+  {
+    "line": 1379,
+    "label": "9048",
+    "code": "IF(VERB.EQ.LOCK)GOTO 9049",
+    "pc": 647
+  },
+  {
+    "line": 1380,
+    "label": "",
+    "code": "SPK=171",
+    "pc": 648
+  },
+  {
+    "line": 1381,
+    "label": "",
+    "code": "IF(PROP(BEAR).EQ.0)SPK=41",
+    "pc": 649
+  },
+  {
+    "line": 1382,
+    "label": "",
+    "code": "IF(PROP(CHAIN).EQ.0)SPK=37",
+    "pc": 650
+  },
+  {
+    "line": 1383,
+    "label": "",
+    "code": "IF(SPK.NE.171)GOTO 2011",
+    "pc": 651
+  },
+  {
+    "line": 1384,
+    "label": "",
+    "code": "PROP(CHAIN)=0",
+    "pc": 652
+  },
+  {
+    "line": 1385,
+    "label": "",
+    "code": "FIXED(CHAIN)=0",
+    "pc": 653
+  },
+  {
+    "line": 1386,
+    "label": "",
+    "code": "IF(PROP(BEAR).NE.3)PROP(BEAR)=2",
+    "pc": 654
+  },
+  {
+    "line": 1387,
+    "label": "",
+    "code": "FIXED(BEAR)=2-PROP(BEAR)",
+    "pc": 655
+  },
+  {
+    "line": 1388,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 656
+  },
+  {
+    "line": 1390,
+    "label": "9049",
+    "code": "SPK=172",
+    "pc": 657
+  },
+  {
+    "line": 1391,
+    "label": "",
+    "code": "IF(PROP(CHAIN).NE.0)SPK=34",
+    "pc": 658
+  },
+  {
+    "line": 1392,
+    "label": "",
+    "code": "IF(LOC.NE.PLAC(CHAIN))SPK=173",
+    "pc": 659
+  },
+  {
+    "line": 1393,
+    "label": "",
+    "code": "IF(SPK.NE.172)GOTO 2011",
+    "pc": 660
+  },
+  {
+    "line": 1394,
+    "label": "",
+    "code": "PROP(CHAIN)=2",
+    "pc": 661
+  },
+  {
+    "line": 1395,
+    "label": "",
+    "code": "IF(TOTING(CHAIN))CALL DROP(CHAIN,LOC)",
+    "pc": 662
+  },
+  {
+    "line": 1396,
+    "label": "",
+    "code": "FIXED(CHAIN)=-1",
+    "pc": 663
+  },
+  {
+    "line": 1397,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 664
+  },
+  {
+    "line": 1401,
+    "label": "9070",
+    "code": "IF(.NOT.HERE(LAMP))GOTO 2011",
+    "pc": 665
+  },
+  {
+    "line": 1402,
+    "label": "",
+    "code": "SPK=184",
+    "pc": 666
+  },
+  {
+    "line": 1403,
+    "label": "",
+    "code": "IF(LIMIT.LT.0)GOTO 2011",
+    "pc": 667
+  },
+  {
+    "line": 1404,
+    "label": "",
+    "code": "PROP(LAMP)=1",
+    "pc": 668
+  },
+  {
+    "line": 1405,
+    "label": "",
+    "code": "CALL RSPEAK(39)",
+    "pc": 669
+  },
+  {
+    "line": 1406,
+    "label": "",
+    "code": "IF(WZDARK)GOTO 2000",
+    "pc": 670
+  },
+  {
+    "line": 1407,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 671
+  },
+  {
+    "line": 1411,
+    "label": "9080",
+    "code": "IF(.NOT.HERE(LAMP))GOTO 2011",
+    "pc": 672
+  },
+  {
+    "line": 1412,
+    "label": "",
+    "code": "PROP(LAMP)=0",
+    "pc": 673
+  },
+  {
+    "line": 1413,
+    "label": "",
+    "code": "CALL RSPEAK(40)",
+    "pc": 674
+  },
+  {
+    "line": 1414,
+    "label": "",
+    "code": "IF(DARK(0))CALL RSPEAK(16)",
+    "pc": 675
+  },
+  {
+    "line": 1415,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 676
+  },
+  {
+    "line": 1419,
+    "label": "9090",
+    "code": "IF((.NOT.TOTING(OBJ)).AND.(OBJ.NE.ROD.OR..NOT.TOTING(ROD2)))SPK=29",
+    "pc": 677
+  },
+  {
+    "line": 1421,
+    "label": "",
+    "code": "IF(OBJ.NE.ROD.OR..NOT.AT(FISSUR).OR..NOT.TOTING(OBJ).OR.CLOSNG)GOTO 2011",
+    "pc": 678
+  },
+  {
+    "line": 1423,
+    "label": "",
+    "code": "PROP(FISSUR)=1-PROP(FISSUR)",
+    "pc": 679
+  },
+  {
+    "line": 1424,
+    "label": "",
+    "code": "CALL PSPEAK(FISSUR,2-PROP(FISSUR))",
+    "pc": 680
+  },
+  {
+    "line": 1425,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 681
+  },
+  {
+    "line": 1431,
+    "label": "9120",
+    "code": "DO 9121 I=1,5",
+    "pc": 682
+  },
+  {
+    "line": 1432,
+    "label": "",
+    "code": "IF(DLOC(I).EQ.LOC.AND.DFLAG.GE.2)GOTO 9122",
+    "pc": 683
+  },
+  {
+    "line": 1433,
+    "label": "9121",
+    "code": "CONTINUE",
+    "pc": 684
+  },
+  {
+    "line": 1434,
+    "label": "",
+    "code": "I=0",
+    "pc": 685
+  },
+  {
+    "line": 1435,
+    "label": "9122",
+    "code": "IF(OBJ.NE.0)GOTO 9124",
+    "pc": 686
+  },
+  {
+    "line": 1436,
+    "label": "",
+    "code": "IF(I.NE.0)OBJ=DWARF",
+    "pc": 687
+  },
+  {
+    "line": 1437,
+    "label": "",
+    "code": "IF(HERE(SNAKE))OBJ=OBJ*100+SNAKE",
+    "pc": 688
+  },
+  {
+    "line": 1438,
+    "label": "",
+    "code": "IF(AT(DRAGON).AND.PROP(DRAGON).EQ.0)OBJ=OBJ*100+DRAGON",
+    "pc": 689
+  },
+  {
+    "line": 1439,
+    "label": "",
+    "code": "IF(AT(TROLL))OBJ=OBJ*100+TROLL",
+    "pc": 690
+  },
+  {
+    "line": 1440,
+    "label": "",
+    "code": "IF(HERE(BEAR).AND.PROP(BEAR).EQ.0)OBJ=OBJ*100+BEAR",
+    "pc": 691
+  },
+  {
+    "line": 1441,
+    "label": "",
+    "code": "IF(OBJ.GT.100)GOTO 8000",
+    "pc": 692
+  },
+  {
+    "line": 1442,
+    "label": "",
+    "code": "IF(OBJ.NE.0)GOTO 9124",
+    "pc": 693
+  },
+  {
+    "line": 1444,
+    "label": "",
+    "code": "IF(HERE(BIRD).AND.VERB.NE.THROW)OBJ=BIRD",
+    "pc": 694
+  },
+  {
+    "line": 1446,
+    "label": "",
+    "code": "IF(HERE(CLAM).OR.HERE(OYSTER))OBJ=100*OBJ+CLAM",
+    "pc": 695
+  },
+  {
+    "line": 1447,
+    "label": "",
+    "code": "IF(OBJ.GT.100)GOTO 8000",
+    "pc": 696
+  },
+  {
+    "line": 1448,
+    "label": "9124",
+    "code": "IF(OBJ.NE.BIRD)GOTO 9125",
+    "pc": 697
+  },
+  {
+    "line": 1449,
+    "label": "",
+    "code": "SPK=137",
+    "pc": 698
+  },
+  {
+    "line": 1450,
+    "label": "",
+    "code": "IF(CLOSED)GOTO 2011",
+    "pc": 699
+  },
+  {
+    "line": 1451,
+    "label": "",
+    "code": "CALL DSTROY(BIRD)",
+    "pc": 700
+  },
+  {
+    "line": 1452,
+    "label": "",
+    "code": "PROP(BIRD)=0",
+    "pc": 701
+  },
+  {
+    "line": 1453,
+    "label": "",
+    "code": "IF(PLACE(SNAKE).EQ.PLAC(SNAKE))TALLY2=TALLY2+1",
+    "pc": 702
+  },
+  {
+    "line": 1454,
+    "label": "",
+    "code": "SPK=45",
+    "pc": 703
+  },
+  {
+    "line": 1455,
+    "label": "9125",
+    "code": "IF(OBJ.EQ.0)SPK=44",
+    "pc": 704
+  },
+  {
+    "line": 1456,
+    "label": "",
+    "code": "IF(OBJ.EQ.CLAM.OR.OBJ.EQ.OYSTER)SPK=150",
+    "pc": 705
+  },
+  {
+    "line": 1457,
+    "label": "",
+    "code": "IF(OBJ.EQ.SNAKE)SPK=46",
+    "pc": 706
+  },
+  {
+    "line": 1458,
+    "label": "",
+    "code": "IF(OBJ.EQ.DWARF)SPK=49",
+    "pc": 707
+  },
+  {
+    "line": 1459,
+    "label": "",
+    "code": "IF(OBJ.EQ.DWARF.AND.CLOSED)GOTO 19000",
+    "pc": 708
+  },
+  {
+    "line": 1460,
+    "label": "",
+    "code": "IF(OBJ.EQ.DRAGON)SPK=167",
+    "pc": 709
+  },
+  {
+    "line": 1461,
+    "label": "",
+    "code": "IF(OBJ.EQ.TROLL)SPK=157",
+    "pc": 710
+  },
+  {
+    "line": 1462,
+    "label": "",
+    "code": "IF(OBJ.EQ.BEAR)SPK=165+(PROP(BEAR)+1)/2",
+    "pc": 711
+  },
+  {
+    "line": 1463,
+    "label": "",
+    "code": "IF(OBJ.NE.DRAGON.OR.PROP(DRAGON).NE.0)GOTO 2011",
+    "pc": 712
+  },
+  {
+    "line": 1467,
+    "label": "",
+    "code": "CALL RSPEAK(49)",
+    "pc": 713
+  },
+  {
+    "line": 1468,
+    "label": "",
+    "code": "VERB=0",
+    "pc": 714
+  },
+  {
+    "line": 1469,
+    "label": "",
+    "code": "OBJ=0",
+    "pc": 715
+  },
+  {
+    "line": 1470,
+    "label": "",
+    "code": "CALL GETIN(WD1,WD1X,WD2,WD2X)",
+    "pc": 716
+  },
+  {
+    "line": 1471,
+    "label": "",
+    "code": "IF(WD1.NE.'Y'.AND.WD1.NE.'YES')GOTO 2608",
+    "pc": 717
+  },
+  {
+    "line": 1472,
+    "label": "",
+    "code": "CALL PSPEAK(DRAGON,1)",
+    "pc": 718
+  },
+  {
+    "line": 1473,
+    "label": "",
+    "code": "PROP(DRAGON)=2",
+    "pc": 719
+  },
+  {
+    "line": 1474,
+    "label": "",
+    "code": "PROP(RUG)=0",
+    "pc": 720
+  },
+  {
+    "line": 1475,
+    "label": "",
+    "code": "K=(PLAC(DRAGON)+FIXD(DRAGON))/2",
+    "pc": 721
+  },
+  {
+    "line": 1476,
+    "label": "",
+    "code": "CALL MOVE(DRAGON+100,-1)",
+    "pc": 722
+  },
+  {
+    "line": 1477,
+    "label": "",
+    "code": "CALL MOVE(RUG+100,0)",
+    "pc": 723
+  },
+  {
+    "line": 1478,
+    "label": "",
+    "code": "CALL MOVE(DRAGON,K)",
+    "pc": 724
+  },
+  {
+    "line": 1479,
+    "label": "",
+    "code": "CALL MOVE(RUG,K)",
+    "pc": 725
+  },
+  {
+    "line": 1480,
+    "label": "",
+    "code": "DO 9126 OBJ=1,100",
+    "pc": 726
+  },
+  {
+    "line": 1481,
+    "label": "",
+    "code": "IDONDX=OBJ",
+    "pc": 727
+  },
+  {
+    "line": 1482,
+    "label": "",
+    "code": "IF(PLACE(IDONDX).EQ.PLAC(DRAGON).OR.PLACE(IDONDX).EQ.FIXD(DRAGON))CALL MOVE(IDONDX,K)",
+    "pc": 728
+  },
+  {
+    "line": 1485,
+    "label": "9126",
+    "code": "CONTINUE",
+    "pc": 729
+  },
+  {
+    "line": 1486,
+    "label": "",
+    "code": "LOC=K",
+    "pc": 730
+  },
+  {
+    "line": 1487,
+    "label": "",
+    "code": "K=NULL",
+    "pc": 731
+  },
+  {
+    "line": 1488,
+    "label": "",
+    "code": "GOTO 8",
+    "pc": 732
+  },
+  {
+    "line": 1493,
+    "label": "9130",
+    "code": "IF(OBJ.EQ.BOTTLE.OR.OBJ.EQ.0)OBJ=LIQ(0)",
+    "pc": 733
+  },
+  {
+    "line": 1494,
+    "label": "",
+    "code": "IF(OBJ.EQ.0)GOTO 8000",
+    "pc": 734
+  },
+  {
+    "line": 1495,
+    "label": "",
+    "code": "IF(.NOT.TOTING(OBJ))GOTO 2011",
+    "pc": 735
+  },
+  {
+    "line": 1496,
+    "label": "",
+    "code": "SPK=78",
+    "pc": 736
+  },
+  {
+    "line": 1497,
+    "label": "",
+    "code": "IF(OBJ.NE.OIL.AND.OBJ.NE.WATER)GOTO 2011",
+    "pc": 737
+  },
+  {
+    "line": 1498,
+    "label": "",
+    "code": "PROP(BOTTLE)=1",
+    "pc": 738
+  },
+  {
+    "line": 1499,
+    "label": "",
+    "code": "PLACE(OBJ)=0",
+    "pc": 739
+  },
+  {
+    "line": 1500,
+    "label": "",
+    "code": "SPK=77",
+    "pc": 740
+  },
+  {
+    "line": 1501,
+    "label": "",
+    "code": "IF(.NOT.(AT(PLANT).OR.AT(DOOR)))GOTO 2011",
+    "pc": 741
+  },
+  {
+    "line": 1503,
+    "label": "",
+    "code": "IF(AT(DOOR))GOTO 9132",
+    "pc": 742
+  },
+  {
+    "line": 1504,
+    "label": "",
+    "code": "SPK=112",
+    "pc": 743
+  },
+  {
+    "line": 1505,
+    "label": "",
+    "code": "IF(OBJ.NE.WATER)GOTO 2011",
+    "pc": 744
+  },
+  {
+    "line": 1506,
+    "label": "",
+    "code": "CALL PSPEAK(PLANT,PROP(PLANT)+1)",
+    "pc": 745
+  },
+  {
+    "line": 1507,
+    "label": "",
+    "code": "PROP(PLANT)=MOD(PROP(PLANT)+2,6)",
+    "pc": 746
+  },
+  {
+    "line": 1508,
+    "label": "",
+    "code": "PROP(PLANT2)=PROP(PLANT)/2",
+    "pc": 747
+  },
+  {
+    "line": 1509,
+    "label": "",
+    "code": "K=NULL",
+    "pc": 748
+  },
+  {
+    "line": 1510,
+    "label": "",
+    "code": "GOTO 8",
+    "pc": 749
+  },
+  {
+    "line": 1512,
+    "label": "9132",
+    "code": "PROP(DOOR)=0",
+    "pc": 750
+  },
+  {
+    "line": 1513,
+    "label": "",
+    "code": "IF(OBJ.EQ.OIL)PROP(DOOR)=1",
+    "pc": 751
+  },
+  {
+    "line": 1514,
+    "label": "",
+    "code": "SPK=113+PROP(DOOR)",
+    "pc": 752
+  },
+  {
+    "line": 1515,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 753
+  },
+  {
+    "line": 1520,
+    "label": "8140",
+    "code": "IF(.NOT.HERE(FOOD))GOTO 8000",
+    "pc": 754
+  },
+  {
+    "line": 1521,
+    "label": "8142",
+    "code": "CALL DSTROY(FOOD)",
+    "pc": 755
+  },
+  {
+    "line": 1522,
+    "label": "",
+    "code": "SPK=72",
+    "pc": 756
+  },
+  {
+    "line": 1523,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 757
+  },
+  {
+    "line": 1525,
+    "label": "9140",
+    "code": "IF(OBJ.EQ.FOOD)GOTO 8142",
+    "pc": 758
+  },
+  {
+    "line": 1526,
+    "label": "",
+    "code": "IF(OBJ.EQ.BIRD.OR.OBJ.EQ.SNAKE.OR.OBJ.EQ.CLAM.OR.OBJ.EQ.OYSTER.OR.OBJ.EQ.DWARF.OR.OBJ.EQ.DRAGON.OR.OBJ.EQ.TROLL.OR.OBJ.EQ.BEAR)SPK=71",
+    "pc": 759
+  },
+  {
+    "line": 1529,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 760
+  },
+  {
+    "line": 1534,
+    "label": "9150",
+    "code": "IF(OBJ.EQ.0.AND.LIQLOC(LOC).NE.WATER.AND.(LIQ(0).NE.WATER.OR..NOT.HERE(BOTTLE)))GOTO 8000",
+    "pc": 761
+  },
+  {
+    "line": 1536,
+    "label": "",
+    "code": "IF(OBJ.NE.0.AND.OBJ.NE.WATER)SPK=110",
+    "pc": 762
+  },
+  {
+    "line": 1537,
+    "label": "",
+    "code": "IF(SPK.EQ.110.OR.LIQ(0).NE.WATER.OR..NOT.HERE(BOTTLE))GOTO 2011",
+    "pc": 763
+  },
+  {
+    "line": 1538,
+    "label": "",
+    "code": "PROP(BOTTLE)=1",
+    "pc": 764
+  },
+  {
+    "line": 1539,
+    "label": "",
+    "code": "PLACE(WATER)=0",
+    "pc": 765
+  },
+  {
+    "line": 1540,
+    "label": "",
+    "code": "SPK=74",
+    "pc": 766
+  },
+  {
+    "line": 1541,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 767
+  },
+  {
+    "line": 1545,
+    "label": "9160",
+    "code": "IF(OBJ.NE.LAMP)SPK=76",
+    "pc": 768
+  },
+  {
+    "line": 1546,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 769
+  },
+  {
+    "line": 1552,
+    "label": "9170",
+    "code": "IF(TOTING(ROD2).AND.OBJ.EQ.ROD.AND..NOT.TOTING(ROD))OBJ=ROD2",
+    "pc": 770
+  },
+  {
+    "line": 1553,
+    "label": "",
+    "code": "IF(.NOT.TOTING(OBJ))GOTO 2011",
+    "pc": 771
+  },
+  {
+    "line": 1554,
+    "label": "",
+    "code": "IF(OBJ.GE.50.AND.OBJ.LE.MAXTRS.AND.AT(TROLL))GOTO 9178",
+    "pc": 772
+  },
+  {
+    "line": 1555,
+    "label": "",
+    "code": "IF(OBJ.EQ.FOOD.AND.HERE(BEAR))GOTO 9177",
+    "pc": 773
+  },
+  {
+    "line": 1556,
+    "label": "",
+    "code": "IF(OBJ.NE.AXE)GOTO 9020",
+    "pc": 774
+  },
+  {
+    "line": 1557,
+    "label": "",
+    "code": "DO 9171 I=1,5",
+    "pc": 775
+  },
+  {
+    "line": 1559,
+    "label": "",
+    "code": "IF(DLOC(I).EQ.LOC)GOTO 9172",
+    "pc": 776
+  },
+  {
+    "line": 1560,
+    "label": "9171",
+    "code": "CONTINUE",
+    "pc": 777
+  },
+  {
+    "line": 1561,
+    "label": "",
+    "code": "SPK=152",
+    "pc": 778
+  },
+  {
+    "line": 1562,
+    "label": "",
+    "code": "IF(AT(DRAGON).AND.PROP(DRAGON).EQ.0)GOTO 9175",
+    "pc": 779
+  },
+  {
+    "line": 1563,
+    "label": "",
+    "code": "SPK=158",
+    "pc": 780
+  },
+  {
+    "line": 1564,
+    "label": "",
+    "code": "IF(AT(TROLL))GOTO 9175",
+    "pc": 781
+  },
+  {
+    "line": 1565,
+    "label": "",
+    "code": "IF(HERE(BEAR).AND.PROP(BEAR).EQ.0)GOTO 9176",
+    "pc": 782
+  },
+  {
+    "line": 1566,
+    "label": "",
+    "code": "OBJ=0",
+    "pc": 783
+  },
+  {
+    "line": 1567,
+    "label": "",
+    "code": "GOTO 9120",
+    "pc": 784
+  },
+  {
+    "line": 1569,
+    "label": "9172",
+    "code": "SPK=48",
+    "pc": 785
+  },
+  {
+    "line": 1571,
+    "label": "",
+    "code": "IF(RAN(3).EQ.0.OR.SAVED.NE.-1)GOTO 9175",
+    "pc": 786
+  },
+  {
+    "line": 1572,
+    "label": "",
+    "code": "DSEEN(I)=.FALSE.",
+    "pc": 787
+  },
+  {
+    "line": 1573,
+    "label": "",
+    "code": "DLOC(I)=0",
+    "pc": 788
+  },
+  {
+    "line": 1574,
+    "label": "",
+    "code": "SPK=47",
+    "pc": 789
+  },
+  {
+    "line": 1575,
+    "label": "",
+    "code": "DKILL=DKILL+1",
+    "pc": 790
+  },
+  {
+    "line": 1576,
+    "label": "",
+    "code": "IF(DKILL.EQ.1)SPK=149",
+    "pc": 791
+  },
+  {
+    "line": 1577,
+    "label": "9175",
+    "code": "CALL RSPEAK(SPK)",
+    "pc": 792
+  },
+  {
+    "line": 1578,
+    "label": "",
+    "code": "CALL DROP(AXE,LOC)",
+    "pc": 793
+  },
+  {
+    "line": 1579,
+    "label": "",
+    "code": "K=NULL",
+    "pc": 794
+  },
+  {
+    "line": 1580,
+    "label": "",
+    "code": "GOTO 8",
+    "pc": 795
+  },
+  {
+    "line": 1583,
+    "label": "9176",
+    "code": "SPK=164",
+    "pc": 796
+  },
+  {
+    "line": 1584,
+    "label": "",
+    "code": "CALL DROP(AXE,LOC)",
+    "pc": 797
+  },
+  {
+    "line": 1585,
+    "label": "",
+    "code": "FIXED(AXE)=-1",
+    "pc": 798
+  },
+  {
+    "line": 1586,
+    "label": "",
+    "code": "PROP(AXE)=1",
+    "pc": 799
+  },
+  {
+    "line": 1587,
+    "label": "",
+    "code": "CALL JUGGLE(BEAR)",
+    "pc": 800
+  },
+  {
+    "line": 1588,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 801
+  },
+  {
+    "line": 1591,
+    "label": "9177",
+    "code": "OBJ=BEAR",
+    "pc": 802
+  },
+  {
+    "line": 1592,
+    "label": "",
+    "code": "GOTO 9210",
+    "pc": 803
+  },
+  {
+    "line": 1594,
+    "label": "9178",
+    "code": "SPK=159",
+    "pc": 804
+  },
+  {
+    "line": 1596,
+    "label": "",
+    "code": "CALL DROP(OBJ,0)",
+    "pc": 805
+  },
+  {
+    "line": 1597,
+    "label": "",
+    "code": "CALL MOVE(TROLL,0)",
+    "pc": 806
+  },
+  {
+    "line": 1598,
+    "label": "",
+    "code": "CALL MOVE(TROLL+100,0)",
+    "pc": 807
+  },
+  {
+    "line": 1599,
+    "label": "",
+    "code": "CALL DROP(TROLL2,PLAC(TROLL))",
+    "pc": 808
+  },
+  {
+    "line": 1600,
+    "label": "",
+    "code": "CALL DROP(TROLL2+100,FIXD(TROLL))",
+    "pc": 809
+  },
+  {
+    "line": 1601,
+    "label": "",
+    "code": "CALL JUGGLE(CHASM)",
+    "pc": 810
+  },
+  {
+    "line": 1602,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 811
+  },
+  {
+    "line": 1606,
+    "label": "8180",
+    "code": "GAVEUP=YES(22,54,54)",
+    "pc": 812
+  },
+  {
+    "line": 1607,
+    "label": "8185",
+    "code": "IF(GAVEUP)GOTO 20000",
+    "pc": 813
+  },
+  {
+    "line": 1608,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 814
+  },
+  {
+    "line": 1612,
+    "label": "9190",
+    "code": "IF(AT(OBJ).OR.(LIQ(0).EQ.OBJ.AND.AT(BOTTLE)).OR.K.EQ.LIQLOC(LOC))SPK=94",
+    "pc": 815
+  },
+  {
+    "line": 1614,
+    "label": "",
+    "code": "DO 9192 I=1,5",
+    "pc": 816
+  },
+  {
+    "line": 1615,
+    "label": "9192",
+    "code": "IF(DLOC(I).EQ.LOC.AND.DFLAG.GE.2.AND.OBJ.EQ.DWARF)SPK=94",
+    "pc": 817
+  },
+  {
+    "line": 1616,
+    "label": "",
+    "code": "IF(CLOSED)SPK=138",
+    "pc": 818
+  },
+  {
+    "line": 1617,
+    "label": "",
+    "code": "IF(TOTING(OBJ))SPK=24",
+    "pc": 819
+  },
+  {
+    "line": 1618,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 820
+  },
+  {
+    "line": 1622,
+    "label": "8200",
+    "code": "SPK=98",
+    "pc": 821
+  },
+  {
+    "line": 1623,
+    "label": "",
+    "code": "DO 8201 I=1,100",
+    "pc": 822
+  },
+  {
+    "line": 1624,
+    "label": "",
+    "code": "IDONDX=I",
+    "pc": 823
+  },
+  {
+    "line": 1625,
+    "label": "",
+    "code": "IF(IDONDX.EQ.BEAR.OR..NOT.TOTING(IDONDX))GOTO 8201",
+    "pc": 824
+  },
+  {
+    "line": 1626,
+    "label": "",
+    "code": "IF(SPK.EQ.98)CALL RSPEAK(99)",
+    "pc": 825
+  },
+  {
+    "line": 1627,
+    "label": "",
+    "code": "BLKLIN=.FALSE.",
+    "pc": 826
+  },
+  {
+    "line": 1628,
+    "label": "",
+    "code": "CALL PSPEAK(IDONDX,-1)",
+    "pc": 827
+  },
+  {
+    "line": 1629,
+    "label": "",
+    "code": "BLKLIN=.TRUE.",
+    "pc": 828
+  },
+  {
+    "line": 1630,
+    "label": "",
+    "code": "SPK=0",
+    "pc": 829
+  },
+  {
+    "line": 1631,
+    "label": "8201",
+    "code": "CONTINUE",
+    "pc": 830
+  },
+  {
+    "line": 1632,
+    "label": "",
+    "code": "IF(TOTING(BEAR))SPK=141",
+    "pc": 831
+  },
+  {
+    "line": 1633,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 832
+  },
+  {
+    "line": 1638,
+    "label": "9210",
+    "code": "IF(OBJ.NE.BIRD)GOTO 9212",
+    "pc": 833
+  },
+  {
+    "line": 1639,
+    "label": "",
+    "code": "SPK=100",
+    "pc": 834
+  },
+  {
+    "line": 1640,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 835
+  },
+  {
+    "line": 1642,
+    "label": "9212",
+    "code": "IF(OBJ.NE.SNAKE.AND.OBJ.NE.DRAGON.AND.OBJ.NE.TROLL)GOTO 9213",
+    "pc": 836
+  },
+  {
+    "line": 1643,
+    "label": "",
+    "code": "SPK=102",
+    "pc": 837
+  },
+  {
+    "line": 1644,
+    "label": "",
+    "code": "IF(OBJ.EQ.DRAGON.AND.PROP(DRAGON).NE.0)SPK=110",
+    "pc": 838
+  },
+  {
+    "line": 1645,
+    "label": "",
+    "code": "IF(OBJ.EQ.TROLL)SPK=182",
+    "pc": 839
+  },
+  {
+    "line": 1646,
+    "label": "",
+    "code": "IF(OBJ.NE.SNAKE.OR.CLOSED.OR..NOT.HERE(BIRD))GOTO 2011",
+    "pc": 840
+  },
+  {
+    "line": 1647,
+    "label": "",
+    "code": "SPK=101",
+    "pc": 841
+  },
+  {
+    "line": 1648,
+    "label": "",
+    "code": "CALL DSTROY(BIRD)",
+    "pc": 842
+  },
+  {
+    "line": 1649,
+    "label": "",
+    "code": "PROP(BIRD)=0",
+    "pc": 843
+  },
+  {
+    "line": 1650,
+    "label": "",
+    "code": "TALLY2=TALLY2+1",
+    "pc": 844
+  },
+  {
+    "line": 1651,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 845
+  },
+  {
+    "line": 1653,
+    "label": "9213",
+    "code": "IF(OBJ.NE.DWARF)GOTO 9214",
+    "pc": 846
+  },
+  {
+    "line": 1654,
+    "label": "",
+    "code": "IF(.NOT.HERE(FOOD))GOTO 2011",
+    "pc": 847
+  },
+  {
+    "line": 1655,
+    "label": "",
+    "code": "SPK=103",
+    "pc": 848
+  },
+  {
+    "line": 1656,
+    "label": "",
+    "code": "DFLAG=DFLAG+1",
+    "pc": 849
+  },
+  {
+    "line": 1657,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 850
+  },
+  {
+    "line": 1659,
+    "label": "9214",
+    "code": "IF(OBJ.NE.BEAR)GOTO 9215",
+    "pc": 851
+  },
+  {
+    "line": 1660,
+    "label": "",
+    "code": "IF(PROP(BEAR).EQ.0)SPK=102",
+    "pc": 852
+  },
+  {
+    "line": 1661,
+    "label": "",
+    "code": "IF(PROP(BEAR).EQ.3)SPK=110",
+    "pc": 853
+  },
+  {
+    "line": 1662,
+    "label": "",
+    "code": "IF(.NOT.HERE(FOOD))GOTO 2011",
+    "pc": 854
+  },
+  {
+    "line": 1663,
+    "label": "",
+    "code": "CALL DSTROY(FOOD)",
+    "pc": 855
+  },
+  {
+    "line": 1664,
+    "label": "",
+    "code": "PROP(BEAR)=1",
+    "pc": 856
+  },
+  {
+    "line": 1665,
+    "label": "",
+    "code": "FIXED(AXE)=0",
+    "pc": 857
+  },
+  {
+    "line": 1666,
+    "label": "",
+    "code": "PROP(AXE)=0",
+    "pc": 858
+  },
+  {
+    "line": 1667,
+    "label": "",
+    "code": "SPK=168",
+    "pc": 859
+  },
+  {
+    "line": 1668,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 860
+  },
+  {
+    "line": 1670,
+    "label": "9215",
+    "code": "SPK=14",
+    "pc": 861
+  },
+  {
+    "line": 1671,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 862
+  },
+  {
+    "line": 1675,
+    "label": "9220",
+    "code": "IF(OBJ.EQ.VASE)GOTO 9222",
+    "pc": 863
+  },
+  {
+    "line": 1676,
+    "label": "",
+    "code": "IF(OBJ.NE.0.AND.OBJ.NE.BOTTLE)GOTO 2011",
+    "pc": 864
+  },
+  {
+    "line": 1677,
+    "label": "",
+    "code": "IF(OBJ.EQ.0.AND..NOT.HERE(BOTTLE))GOTO 8000",
+    "pc": 865
+  },
+  {
+    "line": 1678,
+    "label": "",
+    "code": "SPK=107",
+    "pc": 866
+  },
+  {
+    "line": 1679,
+    "label": "",
+    "code": "IF(LIQLOC(LOC).EQ.0)SPK=106",
+    "pc": 867
+  },
+  {
+    "line": 1680,
+    "label": "",
+    "code": "IF(LIQ(0).NE.0)SPK=105",
+    "pc": 868
+  },
+  {
+    "line": 1681,
+    "label": "",
+    "code": "IF(SPK.NE.107)GOTO 2011",
+    "pc": 869
+  },
+  {
+    "line": 1682,
+    "label": "",
+    "code": "PROP(BOTTLE)=MOD(COND(LOC),4)/2*2",
+    "pc": 870
+  },
+  {
+    "line": 1683,
+    "label": "",
+    "code": "K=LIQ(0)",
+    "pc": 871
+  },
+  {
+    "line": 1684,
+    "label": "",
+    "code": "IF(TOTING(BOTTLE))PLACE(K)=-1",
+    "pc": 872
+  },
+  {
+    "line": 1685,
+    "label": "",
+    "code": "IF(K.EQ.OIL)SPK=108",
+    "pc": 873
+  },
+  {
+    "line": 1686,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 874
+  },
+  {
+    "line": 1688,
+    "label": "9222",
+    "code": "SPK=29",
+    "pc": 875
+  },
+  {
+    "line": 1689,
+    "label": "",
+    "code": "IF(LIQLOC(LOC).EQ.0)SPK=144",
+    "pc": 876
+  },
+  {
+    "line": 1690,
+    "label": "",
+    "code": "IF(LIQLOC(LOC).EQ.0.OR..NOT.TOTING(VASE))GOTO 2011",
+    "pc": 877
+  },
+  {
+    "line": 1691,
+    "label": "",
+    "code": "CALL RSPEAK(145)",
+    "pc": 878
+  },
+  {
+    "line": 1692,
+    "label": "",
+    "code": "PROP(VASE)=2",
+    "pc": 879
+  },
+  {
+    "line": 1693,
+    "label": "",
+    "code": "FIXED(VASE)=-1",
+    "pc": 880
+  },
+  {
+    "line": 1694,
+    "label": "",
+    "code": "GOTO 9024",
+    "pc": 881
+  },
+  {
+    "line": 1698,
+    "label": "9230",
+    "code": "IF(PROP(ROD2).LT.0.OR..NOT.CLOSED)GOTO 2011",
+    "pc": 882
+  },
+  {
+    "line": 1699,
+    "label": "",
+    "code": "BONUS=133",
+    "pc": 883
+  },
+  {
+    "line": 1700,
+    "label": "",
+    "code": "IF(LOC.EQ.115)BONUS=134",
+    "pc": 884
+  },
+  {
+    "line": 1701,
+    "label": "",
+    "code": "IF(HERE(ROD2))BONUS=135",
+    "pc": 885
+  },
+  {
+    "line": 1702,
+    "label": "",
+    "code": "CALL RSPEAK(BONUS)",
+    "pc": 886
+  },
+  {
+    "line": 1703,
+    "label": "",
+    "code": "GOTO 20000",
+    "pc": 887
+  },
+  {
+    "line": 1707,
+    "label": "8240",
+    "code": "SCORNG=.TRUE.",
+    "pc": 888
+  },
+  {
+    "line": 1708,
+    "label": "",
+    "code": "GOTO 20000",
+    "pc": 889
+  },
+  {
+    "line": 1710,
+    "label": "8241",
+    "code": "SCORNG=.FALSE.",
+    "pc": 890
+  },
+  {
+    "line": 1711,
+    "label": "",
+    "code": "TYPE 8243,SCORE,MXSCOR",
+    "pc": 891
+  },
+  {
+    "line": 1714,
+    "label": "",
+    "code": "GAVEUP=YES(143,54,54)",
+    "pc": 892
+  },
+  {
+    "line": 1715,
+    "label": "",
+    "code": "GOTO 8185",
+    "pc": 893
+  },
+  {
+    "line": 1721,
+    "label": "8250",
+    "code": "K=VOCAB(WD1,3)",
+    "pc": 894
+  },
+  {
+    "line": 1722,
+    "label": "",
+    "code": "SPK=42",
+    "pc": 895
+  },
+  {
+    "line": 1723,
+    "label": "",
+    "code": "IF(FOOBAR.EQ.1-K)GOTO 8252",
+    "pc": 896
+  },
+  {
+    "line": 1724,
+    "label": "",
+    "code": "IF(FOOBAR.NE.0)SPK=151",
+    "pc": 897
+  },
+  {
+    "line": 1725,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 898
+  },
+  {
+    "line": 1727,
+    "label": "8252",
+    "code": "FOOBAR=K",
+    "pc": 899
+  },
+  {
+    "line": 1728,
+    "label": "",
+    "code": "IF(K.NE.4)GOTO 2009",
+    "pc": 900
+  },
+  {
+    "line": 1729,
+    "label": "",
+    "code": "FOOBAR=0",
+    "pc": 901
+  },
+  {
+    "line": 1730,
+    "label": "",
+    "code": "IF(PLACE(EGGS).EQ.PLAC(EGGS).OR.(TOTING(EGGS).AND.LOC.EQ.PLAC(EGGS)))GOTO 2011",
+    "pc": 902
+  },
+  {
+    "line": 1733,
+    "label": "",
+    "code": "IF(PLACE(EGGS).EQ.0.AND.PLACE(TROLL).EQ.0.AND.PROP(TROLL).EQ.0)PROP(TROLL)=1",
+    "pc": 903
+  },
+  {
+    "line": 1735,
+    "label": "",
+    "code": "K=2",
+    "pc": 904
+  },
+  {
+    "line": 1736,
+    "label": "",
+    "code": "IF(HERE(EGGS))K=1",
+    "pc": 905
+  },
+  {
+    "line": 1737,
+    "label": "",
+    "code": "IF(LOC.EQ.PLAC(EGGS))K=0",
+    "pc": 906
+  },
+  {
+    "line": 1738,
+    "label": "",
+    "code": "CALL MOVE(EGGS,PLAC(EGGS))",
+    "pc": 907
+  },
+  {
+    "line": 1739,
+    "label": "",
+    "code": "CALL PSPEAK(EGGS,K)",
+    "pc": 908
+  },
+  {
+    "line": 1740,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 909
+  },
+  {
+    "line": 1744,
+    "label": "8260",
+    "code": "SPK=156",
+    "pc": 910
+  },
+  {
+    "line": 1745,
+    "label": "",
+    "code": "ABBNUM=10000",
+    "pc": 911
+  },
+  {
+    "line": 1746,
+    "label": "",
+    "code": "DETAIL=3",
+    "pc": 912
+  },
+  {
+    "line": 1747,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 913
+  },
+  {
+    "line": 1751,
+    "label": "8270",
+    "code": "IF(HERE(MAGZIN))OBJ=MAGZIN",
+    "pc": 914
+  },
+  {
+    "line": 1752,
+    "label": "",
+    "code": "IF(HERE(TABLET))OBJ=OBJ*100+TABLET",
+    "pc": 915
+  },
+  {
+    "line": 1753,
+    "label": "",
+    "code": "IF(HERE(MESSAG))OBJ=OBJ*100+MESSAG",
+    "pc": 916
+  },
+  {
+    "line": 1754,
+    "label": "",
+    "code": "IF(CLOSED.AND.TOTING(OYSTER))OBJ=OYSTER",
+    "pc": 917
+  },
+  {
+    "line": 1755,
+    "label": "",
+    "code": "IF(OBJ.GT.100.OR.OBJ.EQ.0.OR.DARK(0))GOTO 8000",
+    "pc": 918
+  },
+  {
+    "line": 1757,
+    "label": "9270",
+    "code": "IF(DARK(0))GOTO 5190",
+    "pc": 919
+  },
+  {
+    "line": 1758,
+    "label": "",
+    "code": "IF(OBJ.EQ.MAGZIN)SPK=190",
+    "pc": 920
+  },
+  {
+    "line": 1759,
+    "label": "",
+    "code": "IF(OBJ.EQ.TABLET)SPK=196",
+    "pc": 921
+  },
+  {
+    "line": 1760,
+    "label": "",
+    "code": "IF(OBJ.EQ.MESSAG)SPK=191",
+    "pc": 922
+  },
+  {
+    "line": 1761,
+    "label": "",
+    "code": "IF(OBJ.EQ.OYSTER.AND.HINTED(2).AND.TOTING(OYSTER))SPK=194",
+    "pc": 923
+  },
+  {
+    "line": 1762,
+    "label": "",
+    "code": "IF(OBJ.NE.OYSTER.OR.HINTED(2).OR..NOT.TOTING(OYSTER).OR..NOT.CLOSED)GOTO 2011",
+    "pc": 924
+  },
+  {
+    "line": 1764,
+    "label": "",
+    "code": "HINTED(2)=YES(192,193,54)",
+    "pc": 925
+  },
+  {
+    "line": 1765,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 926
+  },
+  {
+    "line": 1769,
+    "label": "9280",
+    "code": "IF(OBJ.EQ.MIRROR)SPK=148",
+    "pc": 927
+  },
+  {
+    "line": 1770,
+    "label": "",
+    "code": "IF(OBJ.EQ.VASE.AND.PROP(VASE).EQ.0)GOTO 9282",
+    "pc": 928
+  },
+  {
+    "line": 1771,
+    "label": "",
+    "code": "IF(OBJ.NE.MIRROR.OR..NOT.CLOSED)GOTO 2011",
+    "pc": 929
+  },
+  {
+    "line": 1772,
+    "label": "",
+    "code": "CALL RSPEAK(197)",
+    "pc": 930
+  },
+  {
+    "line": 1773,
+    "label": "",
+    "code": "GOTO 19000",
+    "pc": 931
+  },
+  {
+    "line": 1775,
+    "label": "9282",
+    "code": "SPK=198",
+    "pc": 932
+  },
+  {
+    "line": 1776,
+    "label": "",
+    "code": "IF(TOTING(VASE))CALL DROP(VASE,LOC)",
+    "pc": 933
+  },
+  {
+    "line": 1777,
+    "label": "",
+    "code": "PROP(VASE)=2",
+    "pc": 934
+  },
+  {
+    "line": 1778,
+    "label": "",
+    "code": "FIXED(VASE)=-1",
+    "pc": 935
+  },
+  {
+    "line": 1779,
+    "label": "",
+    "code": "GOTO 2011",
+    "pc": 936
+  },
+  {
+    "line": 1783,
+    "label": "9290",
+    "code": "IF(OBJ.NE.DWARF.OR..NOT.CLOSED)GOTO 2011",
+    "pc": 937
+  },
+  {
+    "line": 1784,
+    "label": "",
+    "code": "CALL RSPEAK(199)",
+    "pc": 938
+  },
+  {
+    "line": 1785,
+    "label": "",
+    "code": "GOTO 19000",
+    "pc": 939
+  },
+  {
+    "line": 1791,
+    "label": "8300",
+    "code": "SPK=201",
+    "pc": 940
+  },
+  {
+    "line": 1792,
+    "label": "",
+    "code": "IF(DEMO)GOTO 2011",
+    "pc": 941
+  },
+  {
+    "line": 1793,
+    "label": "",
+    "code": "TYPE 8302,LATNCY",
+    "pc": 942
+  },
+  {
+    "line": 1797,
+    "label": "",
+    "code": "IF(.NOT.YES(200,54,54))GOTO 2012",
+    "pc": 943
+  },
+  {
+    "line": 1798,
+    "label": "",
+    "code": "CALL DATIME(SAVED,SAVET)",
+    "pc": 944
+  },
+  {
+    "line": 1799,
+    "label": "",
+    "code": "SETUP=-1",
+    "pc": 945
+  },
+  {
+    "line": 1800,
+    "label": "",
+    "code": "CALL CIAO",
+    "pc": 946
+  },
+  {
+    "line": 1802,
+    "label": "8305",
+    "code": "YEA=START(0)",
+    "pc": 947
+  },
+  {
+    "line": 1803,
+    "label": "",
+    "code": "SETUP=3",
+    "pc": 948
+  },
+  {
+    "line": 1804,
+    "label": "",
+    "code": "K=NULL",
+    "pc": 949
+  },
+  {
+    "line": 1805,
+    "label": "",
+    "code": "GOTO 8",
+    "pc": 950
+  },
+  {
+    "line": 1809,
+    "label": "8310",
+    "code": "CALL MSPEAK(6)",
+    "pc": 951
+  },
+  {
+    "line": 1810,
+    "label": "",
+    "code": "CALL HOURS",
+    "pc": 952
+  },
+  {
+    "line": 1811,
+    "label": "",
+    "code": "GOTO 2012",
+    "pc": 953
+  },
+  {
+    "line": 1820,
+    "label": "40000",
+    "code": "GOTO (40400,40500,40600,40700,40800,40900)(HINT-3)",
+    "pc": 954
+  },
+  {
+    "line": 1822,
+    "label": "",
+    "code": "CALL BUG(27)",
+    "pc": 955
+  },
+  {
+    "line": 1824,
+    "label": "40010",
+    "code": "HINTLC(HINT)=0",
+    "pc": 956
+  },
+  {
+    "line": 1825,
+    "label": "",
+    "code": "IF(.NOT.YES(HINTS(HINT,3),0,54))GOTO 2602",
+    "pc": 957
+  },
+  {
+    "line": 1826,
+    "label": "",
+    "code": "TYPE 40012,HINTS(HINT,2)",
+    "pc": 958
+  },
+  {
+    "line": 1829,
+    "label": "",
+    "code": "HINTED(HINT)=YES(175,HINTS(HINT,4),54)",
+    "pc": 959
+  },
+  {
+    "line": 1830,
+    "label": "",
+    "code": "IF(HINTED(HINT).AND.LIMIT.GT.30)LIMIT=LIMIT+30*HINTS(HINT,2)",
+    "pc": 960
+  },
+  {
+    "line": 1831,
+    "label": "40020",
+    "code": "HINTLC(HINT)=0",
+    "pc": 961
+  },
+  {
+    "line": 1832,
+    "label": "40030",
+    "code": "GOTO 2602",
+    "pc": 962
+  },
+  {
+    "line": 1836,
+    "label": "40400",
+    "code": "IF(PROP(GRATE).EQ.0.AND..NOT.HERE(KEYS))GOTO 40010",
+    "pc": 963
+  },
+  {
+    "line": 1837,
+    "label": "",
+    "code": "GOTO 40020",
+    "pc": 964
+  },
+  {
+    "line": 1839,
+    "label": "40500",
+    "code": "IF(HERE(BIRD).AND.TOTING(ROD).AND.OBJ.EQ.BIRD)GOTO 40010",
+    "pc": 965
+  },
+  {
+    "line": 1840,
+    "label": "",
+    "code": "GOTO 40030",
+    "pc": 966
+  },
+  {
+    "line": 1842,
+    "label": "40600",
+    "code": "IF(HERE(SNAKE).AND..NOT.HERE(BIRD))GOTO 40010",
+    "pc": 967
+  },
+  {
+    "line": 1843,
+    "label": "",
+    "code": "GOTO 40020",
+    "pc": 968
+  },
+  {
+    "line": 1845,
+    "label": "40700",
+    "code": "IF(ATLOC(LOC).EQ.0.AND.ATLOC(OLDLOC).EQ.0.AND.ATLOC(OLDLC2).EQ.0.AND.HOLDNG.GT.1)GOTO 40010",
+    "pc": 969
+  },
+  {
+    "line": 1847,
+    "label": "",
+    "code": "GOTO 40020",
+    "pc": 970
+  },
+  {
+    "line": 1849,
+    "label": "40800",
+    "code": "IF(PROP(EMRALD).NE.-1.AND.PROP(PYRAM).EQ.-1)GOTO 40010",
+    "pc": 971
+  },
+  {
+    "line": 1850,
+    "label": "",
+    "code": "GOTO 40020",
+    "pc": 972
+  },
+  {
+    "line": 1852,
+    "label": "40900",
+    "code": "GOTO 40010",
+    "pc": 973
+  },
+  {
+    "line": 1885,
+    "label": "10000",
+    "code": "PROP(GRATE)=0",
+    "pc": 974
+  },
+  {
+    "line": 1886,
+    "label": "",
+    "code": "PROP(FISSUR)=0",
+    "pc": 975
+  },
+  {
+    "line": 1887,
+    "label": "",
+    "code": "DO 10010 I=1,6",
+    "pc": 976
+  },
+  {
+    "line": 1888,
+    "label": "",
+    "code": "DSEEN(I)=.FALSE.",
+    "pc": 977
+  },
+  {
+    "line": 1889,
+    "label": "10010",
+    "code": "DLOC(I)=0",
+    "pc": 978
+  },
+  {
+    "line": 1890,
+    "label": "",
+    "code": "CALL MOVE(TROLL,0)",
+    "pc": 979
+  },
+  {
+    "line": 1891,
+    "label": "",
+    "code": "CALL MOVE(TROLL+100,0)",
+    "pc": 980
+  },
+  {
+    "line": 1892,
+    "label": "",
+    "code": "CALL MOVE(TROLL2,PLAC(TROLL))",
+    "pc": 981
+  },
+  {
+    "line": 1893,
+    "label": "",
+    "code": "CALL MOVE(TROLL2+100,FIXD(TROLL))",
+    "pc": 982
+  },
+  {
+    "line": 1894,
+    "label": "",
+    "code": "CALL JUGGLE(CHASM)",
+    "pc": 983
+  },
+  {
+    "line": 1895,
+    "label": "",
+    "code": "IF(PROP(BEAR).NE.3)CALL DSTROY(BEAR)",
+    "pc": 984
+  },
+  {
+    "line": 1896,
+    "label": "",
+    "code": "PROP(CHAIN)=0",
+    "pc": 985
+  },
+  {
+    "line": 1897,
+    "label": "",
+    "code": "FIXED(CHAIN)=0",
+    "pc": 986
+  },
+  {
+    "line": 1898,
+    "label": "",
+    "code": "PROP(AXE)=0",
+    "pc": 987
+  },
+  {
+    "line": 1899,
+    "label": "",
+    "code": "FIXED(AXE)=0",
+    "pc": 988
+  },
+  {
+    "line": 1900,
+    "label": "",
+    "code": "CALL RSPEAK(129)",
+    "pc": 989
+  },
+  {
+    "line": 1901,
+    "label": "",
+    "code": "CLOCK1=-1",
+    "pc": 990
+  },
+  {
+    "line": 1902,
+    "label": "",
+    "code": "CLOSNG=.TRUE.",
+    "pc": 991
+  },
+  {
+    "line": 1903,
+    "label": "",
+    "code": "GOTO 19999",
+    "pc": 992
+  },
+  {
+    "line": 1917,
+    "label": "11000",
+    "code": "PROP(BOTTLE)=PUT(BOTTLE,115,1)",
+    "pc": 993
+  },
+  {
+    "line": 1918,
+    "label": "",
+    "code": "PROP(PLANT)=PUT(PLANT,115,0)",
+    "pc": 994
+  },
+  {
+    "line": 1919,
+    "label": "",
+    "code": "PROP(OYSTER)=PUT(OYSTER,115,0)",
+    "pc": 995
+  },
+  {
+    "line": 1920,
+    "label": "",
+    "code": "PROP(LAMP)=PUT(LAMP,115,0)",
+    "pc": 996
+  },
+  {
+    "line": 1921,
+    "label": "",
+    "code": "PROP(ROD)=PUT(ROD,115,0)",
+    "pc": 997
+  },
+  {
+    "line": 1922,
+    "label": "",
+    "code": "PROP(DWARF)=PUT(DWARF,115,0)",
+    "pc": 998
+  },
+  {
+    "line": 1923,
+    "label": "",
+    "code": "LOC=115",
+    "pc": 999
+  },
+  {
+    "line": 1924,
+    "label": "",
+    "code": "OLDLOC=115",
+    "pc": 1000
+  },
+  {
+    "line": 1925,
+    "label": "",
+    "code": "NEWLOC=115",
+    "pc": 1001
+  },
+  {
+    "line": 1929,
+    "label": "",
+    "code": "FOO=PUT(GRATE,116,0)",
+    "pc": 1002
+  },
+  {
+    "line": 1930,
+    "label": "",
+    "code": "PROP(SNAKE)=PUT(SNAKE,116,1)",
+    "pc": 1003
+  },
+  {
+    "line": 1931,
+    "label": "",
+    "code": "PROP(BIRD)=PUT(BIRD,116,1)",
+    "pc": 1004
+  },
+  {
+    "line": 1932,
+    "label": "",
+    "code": "PROP(CAGE)=PUT(CAGE,116,0)",
+    "pc": 1005
+  },
+  {
+    "line": 1933,
+    "label": "",
+    "code": "PROP(ROD2)=PUT(ROD2,116,0)",
+    "pc": 1006
+  },
+  {
+    "line": 1934,
+    "label": "",
+    "code": "PROP(PILLOW)=PUT(PILLOW,116,0)",
+    "pc": 1007
+  },
+  {
+    "line": 1936,
+    "label": "",
+    "code": "PROP(MIRROR)=PUT(MIRROR,115,0)",
+    "pc": 1008
+  },
+  {
+    "line": 1937,
+    "label": "",
+    "code": "FIXED(MIRROR)=116",
+    "pc": 1009
+  },
+  {
+    "line": 1939,
+    "label": "",
+    "code": "DO 11010 I=1,100",
+    "pc": 1010
+  },
+  {
+    "line": 1940,
+    "label": "",
+    "code": "IDONDX=I",
+    "pc": 1011
+  },
+  {
+    "line": 1941,
+    "label": "11010",
+    "code": "IF(TOTING(IDONDX))CALL DSTROY(IDONDX)",
+    "pc": 1012
+  },
+  {
+    "line": 1943,
+    "label": "",
+    "code": "CALL RSPEAK(132)",
+    "pc": 1013
+  },
+  {
+    "line": 1944,
+    "label": "",
+    "code": "CLOSED=.TRUE.",
+    "pc": 1014
+  },
+  {
+    "line": 1945,
+    "label": "",
+    "code": "GOTO 2",
+    "pc": 1015
+  },
+  {
+    "line": 1954,
+    "label": "12000",
+    "code": "CALL RSPEAK(188)",
+    "pc": 1016
+  },
+  {
+    "line": 1955,
+    "label": "",
+    "code": "PROP(BATTER)=1",
+    "pc": 1017
+  },
+  {
+    "line": 1956,
+    "label": "",
+    "code": "IF(TOTING(BATTER))CALL DROP(BATTER,LOC)",
+    "pc": 1018
+  },
+  {
+    "line": 1957,
+    "label": "",
+    "code": "LIMIT=LIMIT+2500",
+    "pc": 1019
+  },
+  {
+    "line": 1958,
+    "label": "",
+    "code": "LMWARN=.FALSE.",
+    "pc": 1020
+  },
+  {
+    "line": 1959,
+    "label": "",
+    "code": "GOTO 19999",
+    "pc": 1021
+  },
+  {
+    "line": 1961,
+    "label": "12200",
+    "code": "IF(LMWARN.OR..NOT.HERE(LAMP))GOTO 19999",
+    "pc": 1022
+  },
+  {
+    "line": 1962,
+    "label": "",
+    "code": "LMWARN=.TRUE.",
+    "pc": 1023
+  },
+  {
+    "line": 1963,
+    "label": "",
+    "code": "SPK=187",
+    "pc": 1024
+  },
+  {
+    "line": 1964,
+    "label": "",
+    "code": "IF(PLACE(BATTER).EQ.0)SPK=183",
+    "pc": 1025
+  },
+  {
+    "line": 1965,
+    "label": "",
+    "code": "IF(PROP(BATTER).EQ.1)SPK=189",
+    "pc": 1026
+  },
+  {
+    "line": 1966,
+    "label": "",
+    "code": "CALL RSPEAK(SPK)",
+    "pc": 1027
+  },
+  {
+    "line": 1967,
+    "label": "",
+    "code": "GOTO 19999",
+    "pc": 1028
+  },
+  {
+    "line": 1969,
+    "label": "12400",
+    "code": "LIMIT=-1",
+    "pc": 1029
+  },
+  {
+    "line": 1970,
+    "label": "",
+    "code": "PROP(LAMP)=0",
+    "pc": 1030
+  },
+  {
+    "line": 1971,
+    "label": "",
+    "code": "IF(HERE(LAMP))CALL RSPEAK(184)",
+    "pc": 1031
+  },
+  {
+    "line": 1972,
+    "label": "",
+    "code": "GOTO 19999",
+    "pc": 1032
+  },
+  {
+    "line": 1974,
+    "label": "12600",
+    "code": "CALL RSPEAK(185)",
+    "pc": 1033
+  },
+  {
+    "line": 1975,
+    "label": "",
+    "code": "GAVEUP=.TRUE.",
+    "pc": 1034
+  },
+  {
+    "line": 1976,
+    "label": "",
+    "code": "GOTO 20000",
+    "pc": 1035
+  },
+  {
+    "line": 1980,
+    "label": "13000",
+    "code": "CALL MSPEAK(1)",
+    "pc": 1036
+  },
+  {
+    "line": 1981,
+    "label": "",
+    "code": "GOTO 20000",
+    "pc": 1037
+  },
+  {
+    "line": 1985,
+    "label": "19000",
+    "code": "CALL RSPEAK(136)",
+    "pc": 1038
+  },
+  {
+    "line": 2007,
+    "label": "20000",
+    "code": "SCORE=0",
+    "pc": 1039
+  },
+  {
+    "line": 2008,
+    "label": "",
+    "code": "MXSCOR=0",
+    "pc": 1040
+  },
+  {
+    "line": 2013,
+    "label": "",
+    "code": "DO 20010 I=50,MAXTRS",
+    "pc": 1041
+  },
+  {
+    "line": 2014,
+    "label": "",
+    "code": "IF(PTEXT(I).EQ.0)GOTO 20010",
+    "pc": 1042
+  },
+  {
+    "line": 2015,
+    "label": "",
+    "code": "K=12",
+    "pc": 1043
+  },
+  {
+    "line": 2016,
+    "label": "",
+    "code": "IF(I.EQ.CHEST)K=14",
+    "pc": 1044
+  },
+  {
+    "line": 2017,
+    "label": "",
+    "code": "IF(I.GT.CHEST)K=16",
+    "pc": 1045
+  },
+  {
+    "line": 2018,
+    "label": "",
+    "code": "IF(PROP(I).GE.0)SCORE=SCORE+2",
+    "pc": 1046
+  },
+  {
+    "line": 2019,
+    "label": "",
+    "code": "IF(PLACE(I).EQ.3.AND.PROP(I).EQ.0)SCORE=SCORE+K-2",
+    "pc": 1047
+  },
+  {
+    "line": 2020,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+K",
+    "pc": 1048
+  },
+  {
+    "line": 2021,
+    "label": "20010",
+    "code": "CONTINUE",
+    "pc": 1049
+  },
+  {
+    "line": 2030,
+    "label": "",
+    "code": "SCORE=SCORE+(MAXDIE-NUMDIE)*10",
+    "pc": 1050
+  },
+  {
+    "line": 2031,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+MAXDIE*10",
+    "pc": 1051
+  },
+  {
+    "line": 2032,
+    "label": "",
+    "code": "IF(.NOT.(SCORNG.OR.GAVEUP))SCORE=SCORE+4",
+    "pc": 1052
+  },
+  {
+    "line": 2033,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+4",
+    "pc": 1053
+  },
+  {
+    "line": 2034,
+    "label": "",
+    "code": "IF(DFLAG.NE.0)SCORE=SCORE+25",
+    "pc": 1054
+  },
+  {
+    "line": 2035,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+25",
+    "pc": 1055
+  },
+  {
+    "line": 2036,
+    "label": "",
+    "code": "IF(CLOSNG)SCORE=SCORE+25",
+    "pc": 1056
+  },
+  {
+    "line": 2037,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+25",
+    "pc": 1057
+  },
+  {
+    "line": 2038,
+    "label": "",
+    "code": "IF(.NOT.CLOSED)GOTO 20020",
+    "pc": 1058
+  },
+  {
+    "line": 2039,
+    "label": "",
+    "code": "IF(BONUS.EQ.0)SCORE=SCORE+10",
+    "pc": 1059
+  },
+  {
+    "line": 2040,
+    "label": "",
+    "code": "IF(BONUS.EQ.135)SCORE=SCORE+25",
+    "pc": 1060
+  },
+  {
+    "line": 2041,
+    "label": "",
+    "code": "IF(BONUS.EQ.134)SCORE=SCORE+30",
+    "pc": 1061
+  },
+  {
+    "line": 2042,
+    "label": "",
+    "code": "IF(BONUS.EQ.133)SCORE=SCORE+45",
+    "pc": 1062
+  },
+  {
+    "line": 2043,
+    "label": "20020",
+    "code": "MXSCOR=MXSCOR+45",
+    "pc": 1063
+  },
+  {
+    "line": 2047,
+    "label": "",
+    "code": "IF(PLACE(MAGZIN).EQ.108)SCORE=SCORE+1",
+    "pc": 1064
+  },
+  {
+    "line": 2048,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+1",
+    "pc": 1065
+  },
+  {
+    "line": 2052,
+    "label": "",
+    "code": "SCORE=SCORE+2",
+    "pc": 1066
+  },
+  {
+    "line": 2053,
+    "label": "",
+    "code": "MXSCOR=MXSCOR+2",
+    "pc": 1067
+  },
+  {
+    "line": 2057,
+    "label": "",
+    "code": "DO 20030 I=1,HNTMAX",
+    "pc": 1068
+  },
+  {
+    "line": 2058,
+    "label": "20030",
+    "code": "IF(HINTED(I))SCORE=SCORE-HINTS(I,2)",
+    "pc": 1069
+  },
+  {
+    "line": 2062,
+    "label": "",
+    "code": "IF(SCORNG)GOTO 8241",
+    "pc": 1070
+  },
+  {
+    "line": 2066,
+    "label": "",
+    "code": "TYPE 20100,SCORE,MXSCOR,TURNS",
+    "pc": 1071
+  },
+  {
+    "line": 2070,
+    "label": "",
+    "code": "DO 20200 I=1,CLSSES",
+    "pc": 1072
+  },
+  {
+    "line": 2071,
+    "label": "",
+    "code": "IF(CVAL(I).GE.SCORE)GOTO 20210",
+    "pc": 1073
+  },
+  {
+    "line": 2072,
+    "label": "20200",
+    "code": "CONTINUE",
+    "pc": 1074
+  },
+  {
+    "line": 2073,
+    "label": "",
+    "code": "TYPE 20202",
+    "pc": 1075
+  },
+  {
+    "line": 2075,
+    "label": "",
+    "code": "GOTO 25000",
+    "pc": 1076
+  },
+  {
+    "line": 2077,
+    "label": "20210",
+    "code": "CALL SPEAK(CTEXT(I))",
+    "pc": 1077
+  },
+  {
+    "line": 2078,
+    "label": "",
+    "code": "IF(I.EQ.CLSSES-1)GOTO 20220",
+    "pc": 1078
+  },
+  {
+    "line": 2079,
+    "label": "",
+    "code": "K=CVAL(I)+1-SCORE",
+    "pc": 1079
+  },
+  {
+    "line": 2080,
+    "label": "",
+    "code": "KK='s.'",
+    "pc": 1080
+  },
+  {
+    "line": 2081,
+    "label": "",
+    "code": "IF(K.EQ.1)KK='. '",
+    "pc": 1081
+  },
+  {
+    "line": 2082,
+    "label": "",
+    "code": "TYPE 20212,K,KK",
+    "pc": 1082
+  },
+  {
+    "line": 2085,
+    "label": "",
+    "code": "GOTO 25000",
+    "pc": 1083
+  },
+  {
+    "line": 2087,
+    "label": "20220",
+    "code": "TYPE 20222",
+    "pc": 1084
+  },
+  {
+    "line": 2091,
+    "label": "25000",
+    "code": "STOP",
+    "pc": 1085
+  }
+]

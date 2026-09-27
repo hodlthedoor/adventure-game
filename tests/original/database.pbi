@@ -1,5 +1,5 @@
 Procedure TestDatabase()
-  Protected db.Original::Database, o.Original::Output, s.Original::State, i.i, longs.i, shorts.i, steps.i
+  Protected db.Original::Database, o.Original::Output, s.Original::State, i.i, longs.i, shorts.i, steps.i, rods.i
   Check(Original::LoadDatabase(@db, @o), "load pinned database")
   For i = 1 To 150
     If db\longText[i] <> "" : longs + 1 : EndIf
@@ -10,7 +10,9 @@ Procedure TestDatabase()
   Check(Bool(ListSize(db\vocab()) = 295), "all vocabulary records")
   ForEach db\vocab()
     If db\vocab()\word = "STEPS" : steps + 1 : EndIf
+    If db\vocab()\word = "ROD" : rods + 1 : EndIf
   Next
+  Check(Bool(rods = 2), "short duplicate vocabulary ignores comments")
   Check(Bool(steps = 2), "duplicate motion and object vocabulary retained")
   Check(Bool(CountString(db\longText[1], #LF$) = 2), "multiline description joined")
   Check(Bool(db\objectText("2:0") <> db\objectText("2:1") And db\objectText("2:1") <> ""), "lamp property descriptions distinct")
