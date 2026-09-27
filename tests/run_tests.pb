@@ -27,6 +27,7 @@ XIncludeFile "cases/waterworks.pbi"
 XIncludeFile "cases/persistence.pbi"
 XIncludeFile "cases/adventure.pbi"
 XIncludeFile "cases/hints.pbi"
+XIncludeFile "cases/playthroughs.pbi"
 OpenConsole()
 Define group.s = ProgramParameter()
 If group = "" : group = "all" : EndIf
@@ -36,6 +37,7 @@ If group = "all" Or group = "waterworks" : TestWaterworks() : EndIf
 If group = "all" Or group = "persistence" : TestPersistence() : EndIf
 If group = "all" Or group = "adventure" : TestAdventure() : EndIf
 If group = "all" Or group = "hints" : TestHints() : EndIf
+If group = "all" Or group = "playthroughs" : TestPlaythroughs() : EndIf
 If checks = 0 : PrintN("FAIL unknown test group") : End 1 : EndIf
 If failures : PrintN(Str(failures) + " failed / " + Str(checks)) : End 1 : EndIf
 PrintN("PASS " + group + " (" + Str(checks) + " checks)")
