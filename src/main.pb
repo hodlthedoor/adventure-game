@@ -5,6 +5,7 @@ XIncludeFile "game/parser.pbi"
 XIncludeFile "content/puzzles.pbi"
 XIncludeFile "game/turns.pbi"
 XIncludeFile "game/actions.pbi"
+XIncludeFile "game/persistence.pbi"
 XIncludeFile "ui/window.pbi"
 Define world.WorldData, state.GameState
 Content_Load(@world)
