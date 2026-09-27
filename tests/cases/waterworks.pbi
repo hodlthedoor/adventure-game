@@ -1,0 +1,30 @@
+Procedure TestWaterworks()
+  Protected w.WorldData, s.GameState, c.ParseContext, r.ActionResult, before.i, i.i
+  Content_Load(@w) : World_NewGame(@w, @s)
+  RunCommands(@w, @s, @c, "n|take lantern|light lantern|d|d|w|take wedge|w|use wedge on pump|use pump|n|use valve", @r)
+  Check(Bool(s\flags("water") = 1 And s\status = #Playing), "waterworks safe solution")
+  Check(Bool(s\turns = 12 And s\fuel = 70), "exactly one turn per valid command")
+  Game_Submit(@w, @s, @c, "look", @r) : before = s\fuel
+  Game_Submit(@w, @s, @c, "help", @r)
+  Check(Bool(s\fuel = before), "information preserves fuel")
+  World_NewGame(@w, @s) : ResetStructure(@c, ParseContext)
+  RunCommands(@w, @s, @c, "n|take lantern|light lantern|d|d|w|w|use pump", @r)
+  Check(Bool(s\hazardTimers("pump") = 3 And s\status = #Playing), "pump warns with three actions remaining")
+  before = s\fuel
+  RunCommands(@w, @s, @c, "examine pump|help|hint", @r)
+  Check(Bool(s\hazardTimers("pump") = 3 And s\fuel = before), "reading during hazard is free")
+  RunCommands(@w, @s, @c, "wait|wait|wait", @r)
+  Check(Bool(s\status = #Dead), "unbraced pump kills after warning")
+  World_NewGame(@w, @s) : ResetStructure(@c, ParseContext)
+  RunCommands(@w, @s, @c, "n|take lantern|light lantern|d|d|w|w|use pump|e", @r)
+  Check(Bool(s\status = #Playing And s\hazardTimers("pump") = 0), "escape cancels local danger")
+  s\fuel = 1
+  Game_Submit(@w, @s, @c, "wait", @r)
+  Check(Bool(s\fuel = 0 And s\lampLit = 0), "fuel exhaustion extinguishes")
+  Game_Submit(@w, @s, @c, "w", @r)
+  Check(Bool(s\room = "sluice_landing"), "darkness prevents deeper exploration")
+  RunCommands(@w, @s, @c, "e|u|u|use oil on lantern", @r)
+  Check(Bool(s\room = "well_house" And s\fuel = 80), "dark retreat and refill restore viability")
+  RunCommands(@w, @s, @c, "light lantern|d|d|w|drop lantern|e|w|take lantern", @r)
+  Check(Bool(s\objectLocations("lantern") = "inventory"), "dropped light can be recovered")
+EndProcedure

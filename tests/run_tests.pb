@@ -2,6 +2,8 @@ XIncludeFile "../src/game/types.pbi"
 XIncludeFile "../src/content/world.pbi"
 XIncludeFile "../src/game/world.pbi"
 XIncludeFile "../src/game/parser.pbi"
+XIncludeFile "../src/content/puzzles.pbi"
+XIncludeFile "../src/game/turns.pbi"
 XIncludeFile "../src/game/actions.pbi"
 Global failures.i, checks.i
 Procedure Check(condition.i, label.s)
@@ -11,13 +13,21 @@ Procedure Check(condition.i, label.s)
     PrintN("FAIL " + label)
   EndIf
 EndProcedure
+Procedure RunCommands(*w.WorldData, *s.GameState, *c.ParseContext, commands.s, *r.ActionResult)
+  Protected i.i
+  For i = 1 To CountString(commands, "|") + 1
+    Game_Submit(*w, *s, *c, StringField(commands, i, "|"), *r)
+  Next
+EndProcedure
 XIncludeFile "cases/world.pbi"
 XIncludeFile "cases/parser.pbi"
+XIncludeFile "cases/waterworks.pbi"
 OpenConsole()
 Define group.s = ProgramParameter()
 If group = "" : group = "all" : EndIf
 If group = "all" Or group = "world" : TestWorld() : EndIf
 If group = "all" Or group = "parser" : TestParser() : EndIf
+If group = "all" Or group = "waterworks" : TestWaterworks() : EndIf
 If checks = 0 : PrintN("FAIL unknown test group") : End 1 : EndIf
 If failures : PrintN(Str(failures) + " failed / " + Str(checks)) : End 1 : EndIf
 PrintN("PASS " + group + " (" + Str(checks) + " checks)")
