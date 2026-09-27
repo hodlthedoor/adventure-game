@@ -1,0 +1,30 @@
+Procedure ReachFinale(*w.WorldData, *s.GameState, *c.ParseContext, *r.ActionResult)
+  RunCommands(*w, *s, *c, "n|take lantern|light lantern|d|d|e|e|take manifest|n|use manifest on cabinet|take cup|take bell|e|examine inscription|w|s|w|w|w|take wedge|w|use wedge on pump|use pump|n|use valve|s|e|e|n|use irrigation|n|e|use cup on keeper|take living light|w|s|s|use living light on pedestal|use bell|s|s", *r)
+EndProcedure
+Procedure TestAdventure()
+  Protected w.WorldData, s.GameState, c.ParseContext, r.ActionResult, before.i
+  Content_Load(@w) : World_NewGame(@w, @s)
+  ReachFinale(@w, @s, @c, @r)
+  Check(Bool(s\room = "celebration_chamber" And s\flags("water") And s\flags("procession")), "all branches open finale")
+  Check(Bool(s\status = #Playing And World_Treasures(@w, @s) = 0), "water alone not ending and no treasures required")
+  RunCommands(@w, @s, @c, "use vent|use rainwheel|use bell", @r)
+  Check(Bool(s\status = #Won), "correct ritual wins")
+  before = s\fuel
+  RunCommands(@w, @s, @c, "e|take crystal|w|n|n", @r)
+  Check(Bool(World_Treasures(@w, @s) = 1 And s\fuel = before And s\room = "arrival_hall"), "post-win treasure exploration is safe")
+  World_NewGame(@w, @s) : ResetStructure(@c, ParseContext) : ReachFinale(@w, @s, @c, @r)
+  Game_Submit(@w, @s, @c, "use rainwheel", @r)
+  Check(Bool(s\hazardTimers("flood") = 3 And s\status = #Playing), "flood gives three-action warning")
+  RunCommands(@w, @s, @c, "wait|wait|wait", @r)
+  Check(Bool(s\status = #Dead), "ignored flood kills")
+  World_NewGame(@w, @s) : ResetStructure(@c, ParseContext) : ReachFinale(@w, @s, @c, @r)
+  RunCommands(@w, @s, @c, "use rainwheel|n|n", @r)
+  Check(Bool(s\status = #Playing And s\hazardTimers("flood") = 0 And s\flags("rain") = 0), "escape to hall resets unsafe ceremony")
+  RunCommands(@w, @s, @c, "n|n|w|w|s|e|e|n|n|e|n|e", @r)
+  Check(Bool(s\flags("garden_shortcut") And s\flags("store_shortcut")), "shortcuts open from branch sides")
+  World_NewGame(@w, @s) : ResetStructure(@c, ParseContext)
+  RunCommands(@w, @s, @c, "n|take lantern|light lantern|d|d|e|e|take manifest|n|use manifest on cabinet|use manifest on drawer|take crown|take cup", @r)
+  s\room = "keepers_hut" : s\visited("keepers_hut") = 1
+  RunCommands(@w, @s, @c, "use crown on keeper|use cup on keeper", @r)
+  Check(Bool(s\flags("light") And s\objectLocations("crown") = "inventory" And s\objectLocations("cup") = "keepers_hut"), "cup recovers traded treasure")
+EndProcedure

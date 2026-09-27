@@ -40,7 +40,7 @@ Procedure Save_Validate(*w.WorldData, root.i)
         key = JSONMemberKey(member) : value = JSONMemberValue(member)
         Select i
           Case 1
-            If Not FindString("||braced|wedge_installed|fork_installed|pump|water|irrigated|cabinet|light|procession|vented|rain|festival|seed|pearl|crown|garden_shortcut|store_shortcut|manifest|ritual|", "|" + key + "|") : ProcedureReturn #False : EndIf
+            If Not FindString("||braced|wedge_installed|fork_installed|pump|water|irrigated|cabinet|light|light_installed|procession|vented|rain|festival|seed|pearl|crown|garden_shortcut|store_shortcut|manifest|ritual|", "|" + key + "|") : ProcedureReturn #False : EndIf
             If Not Save_Number(value, 0, 1) : ProcedureReturn #False : EndIf
           Case 2
             If Not FindMapElement(*w\rooms(), key) : ProcedureReturn #False : EndIf
@@ -59,12 +59,19 @@ Procedure Save_Validate(*w.WorldData, root.i)
   If candidate\lampLit And candidate\fuel = 0 : ProcedureReturn #False : EndIf
   If Not candidate\visited(candidate\room) : ProcedureReturn #False : EndIf
   If candidate\flags("water") And Not candidate\flags("pump") : ProcedureReturn #False : EndIf
-  If candidate\flags("pump") And Not candidate\flags("braced") : ProcedureReturn #False : EndIf
+  If candidate\status <> #Won And candidate\flags("pump") And Not candidate\flags("braced") : ProcedureReturn #False : EndIf
   If candidate\flags("braced") <> Bool(candidate\flags("wedge_installed") Or candidate\flags("fork_installed")) : ProcedureReturn #False : EndIf
   If candidate\flags("wedge_installed") And candidate\flags("fork_installed") : ProcedureReturn #False : EndIf
   If candidate\flags("wedge_installed") And candidate\objectLocations("wedge") <> "pump_room" : ProcedureReturn #False : EndIf
   If candidate\flags("fork_installed") And candidate\objectLocations("fork") <> "pump_room" : ProcedureReturn #False : EndIf
   If candidate\hazardTimers("pump") And (candidate\room <> "pump_room" Or candidate\flags("braced")) : ProcedureReturn #False : EndIf
+  If candidate\flags("irrigated") And Not candidate\flags("water") : ProcedureReturn #False : EndIf
+  If candidate\flags("light") And Not candidate\flags("cabinet") : ProcedureReturn #False : EndIf
+  If candidate\flags("light_installed") And Not candidate\flags("light") : ProcedureReturn #False : EndIf
+  If candidate\flags("procession") And Not candidate\flags("light_installed") : ProcedureReturn #False : EndIf
+  If candidate\flags("rain") And Not candidate\flags("procession") : ProcedureReturn #False : EndIf
+  If candidate\status = #Won And Not (candidate\flags("festival") And candidate\flags("water") And candidate\flags("vented") And candidate\flags("rain") And candidate\flags("procession")) : ProcedureReturn #False : EndIf
+  If candidate\flags("festival") And candidate\status <> #Won : ProcedureReturn #False : EndIf
   ProcedureReturn #True
 EndProcedure
 Procedure Save_Read(*w.WorldData, *s.GameState, path.s, *r.ActionResult)

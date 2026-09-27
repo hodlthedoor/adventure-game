@@ -17,4 +17,17 @@ Procedure Turns_Advance(*w.WorldData, *s.GameState, *r.ActionResult)
       *r\text + #LF$ + "The pump shakes violently. Actions remaining: " + Str(*s\hazardTimers("pump")) + "."
     EndIf
   EndIf
+  If *s\hazardTimers("flood") > 0
+    If *s\room = "arrival_hall"
+      *s\hazardTimers("flood") = 0 : *s\flags("rain") = 0
+      *r\text + #LF$ + "The safety sluices drain the failed ceremony. You can try again."
+    Else
+      *s\hazardTimers("flood") - 1
+      If *s\hazardTimers("flood") = 0
+        *s\status = #Dead : *r\text + #LF$ + "The reservoir bursts. The lower chamber floods before you can escape. Load a save or start a new game."
+      Else
+        *r\text + #LF$ + "Water pressure is rising. Actions remaining: " + Str(*s\hazardTimers("flood")) + "."
+      EndIf
+    EndIf
+  EndIf
 EndProcedure
